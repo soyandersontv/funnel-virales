@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Productos Extranjeros Virales</title>
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1985622431943479');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1985622431943479&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel -->
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@23/build/css/intlTelInput.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple: #7C3AED;
+      --purple-light: #A855F7;
+      --purple-glow: rgba(124, 58, 237, 0.4);
+      --blue: #2563EB;
+      --dark: #0A0A0F;
+      --dark2: #111118;
+      --card: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.09);
+      --text: #F1F0FF;
+      --muted: #9CA3AF;
+      --wa: #25D366;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* ---- Background blobs ---- */
+    .bg {
+      position: fixed; inset: 0; z-index: 0; overflow: hidden;
+    }
+    .blob {
+      position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.35;
+    }
+    .blob-1 { width: 500px; height: 500px; background: radial-gradient(circle, #7C3AED, transparent); top: -120px; left: -120px; }
+    .blob-2 { width: 400px; height: 400px; background: radial-gradient(circle, #2563EB, transparent); bottom: -80px; right: -80px; }
+    .blob-3 { width: 300px; height: 300px; background: radial-gradient(circle, #A855F7, transparent); top: 50%; left: 50%; transform: translate(-50%,-50%); opacity: 0.18; }
+
+    /* ---- Pages ---- */
+    .pages { position: relative; z-index: 1; width: 100%; display: flex; align-items: center; justify-content: center; padding: 24px; }
+
+    .page { display: none; width: 100%; max-width: 480px; animation: fadeIn .5s ease; }
+    .page.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---- Badge ---- */
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(124,58,237,0.18); border: 1px solid rgba(168,85,247,0.35);
+      color: var(--purple-light); font-size: 11px; font-weight: 600;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 999px; margin-bottom: 20px;
+    }
+    .badge::before, .badge::after { content: '✦'; font-size: 9px; }
+
+    /* ---- Heading ---- */
+    h1 {
+      font-size: clamp(28px, 6vw, 38px);
+      font-weight: 800; line-height: 1.15;
+      background: linear-gradient(135deg, #fff 30%, var(--purple-light));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
+    .sub {
+      color: var(--muted); font-size: 14px; line-height: 1.6; margin-bottom: 32px;
+    }
+    .sub strong { color: var(--purple-light); }
+
+    /* ---- Card ---- */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 28px;
+      backdrop-filter: blur(24px);
+      box-shadow: 0 0 60px rgba(124,58,237,0.08), 0 2px 40px rgba(0,0,0,0.5);
+    }
+
+    /* ---- Form ---- */
+    .field { margin-bottom: 18px; }
+    label {
+      display: block; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.5px; color: var(--muted); margin-bottom: 7px;
+      text-transform: uppercase;
+    }
+
+    .input-wrap { position: relative; }
+    .input-wrap svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); opacity: 0.45; pointer-events: none; }
+
+    input {
+      width: 100%; padding: 13px 14px 13px 44px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: #fff; font-size: 15px; font-family: inherit;
+      outline: none; transition: border-color .2s, box-shadow .2s;
+    }
+    input::placeholder { color: rgba(255,255,255,0.25); }
+    input:focus {
+      border-color: var(--purple-light);
+      box-shadow: 0 0 0 3px rgba(168,85,247,0.18);
+    }
+
+    /* ---- Button ---- */
+    .btn {
+      width: 100%; padding: 15px;
+      background: linear-gradient(135deg, var(--purple), var(--purple-light));
+      border: none; border-radius: 12px;
+      color: #fff; font-size: 15px; font-weight: 700;
+      cursor: pointer; margin-top: 6px;
+      position: relative; overflow: hidden;
+      transition: transform .15s, box-shadow .2s;
+      box-shadow: 0 4px 24px rgba(124,58,237,0.45);
+      letter-spacing: 0.3px;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 8px 32px rgba(124,58,237,0.55); }
+    .btn:active { transform: translateY(0); }
+    .btn::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(rgba(255,255,255,0.12), transparent);
+      border-radius: inherit; pointer-events: none;
+    }
+
+    /* ---- Trust row ---- */
+    .trust {
+      display: flex; align-items: center; justify-content: center; gap: 18px;
+      margin-top: 22px; flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 11px; color: var(--muted); font-weight: 500;
+    }
+    .trust-item svg { opacity: 0.6; }
+
+    /* ---- Step 2 ---- */
+    .check-circle {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--purple-light));
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px; box-shadow: 0 0 40px rgba(124,58,237,0.5);
+      animation: pop .4s cubic-bezier(.34,1.56,.64,1);
+    }
+    @keyframes pop { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+    .step2-title {
+      text-align: center; font-size: clamp(22px, 5vw, 30px);
+      font-weight: 800; line-height: 1.2;
+      background: linear-gradient(135deg, #fff 40%, var(--purple-light));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; margin-bottom: 12px;
+    }
+    .step2-sub {
+      text-align: center; color: var(--muted); font-size: 14px;
+      line-height: 1.6; margin-bottom: 28px;
+    }
+    .step2-sub strong { color: var(--purple-light); }
+
+    .btn-wa {
+      width: 100%; padding: 16px;
+      background: linear-gradient(135deg, #1DB954, var(--wa));
+      border: none; border-radius: 12px;
+      color: #fff; font-size: 16px; font-weight: 700;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+      text-decoration: none;
+      box-shadow: 0 4px 24px rgba(37,211,102,0.4);
+      transition: transform .15s, box-shadow .2s;
+      letter-spacing: 0.3px;
+      position: relative; overflow: hidden;
+    }
+    .btn-wa::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(rgba(255,255,255,0.1), transparent);
+      pointer-events: none;
+    }
+    .btn-wa:hover { transform: translateY(-1px); box-shadow: 0 8px 32px rgba(37,211,102,0.5); }
+
+    .step2-note {
+      text-align: center; margin-top: 18px;
+      font-size: 12px; color: var(--muted);
+    }
+
+    /* ---- Progress dots ---- */
+    .dots { display: flex; gap: 8px; justify-content: center; margin-bottom: 28px; }
+    .dot { width: 8px; height: 8px; border-radius: 999px; background: rgba(255,255,255,0.15); transition: all .3s; }
+    .dot.active { background: var(--purple-light); width: 24px; box-shadow: 0 0 8px var(--purple-light); }
+
+    .divider {
+      display: flex; align-items: center; gap: 12px; margin: 22px 0;
+      color: rgba(255,255,255,0.15); font-size: 11px;
+    }
+    .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    @media (max-width: 480px) {
+      .card { padding: 24px 18px; }
+    }
+
+    /* ---- intl-tel-input dark theme ---- */
+    .iti { width: 100%; }
+
+    .iti__tel-input {
+      width: 100% !important;
+      padding: 13px 14px 13px 58px !important;
+      background: rgba(255,255,255,0.05) !important;
+      border: 1px solid var(--border) !important;
+      border-radius: 12px !important;
+      color: #fff !important;
+      font-size: 15px !important;
+      font-family: inherit !important;
+      outline: none !important;
+      transition: border-color .2s, box-shadow .2s !important;
+    }
+    .iti__tel-input::placeholder { color: rgba(255,255,255,0.25) !important; }
+    .iti__tel-input:focus {
+      border-color: var(--purple-light) !important;
+      box-shadow: 0 0 0 3px rgba(168,85,247,0.18) !important;
+    }
+
+    .iti__flag-container {
+      border-right: 1px solid var(--border);
+      height: calc(100% - 2px);
+      top: 1px; left: 1px;
+      border-radius: 11px 0 0 11px;
+      background: rgba(255,255,255,0.06);
+      transition: background .15s;
+    }
+    .iti__flag-container:hover { background: rgba(255,255,255,0.10); }
+
+    .iti__selected-country {
+      padding: 0 8px 0 12px !important;
+      gap: 5px;
+    }
+    .iti__selected-country-primary { gap: 5px; }
+
+    .iti__arrow { border-top-color: rgba(255,255,255,0.35) !important; }
+    .iti__arrow--up { border-bottom-color: rgba(255,255,255,0.35) !important; }
+
+    .iti__dropdown-content {
+      background: #1A1A2E !important;
+      border: 1px solid var(--border) !important;
+      border-radius: 12px !important;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.7) !important;
+      overflow: hidden;
+    }
+    .iti__search-input {
+      background: rgba(255,255,255,0.06) !important;
+      border: none !important;
+      border-bottom: 1px solid var(--border) !important;
+      color: #fff !important;
+      padding: 10px 14px !important;
+      font-family: inherit !important;
+      outline: none !important;
+      width: 100% !important;
+    }
+    .iti__search-input::placeholder { color: rgba(255,255,255,0.3) !important; }
+    .iti__country-list { background: transparent !important; }
+    .iti__country { padding: 8px 14px !important; color: rgba(255,255,255,0.75) !important; }
+    .iti__country:hover, .iti__country--highlight { background: rgba(168,85,247,0.15) !important; color: #fff !important; }
+    .iti__dial-code { color: rgba(255,255,255,0.4) !important; }
+    .iti__divider { border-bottom-color: var(--border) !important; }
+  </style>
+</head>
+<body>
+
+<div class="bg">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+
+<div class="pages">
+
+  <!-- PAGE 1: Formulario -->
+  <div class="page active" id="page1">
+    <div class="dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+    </div>
+    <div class="badge">Productos Extranjeros Virales</div>
+    <h1>Accede a los productos<br/>más virales del mercado</h1>
+    <p class="sub">Únete a nuestra comunidad exclusiva y <strong>descubre los productos que están arrasando</strong> en el mundo antes que nadie.</p>
+
+    <div class="card">
+      <div class="field">
+        <label>Nombre completo</label>
+        <div class="input-wrap">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="2" stroke-linecap="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+          <input type="text" id="nombre" placeholder="Tu nombre y apellido" autocomplete="name" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Correo electrónico</label>
+        <div class="input-wrap">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="2" stroke-linecap="round">
+            <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+          <input type="email" id="email" placeholder="tucorreo@email.com" autocomplete="email" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Teléfono / WhatsApp</label>
+        <input type="tel" id="telefono" placeholder="000 000 0000" autocomplete="tel" />
+      </div>
+
+      <div id="error-msg" style="display:none; color:#F87171; font-size:13px; margin-bottom:12px; text-align:center;"></div>
+
+      <button class="btn" onclick="goPage2()">
+        Quiero acceso ahora →
+      </button>
+
+      <div class="divider">100% gratuito · sin spam</div>
+
+      <div class="trust">
+        <div class="trust-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Datos seguros
+        </div>
+        <div class="trust-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          Respuesta inmediata
+        </div>
+        <div class="trust-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          +2,400 miembros
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 2: WhatsApp CTA -->
+  <div class="page" id="page2">
+    <div class="dots">
+      <div class="dot"></div>
+      <div class="dot active"></div>
+    </div>
+
+    <div class="card">
+      <div class="check-circle">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+
+      <div class="step2-title">¡Estás a un paso de<br/>unirte a la comunidad!</div>
+      <p class="step2-sub">
+        Tus datos fueron registrados exitosamente.<br/>
+        Ahora <strong>únete a nuestro grupo de WhatsApp</strong> para completar tu registro y recibir acceso a los productos virales.
+      </p>
+
+      <a href="https://chat.whatsapp.com/JX1GcozoFh5AyMrROmfuE9" target="_blank" class="btn-wa" id="wa-btn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+        </svg>
+        Unirme al grupo de WhatsApp
+      </a>
+
+      <p class="step2-note">
+        El link abre directamente el grupo.<br/>
+        <span style="color:rgba(255,255,255,0.3);">Gratuito · Sin costo · Sin compromisos</span>
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@23/build/js/intlTelInput.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+  const SUPABASE_URL = 'https://tvhpckppucijwkqidoaz.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_78EPH7DNHS_ngIQj3WbnOQ_bAEn58f4';
+  const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  const iti = window.intlTelInput(document.getElementById('telefono'), {
+    initialCountry: 'mx',
+    countrySearch: true,
+    loadUtilsOnInit: 'https://cdn.jsdelivr.net/npm/intl-tel-input@23/build/js/utils.js',
+  });
+
+  async function goPage2() {
+    const nombre = document.getElementById('nombre').value.trim();
+    const email  = document.getElementById('email').value.trim();
+    const telRaw = document.getElementById('telefono').value.trim();
+    const err    = document.getElementById('error-msg');
+    const btn    = document.querySelector('.btn');
+
+    if (!nombre || !email || !telRaw) {
+      err.textContent = 'Por favor completa todos los campos.';
+      err.style.display = 'block';
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      err.textContent = 'Ingresa un correo electrónico válido.';
+      err.style.display = 'block';
+      return;
+    }
+    err.style.display = 'none';
+
+    const dialCode = iti.getSelectedCountryData().dialCode || '';
+    const telefono = '+' + dialCode + telRaw.replace(/\D/g, '');
+
+    btn.textContent = 'Guardando...';
+    btn.disabled = true;
+
+    const { error } = await db.from('leads').insert({ nombre, email, telefono });
+
+    if (error) {
+      err.textContent = 'Ocurrió un error, intenta de nuevo.';
+      err.style.display = 'block';
+      btn.textContent = 'Quiero acceso ahora →';
+      btn.disabled = false;
+      return;
+    }
+
+    fbq('track', 'Lead', { email, phone: telefono });
+
+    document.getElementById('page1').classList.remove('active');
+    document.getElementById('page2').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  document.querySelectorAll('input').forEach(el => {
+    el.addEventListener('keydown', e => { if (e.key === 'Enter') goPage2(); });
+  });
+</script>
+
+</body>
+</html>
