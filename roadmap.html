@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roadmap — El Siguiente Nivel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #06060F;
+      --surface: #0E0E1C;
+      --card:    #111122;
+      --card2:   #0D0D1E;
+      --purple:  #7C3AED;
+      --purpleL: #A78BFA;
+      --border:  rgba(167,139,250,0.1);
+      --border2: rgba(167,139,250,0.22);
+      --text:    #F4F4FF;
+      --muted:   #71717A;
+      --muted2:  #3F3F46;
+      --red:     #EF4444;
+      --green:   #22C55E;
+      --amber:   #F59E0B;
+      --blue:    #3B82F6;
+      --pink:    #EC4899;
+      --sidebar: 264px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* ===== TOP BAR ===== */
+    .topbar {
+      height: 56px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center;
+      padding: 0 32px;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(6,6,15,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .topbar-logo {
+      font-size: 14px; font-weight: 800; color: #fff;
+      letter-spacing: -0.3px; display: flex; align-items: center; gap: 8px;
+    }
+    .topbar-logo span {
+      background: linear-gradient(135deg, #C084FC, #A78BFA);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .topbar-pill {
+      margin-left: auto;
+      background: rgba(124,58,237,0.1);
+      border: 1px solid rgba(124,58,237,0.25);
+      border-radius: 999px; padding: 5px 14px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.8px;
+      text-transform: uppercase; color: var(--purpleL);
+    }
+
+    /* ===== LAYOUT ===== */
+    .layout {
+      display: flex;
+      padding-top: 56px;
+      min-height: 100vh;
+    }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      width: var(--sidebar);
+      flex-shrink: 0;
+      position: fixed;
+      top: 56px;
+      left: 0;
+      bottom: 0;
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      padding: 28px 0 40px;
+      background: var(--bg);
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: rgba(124,58,237,0.3); border-radius: 2px; }
+
+    .sidebar-section { margin-bottom: 28px; }
+    .sidebar-group-label {
+      font-size: 9px; font-weight: 800; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--muted2);
+      padding: 0 20px; margin-bottom: 8px;
+    }
+    .sidebar-link {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 20px;
+      text-decoration: none;
+      font-size: 13px; font-weight: 600; color: var(--muted);
+      border-left: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+      cursor: pointer;
+    }
+    .sidebar-link:hover {
+      color: var(--text);
+      background: rgba(124,58,237,0.05);
+    }
+    .sidebar-link.active {
+      color: var(--purpleL);
+      border-left-color: var(--purple);
+      background: rgba(124,58,237,0.07);
+    }
+    .sidebar-link-icon {
+      width: 22px; height: 22px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; flex-shrink: 0;
+    }
+    .sidebar-link-text { flex: 1; line-height: 1.2; }
+    .sidebar-link-badge {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.3px;
+      border-radius: 4px; padding: 2px 6px;
+      flex-shrink: 0;
+    }
+
+    /* sidebar stats mini */
+    .sidebar-stats {
+      margin: 0 16px 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px; padding: 16px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    }
+    .ss-item { text-align: center; }
+    .ss-num {
+      font-size: 18px; font-weight: 900; letter-spacing: -0.5px; display: block;
+      background: linear-gradient(135deg, var(--purple), var(--purpleL));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .ss-lbl { font-size: 10px; color: var(--muted); font-weight: 600; display: block; margin-top: 1px; }
+
+    /* ===== MAIN CONTENT ===== */
+    .main {
+      flex: 1;
+      margin-left: var(--sidebar);
+      padding: 48px 48px 80px;
+      max-width: calc(100% - var(--sidebar));
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      margin-bottom: 48px;
+      max-width: 820px;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(124,58,237,0.08);
+      border: 1px solid rgba(124,58,237,0.2);
+      border-radius: 999px; padding: 6px 14px;
+      font-size: 11px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--purpleL);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(36px, 4vw, 56px);
+      font-weight: 900; letter-spacing: -2px; line-height: 1.04;
+      color: #fff; margin-bottom: 16px;
+    }
+    .hero h1 .grad {
+      background: linear-gradient(135deg, #C084FC 0%, #818CF8 50%, #A78BFA 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-sub {
+      font-size: 17px; color: var(--muted); line-height: 1.7;
+      max-width: 520px;
+    }
+
+    /* ===== STATS ROW ===== */
+    .stats-row {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 12px; margin-bottom: 48px;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 20px 18px;
+    }
+    .stat-num {
+      font-size: 28px; font-weight: 900; letter-spacing: -1px;
+      background: linear-gradient(135deg, var(--purple), var(--purpleL));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      display: block; margin-bottom: 4px;
+    }
+    .stat-lbl { font-size: 12px; color: var(--muted); font-weight: 600; }
+    .stat-icon { font-size: 22px; margin-bottom: 10px; display: block; }
+
+    /* ===== SECTION HEADER ===== */
+    .sec-hd {
+      margin-bottom: 24px;
+      display: flex; align-items: flex-end; justify-content: space-between;
+    }
+    .sec-hd-left {}
+    .sec-eyebrow {
+      font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .sec-title {
+      font-size: 22px; font-weight: 900; color: #fff; letter-spacing: -0.6px;
+    }
+    .sec-hd-count {
+      font-size: 12px; font-weight: 700; color: var(--muted2);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px; padding: 6px 12px;
+    }
+
+    /* ===== CADENCE NOTE ===== */
+    .cadence-note {
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-radius: 16px; padding: 18px 24px;
+      display: flex; align-items: center; gap: 16px;
+      margin-bottom: 40px;
+    }
+    .cadence-icon { font-size: 28px; flex-shrink: 0; }
+    .cadence-text { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .cadence-text strong { color: var(--text); }
+
+    /* ===== PHASE BLOCK ===== */
+    .phase-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      transition: border-color 0.2s;
+    }
+    .phase-block:hover { border-color: var(--border2); }
+
+    .phase-head {
+      padding: 22px 28px;
+      display: flex; align-items: center; gap: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .phase-icon-wrap {
+      width: 48px; height: 48px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+    }
+    .phase-meta { flex: 1; }
+    .phase-tag {
+      font-size: 10px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; margin-bottom: 3px; display: block;
+    }
+    .phase-name {
+      font-size: 17px; font-weight: 800; color: #fff; letter-spacing: -0.4px;
+    }
+    .phase-desc {
+      font-size: 13px; color: var(--muted); line-height: 1.5; margin-top: 3px;
+    }
+    .phase-badge {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.3px;
+      border-radius: 999px; padding: 6px 14px;
+      flex-shrink: 0; text-transform: uppercase;
+    }
+
+    /* sessions grid */
+    .sessions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0;
+    }
+    .sessions-grid.two-col { grid-template-columns: 1fr 1fr; }
+
+    .session-card {
+      padding: 20px 24px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .session-card:last-child,
+    .sessions-grid.two-col .session-card:nth-child(2),
+    .sessions-grid .session-card:nth-child(3) {
+      border-right: none;
+    }
+    .sessions-grid .session-card:nth-child(n+4),
+    .sessions-grid.two-col .session-card:nth-child(n+3) {
+      border-bottom: none;
+    }
+    .session-card:last-child { border-bottom: none; }
+
+    .session-num {
+      font-size: 10px; font-weight: 800; letter-spacing: 0.8px;
+      color: var(--muted2); text-transform: uppercase;
+      margin-bottom: 8px; display: block;
+    }
+    .session-title {
+      font-size: 13px; font-weight: 700; color: var(--text);
+      line-height: 1.4; margin-bottom: 6px;
+    }
+    .session-desc {
+      font-size: 12px; color: var(--muted); line-height: 1.55;
+    }
+    .session-tag-inline {
+      display: inline-block; margin-top: 8px;
+      font-size: 10px; font-weight: 700; border-radius: 6px;
+      padding: 3px 8px; text-transform: uppercase; letter-spacing: 0.3px;
+    }
+
+    /* ===== INTENSIVE BLOCK ===== */
+    .intensive {
+      background: linear-gradient(135deg, rgba(124,58,237,0.07), rgba(99,102,241,0.04));
+      border: 1px solid rgba(124,58,237,0.25);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .intensive::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, #7C3AED, #A78BFA, #818CF8, #7C3AED);
+      background-size: 200% 100%;
+      animation: shimmer 2.5s linear infinite;
+    }
+    @keyframes shimmer {
+      0%   { background-position: -200% 0; }
+      100% { background-position:  200% 0; }
+    }
+    .intensive-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+    }
+    .intensive-left {
+      padding: 32px 32px;
+      border-right: 1px solid rgba(124,58,237,0.15);
+    }
+    .intensive-right {
+      padding: 28px 28px;
+    }
+    .intensive-eyebrow {
+      font-size: 10px; font-weight: 800; letter-spacing: 1.2px;
+      text-transform: uppercase; color: var(--purpleL);
+      margin-bottom: 10px; display: block;
+    }
+    .intensive-title {
+      font-size: 26px; font-weight: 900; color: #fff;
+      letter-spacing: -0.8px; line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .intensive-sub {
+      font-size: 13px; color: var(--muted); line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .intensive-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(124,58,237,0.12);
+      border: 1px solid rgba(124,58,237,0.25);
+      border-radius: 10px; padding: 10px 16px;
+    }
+    .intensive-badge-icon { font-size: 20px; }
+    .intensive-badge-text { font-size: 12px; font-weight: 700; color: var(--purpleL); line-height: 1.3; }
+    .intensive-badge-text strong { display: block; font-size: 16px; color: #fff; }
+
+    .intensive-days { display: flex; flex-direction: column; gap: 6px; }
+    .iday {
+      background: rgba(6,6,15,0.5);
+      border: 1px solid rgba(124,58,237,0.1);
+      border-radius: 10px; padding: 10px 14px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .iday-num {
+      font-size: 10px; font-weight: 800; letter-spacing: 0.5px;
+      color: var(--purpleL); flex-shrink: 0; min-width: 40px;
+      text-transform: uppercase;
+    }
+    .iday-title {
+      font-size: 12px; font-weight: 600; color: var(--text); line-height: 1.3; flex: 1;
+    }
+    .iday-emoji { font-size: 14px; flex-shrink: 0; }
+
+    /* ===== BONUSES GRID ===== */
+    .bonus-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 12px; margin-bottom: 16px;
+    }
+    .bonus-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 20px 20px;
+      position: relative; overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .bonus-card:hover { border-color: var(--border2); }
+    .bonus-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--purple), var(--purpleL));
+    }
+    .bonus-card-head {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+    }
+    .bonus-icon { font-size: 24px; }
+    .bonus-tag {
+      font-size: 9px; font-weight: 800; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--purpleL); display: block;
+    }
+    .bonus-title { font-size: 14px; font-weight: 800; color: #fff; margin-bottom: 6px; line-height: 1.3; }
+    .bonus-desc { font-size: 12px; color: var(--muted); line-height: 1.55; }
+    .bonus-tools {
+      display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;
+    }
+    .btool {
+      background: rgba(124,58,237,0.1);
+      border: 1px solid rgba(124,58,237,0.18);
+      border-radius: 6px; padding: 3px 8px;
+      font-size: 10px; font-weight: 700; color: var(--purpleL);
+    }
+    /* bonus wide card (spans full width) */
+    .bonus-card.wide { grid-column: span 2; }
+
+    /* ===== COPA ===== */
+    .copa-block {
+      background: linear-gradient(135deg, rgba(245,158,11,0.06), rgba(245,158,11,0.02));
+      border: 1px solid rgba(245,158,11,0.18);
+      border-radius: 20px; padding: 36px 36px;
+    }
+    .copa-inner {
+      display: grid; grid-template-columns: 260px 1fr; gap: 40px; align-items: start;
+    }
+    .copa-left {}
+    .copa-eyebrow {
+      font-size: 10px; font-weight: 700; letter-spacing: 1.2px;
+      text-transform: uppercase; color: #FCD34D; margin-bottom: 8px; display: block;
+    }
+    .copa-title {
+      font-size: 28px; font-weight: 900; color: #fff;
+      letter-spacing: -0.8px; margin-bottom: 10px;
+    }
+    .copa-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+    .copa-prizes-row {
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .copa-prize {
+      background: rgba(6,6,15,0.5);
+      border: 1px solid rgba(245,158,11,0.1);
+      border-radius: 14px; padding: 16px 20px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .copa-place { font-size: 26px; flex-shrink: 0; }
+    .copa-prize-body strong { font-size: 14px; font-weight: 800; color: #fff; display: block; margin-bottom: 3px; }
+    .copa-prize-body span { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+    /* ===== DIVIDER ===== */
+    .divider { height: 1px; background: var(--border); margin: 44px 0; }
+
+    /* ===== COLOR THEMES ===== */
+    .p0 .phase-icon-wrap { background: rgba(124,58,237,0.12); border: 1px solid rgba(124,58,237,0.25); }
+    .p0 .phase-tag { color: var(--purpleL); }
+    .p0 .phase-badge { background: rgba(124,58,237,0.1); color: var(--purpleL); border: 1px solid rgba(124,58,237,0.2); }
+    .p0 .session-tag-inline { background: rgba(124,58,237,0.1); color: var(--purpleL); }
+
+    .p1 .phase-icon-wrap { background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.22); }
+    .p1 .phase-tag { color: #60A5FA; }
+    .p1 .phase-badge { background: rgba(59,130,246,0.08); color: #60A5FA; border: 1px solid rgba(59,130,246,0.18); }
+    .p1 .session-tag-inline { background: rgba(59,130,246,0.08); color: #60A5FA; }
+
+    .p2 .phase-icon-wrap { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.22); }
+    .p2 .phase-tag { color: #4ADE80; }
+    .p2 .phase-badge { background: rgba(34,197,94,0.08); color: #4ADE80; border: 1px solid rgba(34,197,94,0.18); }
+    .p2 .session-tag-inline { background: rgba(34,197,94,0.08); color: #4ADE80; }
+
+    .p3 .phase-icon-wrap { background: rgba(236,72,153,0.1); border: 1px solid rgba(236,72,153,0.22); }
+    .p3 .phase-tag { color: #F472B6; }
+    .p3 .phase-badge { background: rgba(236,72,153,0.08); color: #F472B6; border: 1px solid rgba(236,72,153,0.18); }
+    .p3 .session-tag-inline { background: rgba(236,72,153,0.08); color: #F472B6; }
+
+    .p4 .phase-icon-wrap { background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.22); }
+    .p4 .phase-tag { color: #FCD34D; }
+    .p4 .phase-badge { background: rgba(245,158,11,0.08); color: #FCD34D; border: 1px solid rgba(245,158,11,0.18); }
+    .p4 .session-tag-inline { background: rgba(245,158,11,0.08); color: #FCD34D; }
+
+    .p5 .phase-icon-wrap { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.22); }
+    .p5 .phase-tag { color: #F87171; }
+    .p5 .phase-badge { background: rgba(239,68,68,0.08); color: #F87171; border: 1px solid rgba(239,68,68,0.18); }
+    .p5 .session-tag-inline { background: rgba(239,68,68,0.08); color: #F87171; }
+
+    .p6 .phase-icon-wrap { background: rgba(124,58,237,0.12); border: 1px solid rgba(124,58,237,0.25); }
+    .p6 .phase-tag { color: var(--purpleL); }
+    .p6 .phase-badge { background: rgba(124,58,237,0.1); color: var(--purpleL); border: 1px solid rgba(124,58,237,0.2); }
+    .p6 .session-tag-inline { background: rgba(124,58,237,0.1); color: var(--purpleL); }
+
+    /* sidebar icon colors */
+    .icon-purple { background: rgba(124,58,237,0.15); }
+    .icon-blue   { background: rgba(59,130,246,0.12); }
+    .icon-green  { background: rgba(34,197,94,0.1); }
+    .icon-pink   { background: rgba(236,72,153,0.1); }
+    .icon-amber  { background: rgba(245,158,11,0.1); }
+    .icon-red    { background: rgba(239,68,68,0.1); }
+
+    .badge-purple { background: rgba(124,58,237,0.1); color: var(--purpleL); }
+    .badge-blue   { background: rgba(59,130,246,0.08); color: #60A5FA; }
+    .badge-green  { background: rgba(34,197,94,0.08); color: #4ADE80; }
+    .badge-pink   { background: rgba(236,72,153,0.08); color: #F472B6; }
+    .badge-amber  { background: rgba(245,158,11,0.08); color: #FCD34D; }
+    .badge-red    { background: rgba(239,68,68,0.08); color: #F87171; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      :root { --sidebar: 0px; }
+      .sidebar { display: none; }
+      .main { margin-left: 0; max-width: 100%; padding: 28px 20px 60px; }
+      .sessions-grid { grid-template-columns: 1fr; }
+      .sessions-grid.two-col { grid-template-columns: 1fr; }
+      .session-card { border-right: none; border-bottom: 1px solid var(--border); }
+      .session-card:last-child { border-bottom: none; }
+      .intensive-inner { grid-template-columns: 1fr; }
+      .intensive-left { border-right: none; border-bottom: 1px solid rgba(124,58,237,0.15); }
+      .bonus-grid { grid-template-columns: 1fr; }
+      .bonus-card.wide { grid-column: span 1; }
+      .copa-inner { grid-template-columns: 1fr; gap: 24px; }
+      .stats-row { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-logo">⚔️ <span>El Siguiente Nivel</span> — Plan de estudio</div>
+    <div class="topbar-pill">Solo para estudiantes</div>
+  </div>
+
+  <!-- LAYOUT -->
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <!-- mini stats -->
+      <div class="sidebar-stats">
+        <div class="ss-item">
+          <span class="ss-num">3×</span>
+          <span class="ss-lbl">sesiones/semana</span>
+        </div>
+        <div class="ss-item">
+          <span class="ss-num">7d</span>
+          <span class="ss-lbl">IA Galaxy</span>
+        </div>
+        <div class="ss-item">
+          <span class="ss-num">5</span>
+          <span class="ss-lbl">bonos</span>
+        </div>
+        <div class="ss-item">
+          <span class="ss-num">1 año</span>
+          <span class="ss-lbl">acceso</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-group-label">Inicio</div>
+        <a class="sidebar-link active" href="#induccion">
+          <div class="sidebar-link-icon icon-purple">🚀</div>
+          <div class="sidebar-link-text">Inducción</div>
+          <div class="sidebar-link-badge badge-purple">F0</div>
+        </a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-group-label">Plan de estudio</div>
+        <a class="sidebar-link" href="#espionaje">
+          <div class="sidebar-link-icon icon-blue">🔍</div>
+          <div class="sidebar-link-text">Espionaje Viral</div>
+          <div class="sidebar-link-badge badge-blue">F1</div>
+        </a>
+        <a class="sidebar-link" href="#persuasion">
+          <div class="sidebar-link-icon icon-green">💬</div>
+          <div class="sidebar-link-text">Persuasión y Ventas</div>
+          <div class="sidebar-link-badge badge-green">F2</div>
+        </a>
+        <a class="sidebar-link" href="#viral-apps">
+          <div class="sidebar-link-icon icon-pink">📱</div>
+          <div class="sidebar-link-text">Viral Apps con IA</div>
+          <div class="sidebar-link-badge badge-pink">F3</div>
+        </a>
+        <a class="sidebar-link" href="#ia-galaxy">
+          <div class="sidebar-link-icon icon-purple">🤖</div>
+          <div class="sidebar-link-text">Inmersión IA Galaxy</div>
+          <div class="sidebar-link-badge badge-purple">7D</div>
+        </a>
+        <a class="sidebar-link" href="#ads">
+          <div class="sidebar-link-icon icon-amber">🎬</div>
+          <div class="sidebar-link-text">Ads Millonarios + VSLs</div>
+          <div class="sidebar-link-badge badge-amber">F4</div>
+        </a>
+        <a class="sidebar-link" href="#escala">
+          <div class="sidebar-link-icon icon-red">📈</div>
+          <div class="sidebar-link-text">Escala 10x</div>
+          <div class="sidebar-link-badge badge-red">F5</div>
+        </a>
+        <a class="sidebar-link" href="#mindset">
+          <div class="sidebar-link-icon icon-purple">🧬</div>
+          <div class="sidebar-link-text">Mindset Galaxy</div>
+          <div class="sidebar-link-badge badge-purple">F6</div>
+        </a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-group-label">Extras</div>
+        <a class="sidebar-link" href="#bonos">
+          <div class="sidebar-link-icon icon-purple">⚡</div>
+          <div class="sidebar-link-text">Tus 5 bonos</div>
+        </a>
+        <a class="sidebar-link" href="#copa">
+          <div class="sidebar-link-icon icon-amber">🏆</div>
+          <div class="sidebar-link-text">Copa PEV</div>
+        </a>
+      </div>
+
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+
+      <!-- HERO -->
+      <div class="hero" id="top">
+        <div class="hero-eyebrow">📍 Programa oficial · Acceso exclusivo estudiantes</div>
+        <h1>Tu plan completo de<br/><span class="grad">El Siguiente Nivel</span></h1>
+        <p class="hero-sub">El camino desde la inducción hasta convertirte en un vendedor de clase mundial. Tres sesiones en vivo por semana, grabadas para que las veas a tu ritmo.</p>
+      </div>
+
+      <!-- STATS -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <span class="stat-icon">🎥</span>
+          <span class="stat-num">3</span>
+          <span class="stat-lbl">sesiones en vivo por semana</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">🤖</span>
+          <span class="stat-num">7</span>
+          <span class="stat-lbl">días de Inmersión IA Galaxy</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">⚡</span>
+          <span class="stat-num">5</span>
+          <span class="stat-lbl">bonos exclusivos activos</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">📅</span>
+          <span class="stat-num">1 año</span>
+          <span class="stat-lbl">de acceso completo a todo</span>
+        </div>
+      </div>
+
+      <!-- CADENCE -->
+      <div class="cadence-note">
+        <div class="cadence-icon">🎥</div>
+        <div class="cadence-text">
+          <strong>3 sesiones en vivo por semana.</strong> Cada sesión queda grabada en la plataforma para que puedas verla cuando quieras. No importa tu zona horaria ni tu agenda — el ritmo lo pones tú.
+        </div>
+      </div>
+
+      <!-- ==============================
+           FASE 0: INDUCCIÓN
+      =============================== -->
+      <div class="sec-hd" id="induccion">
+        <div class="sec-hd-left">
+          <div class="sec-eyebrow">Por donde empieza todo</div>
+          <div class="sec-title">Inducción y bienvenida</div>
+        </div>
+        <div class="sec-hd-count">Fase 0 · 3 sesiones</div>
+      </div>
+
+      <div class="phase-block p0">
+        <div class="phase-head">
+          <div class="phase-icon-wrap">🚀</div>
+          <div class="phase-meta">
+            <span class="phase-tag">Fase 0 · Inducción</span>
+            <div class="phase-name">Bienvenida al Siguiente Nivel</div>
+            <div class="phase-desc">El punto de partida. Aquí entiendes cómo funciona el programa, estableces tu plan personal y adquieres la mentalidad correcta antes de empezar.</div>
+          </div>
+          <div class="phase-badge">Arrancamos</div>
+        </div>
+        <div class="sessions-grid">
+          <div class="session-card">
+            <span class="session-num">Sesión 01</span>
+            <div class="session-title">Bienvenida al programa</div>
+            <div class="session-desc">Laura y Santiago te explican cómo funciona todo, dónde está cada cosa y cómo sacarle el máximo desde el primer día.</div>
+            <span class="session-tag-inline">En vivo</span>
+          </div>
+          <div class="session-card">
+            <span class="session-num">Sesión 02</span>
+            <div class="session-title">La mentalidad del vendedor del Siguiente Nivel</div>
+            <div class="session-desc">El cambio de chip que separa a los que escalan de los que se quedan dando vueltas. La sesión más importante antes de arrancar.</div>
+            <span class="session-tag-inline">En vivo</span>
+          </div>
+          <div class="session-card">
+            <span class="session-num">Sesión 03</span>
+            <div class="session-title">Tu plan personal de los próximos 90 días</div>
+            <div class="session-desc">Definimos juntos tus metas, tu punto de partida y el camino más rápido para llegar a resultados reales en el menor tiempo posible.</div>
+            <span class="session-tag-inline">En vivo</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- ==============================
+           FASES DEL PROGRAMA
+      =============================== -->
+      <div class="sec-hd">
+        <div class="sec-hd-left">
+          <div class="sec-eyebrow">El método completo</div>
+          <div class="sec-title">Plan de estudio</div>
+        </div>
+      </div>
+
+      <!-- FASE 1: ESPIONAJE VIRAL -->
+      <div class="phase-block p1" id="espionaje">
+        <div class="phase-head">
+          <div class="phase-icon-wrap">🔍</div>
+          <div class="phase-meta">
+            <span class="phase-tag">Fase 1 · Espionaje Viral</span>
+            <div class="phase-name">Maestría de Espionaje Viral</div>
+            <div class="phase-desc">El método avanzado para encontrar las ofertas más ganadoras del mundo antes que nadie. Sin adivinar, sin probar a la suerte.</div>
+          </div>
+          <div class="phase-badge">3 sesiones</div>
+        </div>
+        <div class="sessions-grid">
+          <div class="session-card">
+            <span class="session-num">Sesión 01</span>
+            <div class="session-title">El método de espionaje — encuentra lo que ya funciona</div>
+            <div class="session-desc">El sistema exacto para detectar las ofertas ganadoras del mundo antes de que exploten. Sin adivinar, sin probar a la suerte.</div>
+          </div>
+          <div class="session-card">
+            <span class="session-num">Sesión 02</span>
+            <div class="session-title">Validación rápida sin riesgo</div>
+            <div class="session-desc">Cómo saber si un producto va a vender antes de invertir un solo peso. El filtro que te ahorra meses de errores y dinero perdido.</div>
+          </div>
+          <div class="session-card">
+            <span class="session-num">Sesión 03</span>
+            <div class="session-title">Las ofertas más escaladas del mundo — cómo leerlas</div>
+            <div class="session-desc">Analizamos en vivo las ofertas que más han vendido en Hotmart. Entiendes qué tienen en común y cómo lo aplicas tú desde hoy.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FASE 2: PERSUASIÓN -->
+      <div class="phase-block p2" id="persuasion">
+        <div class="phase-head">
+          <div class="phase-icon-wrap">💬</div>
+          <div class="phase-meta">
+            <span class="phase-tag">Fase 2 · Persuasión</span>
+            <div class="phase-name">Persuasión y la barrera de las 50 ventas</div>
+            <div class="phase-desc">Los principios que mueven ventas y el sistema para cruzar la barrera que detiene a la mayoría de los vendedores.</div>
+          </div>
+          <div class="phase-badge">3 sesiones</div>
+        </div>
+        <div class="sessions-grid">
+          <div class="session-card">
+            <span class="session-num">Sesión 01</span>
+            <div class="session-title">Los principios de persuasión que multiplican ventas</div>
+            <div class="session-desc">No se trata de presionar — se trata de entender. Los disparadores mentales que hacen que la gente compre sin dudar.</div>
+          </div>
+          <div class="session-card">
+            <span class="session-num">Sesión 02</span>
+            <div class="session-title">De 0 a 50 ventas diarias — el sistema</div>
+            <div class="session-desc">La barrera que detiene a la mayoría. Qué cambia en tu estrategia cuando cruzas ese umbral y cómo acelerar el proceso.</div>
+          </div>
+          <div class="session-card">
+            <span class="session-num">Sesión 03</span>
+            <div class="session-title">De 50 a 100 ventas al día — desbloqueando el siguiente nivel</div>
+            <div class="session-desc">Los sistemas y mentalidad que separan a los vendedores comunes de los que dominan el mercado con constancia.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FASE 3: VIRAL APPS -->
+      <div class="phase-block p3" id="viral-apps">
+        <div class="phase-head">
+          <div class="phase-icon-wrap">📱</div>
+          <div class="phase-meta">
+            <span class="phase-tag">Fase 3 · Viral Apps con IA</span>
+            <div class="phase-name">Viral Apps con IA</div>
+            <div class="phase-desc">La nueva ola de productos digitales. Crea tu propia Viral App con pocos clics, sin saber programar. Lo que ves hacer a otros, por fin lo entiendes.</div>
+          </div>
+          <div class="phase-badge">3 sesiones</div>
+        </div>
+        <div class="sessions-grid">
+          <div class="session-card">
+            <span class="session-num">Sesión 01</span>
+            <div class="session-title">Qué son las Viral Apps y por qué son el futuro</div>
+            <div class="session-desc">La nueva ola de productos digitales que están explotando. Por qué son la oportunidad más grande del momento para afiliados.</div>
+          </div>
+          <div class="session-card">
+            <span class="session-num">Sesión 02</span>
+            <div class="session-title">Crea tu primera Viral App — sin saber programar</div>
+            <div class="session-desc">Paso a paso en vivo: desde la idea hasta la app funcionando. Herramientas de IA que hacen el trabajo por ti.</div>
+          </div>
+          <div class="session-card">
+            <span class="session-num">Sesión 03</span>
+            <div class="session-title">Monetización y escala de tu Viral App</div>
+            <div class="session-desc">Cómo convertir tu app en una fuente de ingresos sostenible. Distribución, viraje y crecimiento acelerado.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- ==============================
+           INMERSIÓN IA GALAXY
+      =============================== -->
+      <div class="sec-hd" id="ia-galaxy">
+        <div class="sec-hd-left">
+          <div class="sec-eyebrow">Semana especial intensiva</div>
+          <div class="sec-title">Inmersión IA Galaxy</div>
+        </div>
+        <div class="sec-hd-count">7 sesiones · Una por día</div>
+      </div>
+
+      <div class="intensive">
+        <div class="intensive-inner">
+          <div class="intensive-left">
+            <span class="intensive-eyebrow">Módulo exclusivo · 7 días seguidos</span>
+            <div class="intensive-title">7 días de IA<br/>al máximo nivel</div>
+            <p class="intensive-sub">Una semana completa dedicada a dominar la inteligencia artificial como lo hacen los mejores del mundo. Al terminar, la IA deja de ser un idioma extraño y se convierte en tu herramienta más poderosa. Una sesión diaria durante 7 días consecutivos.</p>
+            <div class="intensive-badge">
+              <div class="intensive-badge-icon">🤖</div>
+              <div class="intensive-badge-text">
+                <strong>7 sesiones diarias</strong>
+                Semana intensiva completa
+              </div>
+            </div>
+          </div>
+          <div class="intensive-right">
+            <div class="intensive-days">
+              <div class="iday">
+                <span class="iday-num">Día 1</span>
+                <span class="iday-title">IA al máximo — el cambio de perspectiva total</span>
+                <span class="iday-emoji">🧠</span>
+              </div>
+              <div class="iday">
+                <span class="iday-num">Día 2</span>
+                <span class="iday-title">Comandos de voz, automatización y flujos inteligentes</span>
+                <span class="iday-emoji">🎙️</span>
+              </div>
+              <div class="iday">
+                <span class="iday-num">Día 3</span>
+                <span class="iday-title">IA para crear contenido viral a escala</span>
+                <span class="iday-emoji">🚀</span>
+              </div>
+              <div class="iday">
+                <span class="iday-num">Día 4</span>
+                <span class="iday-title">IA para analizar y replicar anuncios ganadores</span>
+                <span class="iday-emoji">🔬</span>
+              </div>
+              <div class="iday">
+                <span class="iday-num">Día 5</span>
+                <span class="iday-title">Construye flujos y agentes de IA para tu negocio</span>
+                <span class="iday-emoji">⚙️</span>
+              </div>
+              <div class="iday">
+                <span class="iday-num">Día 6</span>
+                <span class="iday-title">Integración total — IA en cada parte de tu operación</span>
+                <span class="iday-emoji">🔗</span>
+              </div>
+              <div class="iday">
+                <span class="iday-num">Día 7</span>
+                <span class="iday-title">Sistemas que trabajan por ti — el negocio que no duerme</span>
+                <span class="iday-emoji">💤</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- FASE 4: ADS + VSLs -->
+      <div class="phase-block p4" id="ads">
+        <div class="phase-head">
+          <div class="phase-icon-wrap">🎬</div>
+          <div class="phase-meta">
+            <span class="phase-tag">Fase 4 · Ads y Contenido</span>
+            <div class="phase-name">Ads IA Millonarios + VSLs</div>
+            <div class="phase-desc">Cómo los grandes crean anuncios que escalan a millones y el proceso para adaptar su estrategia a tu producto y mercado.</div>
+          </div>
+          <div class="phase-badge">3 sesiones</div>
+        </div>
+        <div class="sessions-grid">
+          <div class="session-card">
+            <span class="session-num">Sesión 01</span>
+            <div class="session-title">Emulación de Ads IA millonarios</div>
+            <div class="session-desc">Cómo los grandes crean anuncios que escalan a millones. El proceso exacto para adaptar su estrategia a tu producto.</div>
+          </div>
+          <div class="session-card">
+            <span class="session-num">Sesión 02</span>
+            <div class="session-title">Estructura de anuncios que no se pueden ignorar</div>
+            <div class="session-desc">Hooks, creativos, copy y llamados a la acción. La fórmula detrás de los anuncios que generan ventas predecibles.</div>
+          </div>
+          <div class="session-card">
+            <span class="session-num">Sesión 03</span>
+            <div class="session-title">VSLs — tu primer Video Sales Letter</div>
+            <div class="session-desc">El formato que más convierte en toda la industria. Cómo construirlo, optimizarlo y usarlo para vender en automático.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FASE 5: ESCALA 10X -->
+      <div class="phase-block p5" id="escala">
+        <div class="phase-head">
+          <div class="phase-icon-wrap">📈</div>
+          <div class="phase-meta">
+            <span class="phase-tag">Fase 5 · Escala</span>
+            <div class="phase-name">Estrategia de Escala 10x</div>
+            <div class="phase-desc">Los procesos, métricas y decisiones que separan un negocio que crece de uno que se estanca. Modelo replicable y probado.</div>
+          </div>
+          <div class="phase-badge">3 sesiones</div>
+        </div>
+        <div class="sessions-grid">
+          <div class="session-card">
+            <span class="session-num">Sesión 01</span>
+            <div class="session-title">El sistema de escala — qué hacen diferente los grandes</div>
+            <div class="session-desc">Los procesos, métricas y decisiones que separan un negocio que crece de uno que se estanca. Modelo replicable.</div>
+          </div>
+          <div class="session-card">
+            <span class="session-num">Sesión 02</span>
+            <div class="session-title">Automatización y delegación inteligente</div>
+            <div class="session-desc">Qué automatizar, qué delegar y qué solo tú puedes hacer. Cómo construir una operación que funcione sin depender de ti.</div>
+          </div>
+          <div class="session-card">
+            <span class="session-num">Sesión 03</span>
+            <div class="session-title">Crecimiento sostenible — el negocio de largo plazo</div>
+            <div class="session-desc">No solo escalar rápido — escalar bien. Retención, rentabilidad y construcción de activos que duran años.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FASE 6: MINDSET -->
+      <div class="phase-block p6" id="mindset">
+        <div class="phase-head">
+          <div class="phase-icon-wrap">🧬</div>
+          <div class="phase-meta">
+            <span class="phase-tag">Fase 6 · Cierre</span>
+            <div class="phase-name">Mindset Galaxy con Santiago</div>
+            <div class="phase-desc">El módulo final que cambia todo lo demás. El camino a Hotmart Galaxy en menos de 3 años, dirigido personalmente por Santiago Leal.</div>
+          </div>
+          <div class="phase-badge">Especial</div>
+        </div>
+        <div class="sessions-grid two-col">
+          <div class="session-card">
+            <span class="session-num">Sesión 01</span>
+            <div class="session-title">Coaching de Mindset Galaxy</div>
+            <div class="session-desc">Santiago Leal en vivo sobre el modelo mental que te lleva a Hotmart Galaxy. El módulo que reorganiza todo lo que aprendiste.</div>
+            <span class="session-tag-inline">Con Santiago</span>
+          </div>
+          <div class="session-card">
+            <span class="session-num">Sesión 02</span>
+            <div class="session-title">Tu plan para los próximos 12 meses</div>
+            <div class="session-desc">Revisamos juntos el camino recorrido, establecemos los próximos objetivos y defines el siguiente capítulo de tu negocio.</div>
+            <span class="session-tag-inline">Cierre</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- ==============================
+           BONOS
+      =============================== -->
+      <div class="sec-hd" id="bonos">
+        <div class="sec-hd-left">
+          <div class="sec-eyebrow">Disponibles desde el día 1</div>
+          <div class="sec-title">Tus 5 bonos exclusivos</div>
+        </div>
+      </div>
+
+      <div class="bonus-grid">
+        <div class="bonus-card">
+          <div class="bonus-card-head">
+            <div class="bonus-icon">🧠</div>
+            <div><span class="bonus-tag">Bono #1</span></div>
+          </div>
+          <div class="bonus-title">Cerebro 10X de Laura y Santiago</div>
+          <div class="bonus-desc">Acceso directo para resolver todas tus dudas con los mentores. En vivo, sin filtros, sin intermediarios. Preguntas reales, respuestas reales.</div>
+        </div>
+        <div class="bonus-card">
+          <div class="bonus-card-head">
+            <div class="bonus-icon">🔎</div>
+            <div><span class="bonus-tag">Bono #4</span></div>
+          </div>
+          <div class="bonus-title">Clonuncios — 2 meses de acceso</div>
+          <div class="bonus-desc">Herramienta para investigar y encontrar los anuncios ganadores del mercado en tiempo real. Espía la competencia como un profesional.</div>
+        </div>
+        <div class="bonus-card wide">
+          <div class="bonus-card-head">
+            <div class="bonus-icon">⚡</div>
+            <div><span class="bonus-tag">Bono #2 · Destacado</span></div>
+          </div>
+          <div class="bonus-title">Púrpura IA-Tools — 7 herramientas de IA exclusivas</div>
+          <div class="bonus-desc">7 herramientas de IA construidas por el equipo especialmente para el programa. No las consigues en ningún otro lugar.</div>
+          <div class="bonus-tools">
+            <span class="btool">⚡ Hooks</span>
+            <span class="btool">🔬 Rayos X Ads</span>
+            <span class="btool">🔍 Rayos X Páginas</span>
+            <span class="btool">📖 Gary-Halbert</span>
+            <span class="btool">🎯 Escale-ADS</span>
+            <span class="btool">🎬 Escale-VSL</span>
+            <span class="btool">🧩 Quiz-AI</span>
+          </div>
+        </div>
+        <div class="bonus-card">
+          <div class="bonus-card-head">
+            <div class="bonus-icon">🎬</div>
+            <div><span class="bonus-tag">Bono #3</span></div>
+          </div>
+          <div class="bonus-title">Entrenamiento introductorio a VSLs</div>
+          <div class="bonus-desc">Formación base para dominar la creación y optimización de Video Sales Letters. El punto de partida para vender con video.</div>
+        </div>
+        <div class="bonus-card">
+          <div class="bonus-card-head">
+            <div class="bonus-icon">🏆</div>
+            <div><span class="bonus-tag">Bono #5</span></div>
+          </div>
+          <div class="bonus-title">Coaching de Mindset Galaxy</div>
+          <div class="bonus-desc">Para convertirte en Hotmart Galaxy en menos de 3 años. Dirigido personalmente por Santiago Leal en sesión exclusiva.</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- ==============================
+           COPA PEV
+      =============================== -->
+      <div class="copa-block" id="copa">
+        <div class="copa-inner">
+          <div class="copa-left">
+            <span class="copa-eyebrow">Competencia interna</span>
+            <div class="copa-title">La Copa PEV 🏆</div>
+            <p class="copa-desc">La persona que más facture durante el programa se lleva premios que van mucho más allá del dinero. La Copa es tu motivación extra para competir y ganar.</p>
+          </div>
+          <div class="copa-prizes-row">
+            <div class="copa-prize">
+              <div class="copa-place">🥇</div>
+              <div class="copa-prize-body">
+                <strong>1er Lugar</strong>
+                <span>Sociedad con Laura y Santi · Sesión privada 2 horas · Podcast oficial · Redes sociales</span>
+              </div>
+            </div>
+            <div class="copa-prize">
+              <div class="copa-place">🥈</div>
+              <div class="copa-prize-body">
+                <strong>2do Lugar</strong>
+                <span>MacBook Air · Podcast oficial · Presencia en redes sociales del programa</span>
+              </div>
+            </div>
+            <div class="copa-prize">
+              <div class="copa-place">🥉</div>
+              <div class="copa-prize-body">
+                <strong>3er Lugar</strong>
+                <span>MacBook NEO · Podcast oficial · Presencia en redes sociales del programa</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    /* Highlight active sidebar link on scroll */
+    const sections = ['induccion','espionaje','persuasion','viral-apps','ia-galaxy','ads','escala','mindset','bonos','copa'];
+    const links = document.querySelectorAll('.sidebar-link');
+
+    const idToLink = {};
+    links.forEach(l => {
+      const href = l.getAttribute('href');
+      if (href && href.startsWith('#')) idToLink[href.slice(1)] = l;
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting && idToLink[e.target.id]) {
+          links.forEach(l => l.classList.remove('active'));
+          idToLink[e.target.id].classList.add('active');
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Genera tu historia — El Siguiente Nivel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:     #06060F;
+      --surface:#0A0A18;
+      --purple: #7C3AED;
+      --purpleL:#A78BFA;
+      --gold:   #F59E0B;
+      --border: rgba(167,139,250,0.1);
+      --border2:rgba(167,139,250,0.22);
+      --text:   #F4F4FF;
+      --muted:  #71717A;
+      --green:  #4ADE80;
+    }
+
+    html, body { height: 100%; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* TOP BAR */
+    .topbar {
+      height: 56px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 12px;
+      padding: 0 32px;
+      background: rgba(6,6,15,0.95);
+      backdrop-filter: blur(12px);
+      position: sticky; top: 0; z-index: 10;
+    }
+    .topbar-logo { font-size: 14px; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 8px; }
+    .topbar-logo .grad {
+      background: linear-gradient(135deg, #C084FC, #A78BFA);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    /* LAYOUT */
+    .layout {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      min-height: calc(100vh - 56px);
+    }
+
+    /* LEFT PANEL */
+    .left-panel {
+      border-right: 1px solid var(--border);
+      padding: 40px 28px;
+      display: flex; flex-direction: column; gap: 24px;
+      background: var(--surface);
+    }
+
+    .panel-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: var(--purpleL); margin-bottom: 6px; }
+    .panel-title   { font-size: 24px; font-weight: 900; letter-spacing: -0.5px; color: #fff; line-height: 1.15; }
+    .panel-title .grad {
+      background: linear-gradient(135deg, #F59E0B, #FCD34D);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .panel-sub { font-size: 13px; color: var(--muted); line-height: 1.65; margin-top: 8px; }
+
+    /* Template badge */
+    .tpl-badge {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(245,158,11,0.07);
+      border: 1px solid rgba(245,158,11,0.25);
+      border-radius: 12px; padding: 12px 16px;
+    }
+    .tpl-icon { font-size: 22px; flex-shrink: 0; }
+    .tpl-info { flex: 1; min-width: 0; }
+    .tpl-name { font-size: 12px; font-weight: 700; color: #FCD34D; }
+    .tpl-sub  { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+    /* Upload fallback */
+    .upload-fallback {
+      display: none;
+      border: 2px dashed rgba(245,158,11,0.3);
+      border-radius: 12px; padding: 24px;
+      text-align: center; cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      position: relative;
+    }
+    .upload-fallback:hover { border-color: var(--gold); background: rgba(245,158,11,0.04); }
+    .upload-fallback.dragover { border-color: var(--gold); background: rgba(245,158,11,0.08); }
+    .upload-fallback input { position: absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%; }
+    .upload-fallback-icon { font-size: 28px; margin-bottom: 8px; }
+    .upload-fallback-text { font-size: 13px; font-weight: 700; color: #FCD34D; }
+    .upload-fallback-hint { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+    /* Name field */
+    .field-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .field-wrap  { position: relative; }
+    .field-input {
+      width: 100%;
+      background: rgba(245,158,11,0.05);
+      border: 1px solid rgba(245,158,11,0.25);
+      border-radius: 12px;
+      padding: 16px 52px 16px 18px;
+      font-size: 26px; font-weight: 900;
+      font-family: 'Anton', 'Arial Black', sans-serif;
+      color: #fff;
+      outline: none;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .field-input:focus {
+      border-color: rgba(245,158,11,0.6);
+      box-shadow: 0 0 0 3px rgba(245,158,11,0.12);
+    }
+    .field-input::placeholder { color: rgba(245,158,11,0.22); }
+    .field-counter { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 11px; color: var(--muted); font-weight: 600; }
+
+    /* Adjust toggle */
+    .adjust-toggle {
+      font-size: 11px; color: var(--muted); text-align: center;
+      cursor: pointer; text-decoration: underline; text-decoration-style: dotted;
+    }
+    .adjust-toggle:hover { color: var(--purpleL); }
+    .adjust-panel {
+      display: none;
+      flex-direction: column; gap: 14px;
+      background: rgba(124,58,237,0.04);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 16px;
+    }
+    .adjust-panel.open { display: flex; }
+
+    /* Slider */
+    .slider-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; margin-bottom: 8px; }
+    .slider-label span { color: var(--purpleL); font-weight: 800; }
+    input[type=range] {
+      width: 100%; -webkit-appearance: none; height: 4px;
+      background: var(--border2); border-radius: 2px; outline: none;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 16px; height: 16px;
+      border-radius: 50%; background: var(--purple); cursor: pointer;
+    }
+
+    /* Buttons */
+    .btn-main {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: linear-gradient(135deg, #92400e, #D97706 50%, #F59E0B);
+      color: #fff; font-size: 15px; font-weight: 800;
+      border: none; border-radius: 12px; padding: 16px 24px;
+      cursor: pointer; width: 100%;
+      box-shadow: 0 4px 24px rgba(245,158,11,0.35);
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .btn-main:hover:not(:disabled) { opacity: 0.9; transform: translateY(-1px); }
+    .btn-main:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+
+    .btn-download {
+      display: none;
+      align-items: center; justify-content: center; gap: 8px;
+      background: transparent;
+      color: var(--green); font-size: 14px; font-weight: 700;
+      border: 1px solid rgba(74,222,128,0.3); border-radius: 12px; padding: 14px 24px;
+      text-decoration: none; width: 100%;
+      transition: background 0.2s;
+    }
+    .btn-download.visible { display: flex; }
+    .btn-download:hover { background: rgba(74,222,128,0.08); }
+
+    .status-msg { font-size: 12px; color: var(--muted); text-align: center; min-height: 18px; line-height: 1.5; }
+
+    /* RIGHT PANEL */
+    .right-panel {
+      display: flex; align-items: center; justify-content: center;
+      padding: 40px; position: relative; overflow: hidden;
+    }
+    .right-panel::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 40% 50%, rgba(245,158,11,0.07) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    .phone-wrap {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: center; gap: 14px;
+    }
+    .phone-label { font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: 0.5px; text-transform: uppercase; }
+
+    .phone-frame {
+      border-radius: 46px;
+      border: 1.5px solid rgba(245,158,11,0.2);
+      box-shadow: 0 0 0 1px rgba(245,158,11,0.06), 0 40px 100px rgba(0,0,0,0.7), 0 0 80px rgba(245,158,11,0.12);
+      overflow: hidden;
+      background: #080808;
+      width: 340px; height: 604px;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .phone-empty {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 14px; padding: 32px; text-align: center; width: 100%; height: 100%; justify-content: center;
+    }
+    .phone-empty-icon { font-size: 44px; opacity: 0.2; }
+    .phone-empty-text { font-size: 13px; color: var(--muted); opacity: 0.5; line-height: 1.6; }
+
+    #previewImg {
+      display: none;
+      width: 100%; height: 100%;
+      object-fit: contain;
+    }
+    #previewImg.visible { display: block; }
+
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+      .left-panel { border-right: none; border-bottom: 1px solid var(--border); }
+      .right-panel { padding: 24px 16px; }
+      .phone-frame { width: 280px; height: 498px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-logo">⚔️ <span class="grad">El Siguiente Nivel</span> — Genera tu historia</div>
+</div>
+
+<div class="layout">
+
+  <!-- LEFT -->
+  <div class="left-panel">
+    <div>
+      <div class="panel-eyebrow">Historia personalizada · Instagram</div>
+      <div class="panel-title">Escribe tu nombre.<br/><span class="grad">Descarga y comparte.</span></div>
+      <p class="panel-sub">Ingresa tu nombre, genera tu historia y súbela directamente a Instagram Stories.</p>
+    </div>
+
+    <!-- Template status -->
+    <div class="tpl-badge" id="tplBadge" style="display:none">
+      <div class="tpl-icon">✅</div>
+      <div class="tpl-info">
+        <div class="tpl-name">Plantilla oficial cargada</div>
+        <div class="tpl-sub" id="tplDims">–</div>
+      </div>
+    </div>
+
+    <!-- Upload fallback (shown if template.jpg not found) -->
+    <div class="upload-fallback" id="uploadFallback">
+      <input type="file" id="fileInput" accept="image/*" />
+      <div class="upload-fallback-icon">📁</div>
+      <div class="upload-fallback-text">Arrastra la plantilla aquí</div>
+      <div class="upload-fallback-hint">PNG o JPG · guarda como qr/template.jpg para carga automática</div>
+    </div>
+
+    <!-- Name input -->
+    <div>
+      <div class="field-label">Tu nombre</div>
+      <div class="field-wrap">
+        <input
+          type="text" id="nameInput" class="field-input"
+          placeholder="ESCRIBE AQUÍ"
+          maxlength="20" autocomplete="off" autocorrect="off" spellcheck="false"
+        />
+        <span class="field-counter" id="charCount">0/20</span>
+      </div>
+    </div>
+
+    <!-- Adjust toggle -->
+    <div class="adjust-toggle" id="adjustToggle" onclick="toggleAdjust()">
+      ⚙ Ajustar posición del texto
+    </div>
+    <div class="adjust-panel" id="adjustPanel">
+      <div>
+        <div class="slider-label">Posición vertical <span id="posVal">18</span>%</div></div>
+        <input type="range" id="posSlider" min="3" max="55" value="18" step="0.5" />
+      </div>
+      <div>
+        <div class="slider-label">Tamaño de fuente <span id="sizeVal">7</span>%</div>
+        <input type="range" id="sizeSlider" min="3" max="18" value="7" step="0.5" />
+      </div>
+    </div>
+
+    <!-- Generate -->
+    <button class="btn-main" id="btnGenerar" onclick="generarHistoria()">
+      ✨ Generar mi historia
+    </button>
+
+    <a class="btn-download" id="btnDownload">
+      ⬇ Descargar imagen
+    </a>
+
+    <div class="status-msg" id="statusMsg">Cargando plantilla…</div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="right-panel">
+    <div class="phone-wrap">
+      <div class="phone-label">Vista previa · Historia de Instagram</div>
+      <div class="phone-frame">
+        <div class="phone-empty" id="phoneEmpty">
+          <div class="phone-empty-icon">📸</div>
+          <div class="phone-empty-text">Tu historia aparecerá<br/>aquí al generar</div>
+        </div>
+        <img id="previewImg" alt="Vista previa" />
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Full-res canvas -->
+<canvas id="storyCanvas" style="display:none"></canvas>
+
+<script>
+  let templateImg = null;
+
+  // ── Auto-load template from server ──
+  function loadTemplateFromServer() {
+    const img = new Image();
+    img.onload = () => {
+      setTemplate(img, 'Plantilla oficial', `${img.naturalWidth} × ${img.naturalHeight} px`);
+    };
+    img.onerror = () => {
+      // Template not found — show upload UI
+      document.getElementById('uploadFallback').style.display = 'block';
+      setStatus('Arrastra la plantilla para comenzar.', '');
+    };
+    img.src = 'qr/nivel.png?' + Date.now();
+  }
+
+  function setTemplate(img, name, dims) {
+    templateImg = img;
+    document.getElementById('tplBadge').style.display  = 'flex';
+    document.getElementById('tplDims').textContent = dims;
+    document.getElementById('uploadFallback').style.display = 'none';
+    setStatus('Escribe tu nombre y presiona Generar.', '#A78BFA');
+  }
+
+  // ── Upload fallback ──
+  const fileInput    = document.getElementById('fileInput');
+  const uploadZone   = document.getElementById('uploadFallback');
+
+  fileInput.addEventListener('change', () => handleFile(fileInput.files[0]));
+  uploadZone.addEventListener('dragover',  e => { e.preventDefault(); uploadZone.classList.add('dragover'); });
+  uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('dragover'));
+  uploadZone.addEventListener('drop', e => {
+    e.preventDefault();
+    uploadZone.classList.remove('dragover');
+    handleFile(e.dataTransfer.files[0]);
+  });
+
+  function handleFile(file) {
+    if (!file || !file.type.startsWith('image/')) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      const img = new Image();
+      img.onload = () => setTemplate(img, file.name, `${img.naturalWidth} × ${img.naturalHeight} px`);
+      img.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // ── Name input ──
+  document.getElementById('nameInput').addEventListener('input', function () {
+    document.getElementById('charCount').textContent = this.value.length + '/20';
+    if (templateImg && this.value.trim()) generarHistoria();
+  });
+  document.getElementById('nameInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') generarHistoria();
+  });
+
+  // ── Sliders ──
+  document.getElementById('posSlider').addEventListener('input', function () {
+    document.getElementById('posVal').textContent = this.value;
+    autoPreview();
+  });
+  document.getElementById('sizeSlider').addEventListener('input', function () {
+    document.getElementById('sizeVal').textContent = this.value;
+    autoPreview();
+  });
+  function autoPreview() {
+    if (templateImg && document.getElementById('nameInput').value.trim()) generarHistoria();
+  }
+
+  // ── Adjust toggle ──
+  function toggleAdjust() {
+    document.getElementById('adjustPanel').classList.toggle('open');
+  }
+
+  // ── Generate ──
+  async function generarHistoria() {
+    if (!templateImg) {
+      setStatus('⚠ Sube la plantilla primero.', '#F87171');
+      return;
+    }
+    const name = document.getElementById('nameInput').value.trim();
+    if (!name) {
+      setStatus('⚠ Escribe tu nombre primero.', '#F87171');
+      document.getElementById('nameInput').focus();
+      return;
+    }
+
+    await document.fonts.ready;
+
+    const canvas = document.getElementById('storyCanvas');
+    const ctx    = canvas.getContext('2d');
+    const W = templateImg.naturalWidth  || 1080;
+    const H = templateImg.naturalHeight || 1920;
+    canvas.width  = W;
+    canvas.height = H;
+
+    // Draw template
+    ctx.drawImage(templateImg, 0, 0, W, H);
+
+    // Name position & size
+    const posY   = parseFloat(document.getElementById('posSlider').value) / 100;
+    const sizePct = parseFloat(document.getElementById('sizeSlider').value) / 100;
+    const nameY  = H * posY;
+
+    // Auto-scale font to fit width (max 80% of canvas width)
+    const maxW   = W * 0.80;
+    let fontPx   = Math.round(H * sizePct);
+    const nameUp = name.toUpperCase();
+
+    ctx.font = `${fontPx}px Anton, 'Arial Black', Impact, sans-serif`;
+    while (ctx.measureText(nameUp).width > maxW && fontPx > 20) {
+      fontPx -= 2;
+      ctx.font = `${fontPx}px Anton, 'Arial Black', Impact, sans-serif`;
+    }
+
+    // Draw name — white, centered, with subtle shadow
+    ctx.textAlign    = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.shadowColor  = 'rgba(0,0,0,0.9)';
+    ctx.shadowBlur   = Math.round(fontPx * 0.12);
+    ctx.shadowOffsetY = Math.round(fontPx * 0.04);
+    ctx.fillStyle    = '#ffffff';
+    ctx.fillText(nameUp, W / 2, nameY);
+    ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
+
+    // Show preview
+    const dataUrl = canvas.toDataURL('image/png');
+    const preview = document.getElementById('previewImg');
+    preview.src   = dataUrl;
+    preview.classList.add('visible');
+    document.getElementById('phoneEmpty').style.display = 'none';
+
+    // Download link
+    const dl = document.getElementById('btnDownload');
+    dl.href     = dataUrl;
+    dl.download = `historia-${nameUp.replace(/\s+/g, '-')}-el-siguiente-nivel.png`;
+    dl.classList.add('visible');
+
+    setStatus(`✓ Historia de ${nameUp} lista. ¡Descárgala!`, '#4ADE80');
+  }
+
+  function setStatus(msg, color) {
+    const el = document.getElementById('statusMsg');
+    el.textContent = msg;
+    el.style.color = color || '';
+  }
+
+  // ── Init ──
+  loadTemplateFromServer();
+</script>
+</body>
+</html>

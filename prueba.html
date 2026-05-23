@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prueba Trafficker Senior — 30X</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #0D0D0D;
+      --card:    #141414;
+      --card2:   #1A1A1A;
+      --border:  rgba(255,255,255,0.07);
+      --border2: rgba(255,255,255,0.13);
+      --accent:  #E9FF7B;
+      --accentD: rgba(233,255,123,0.07);
+      --text:    #F0F0F0;
+      --muted:   #888;
+      --muted2:  #3A3A3A;
+      --red:     #FF5252;
+      --green:   #4ADE80;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== SCREEN 0 ===== */
+    #screen0 {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+
+    .s0-card {
+      width: 100%;
+      max-width: 440px;
+      background: var(--card);
+      border: 1px solid var(--border2);
+      border-radius: 20px;
+      padding: 40px 32px;
+    }
+
+    .s0-logo {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .s0-title {
+      font-size: 26px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .s0-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .s0-chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .s0-chip {
+      background: rgba(233,255,123,0.07);
+      border: 1px solid rgba(233,255,123,0.18);
+      border-radius: 8px;
+      padding: 5px 11px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.3px;
+    }
+
+    .s0-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .s0-input {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border2);
+      border-radius: 10px;
+      padding: 13px 14px;
+      font-size: 15px;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      margin-bottom: 12px;
+    }
+
+    .s0-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(233,255,123,0.1);
+    }
+
+    .s0-input::placeholder { color: var(--muted2); }
+
+    .s0-error {
+      font-size: 12px;
+      color: var(--red);
+      min-height: 18px;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .s0-btn {
+      width: 100%;
+      background: var(--accent);
+      color: #0D0D0D;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 12px;
+      padding: 16px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .s0-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .s0-btn:active { transform: translateY(0); }
+
+    /* ===== STICKY TIMER BAR ===== */
+    #timerBar {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      background: rgba(10,10,10,0.97);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(14px);
+      padding: 10px 20px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .tb-logo {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--accent);
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .tb-bar-wrap {
+      flex: 1;
+      max-width: 220px;
+    }
+
+    .tb-bar-track {
+      height: 4px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .tb-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 999px;
+      transition: width 0.3s ease;
+      width: 0%;
+    }
+
+    .tb-timer {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: #fff;
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+    }
+
+    .tb-timer.urgent { color: var(--red); animation: blink 1s ease infinite; }
+
+    @keyframes blink {
+      0%,100% { opacity: 1; }
+      50%      { opacity: 0.5; }
+    }
+
+    .tb-answered {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .tb-answered span { color: var(--accent); }
+
+    /* ===== SCREEN 1 ===== */
+    #screen1 {
+      display: none;
+      padding-top: 62px;
+      padding-bottom: 80px;
+      max-width: 740px;
+      margin: 0 auto;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .s1-head {
+      padding: 28px 0 20px;
+    }
+
+    .s1-title {
+      font-size: 20px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.3px;
+      margin-bottom: 4px;
+    }
+
+    .s1-cand {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* Section divider */
+    .sec-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 28px 0 10px;
+    }
+
+    .sec-name {
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .sec-line {
+      flex: 1;
+      height: 1px;
+      background: rgba(233,255,123,0.12);
+    }
+
+    /* Question card */
+    .q-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 8px;
+    }
+
+    .q-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .q-badge {
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .qb-mcq  { background: rgba(139,92,246,0.15); color: #B8A4FF; }
+    .qb-calc { background: rgba(59,130,246,0.15);  color: #7EC8FF; }
+    .qb-open { background: rgba(233,255,123,0.1);  color: var(--accent); }
+    .qb-error{ background: rgba(255,82,82,0.12);   color: #FF9090; }
+
+    .q-num {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .q-context {
+      border-left: 3px solid var(--accent);
+      background: var(--accentD);
+      border-radius: 0 8px 8px 0;
+      padding: 9px 13px;
+      font-size: 12px;
+      color: rgba(233,255,123,0.8);
+      line-height: 1.6;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    .q-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+
+    .q-prompt {
+      font-size: 12px;
+      color: var(--muted);
+      font-style: italic;
+      line-height: 1.55;
+      margin-bottom: 10px;
+    }
+
+    /* Table */
+    .q-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-bottom: 14px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .q-table th {
+      background: rgba(233,255,123,0.07);
+      color: rgba(233,255,123,0.85);
+      font-weight: 700;
+      padding: 7px 10px;
+      text-align: left;
+      border: 1px solid rgba(233,255,123,0.1);
+      font-size: 11px;
+    }
+
+    .q-table td {
+      padding: 7px 10px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      vertical-align: top;
+    }
+
+    .q-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+    /* Options */
+    .q-options {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .q-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+      padding: 10px 13px;
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: border-color 0.14s, background 0.14s;
+      user-select: none;
+    }
+
+    .q-option:hover {
+      border-color: rgba(233,255,123,0.25);
+      background: rgba(233,255,123,0.03);
+    }
+
+    .q-option.selected {
+      border-color: var(--accent);
+      background: rgba(233,255,123,0.06);
+    }
+
+    .q-radio {
+      width: 17px;
+      height: 17px;
+      border: 2px solid var(--muted2);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.14s;
+    }
+
+    .q-option.selected .q-radio { border-color: var(--accent); }
+
+    .q-radio-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: none;
+    }
+
+    .q-option.selected .q-radio-dot { display: block; }
+
+    .q-opt-txt {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    /* Textarea */
+    .q-textarea {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border2);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 13px;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      resize: vertical;
+      min-height: 108px;
+      line-height: 1.6;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .q-textarea:focus {
+      border-color: rgba(233,255,123,0.35);
+      box-shadow: 0 0 0 3px rgba(233,255,123,0.06);
+    }
+
+    .q-char-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 6px;
+    }
+
+    .q-chars {
+      font-size: 11px;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .q-chars.ok   { color: var(--green); }
+    .q-chars.warn { color: var(--red); }
+
+    .q-ia-warn {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--red);
+      display: none;
+    }
+
+    .q-ia-warn.show { display: block; }
+
+    /* Submit footer */
+    .s1-footer {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .s1-foot-note {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 16px;
+      min-height: 18px;
+    }
+
+    .s1-btn {
+      background: var(--accent);
+      color: #0D0D0D;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 14px;
+      padding: 18px 52px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .s1-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .s1-btn:active { transform: translateY(0); }
+
+    /* ===== SCREEN 2 ===== */
+    #screen2 {
+      display: none;
+      min-height: 100vh;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      text-align: center;
+    }
+
+    .spinner {
+      width: 44px;
+      height: 44px;
+      border: 3px solid rgba(233,255,123,0.18);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .s2-txt {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    /* ===== SCREEN 3 ===== */
+    #screen3 {
+      display: none;
+      min-height: 100vh;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 24px;
+    }
+
+    .s3-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(74,222,128,0.1);
+      border: 2px solid rgba(74,222,128,0.28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      margin-bottom: 24px;
+    }
+
+    .s3-title {
+      font-size: 24px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+
+    .s3-msg {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 360px;
+      line-height: 1.7;
+    }
+
+    .s3-name { color: var(--accent); font-weight: 700; }
+
+    @media (max-width: 480px) {
+      .s0-card { padding: 28px 20px; }
+      #screen1 { padding-left: 12px; padding-right: 12px; }
+      .tb-bar-wrap { display: none; }
+      .s1-btn { padding: 16px 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== SCREEN 0: Identificación ===== -->
+<div id="screen0">
+  <div class="s0-card">
+    <div class="s0-logo">30X — Trafficker Senior</div>
+    <div class="s0-title">Prueba de conocimiento</div>
+    <div class="s0-sub">El cronómetro corre sin pausas desde que presiones comenzar.</div>
+
+    <div class="s0-chips">
+      <span class="s0-chip">30 preguntas</span>
+      <span class="s0-chip">60 minutos</span>
+      <span class="s0-chip">Meta Ads · Copy · Funnels · Tracking</span>
+    </div>
+
+    <label class="s0-label" for="inpNombre">Nombre completo</label>
+    <input id="inpNombre" class="s0-input" type="text" placeholder="Tu nombre completo" autocomplete="name" />
+
+    <label class="s0-label" for="inpEmail">Email</label>
+    <input id="inpEmail" class="s0-input" type="email" placeholder="tu@email.com" autocomplete="email" />
+
+    <div class="s0-error" id="s0Err"></div>
+    <button class="s0-btn" onclick="comenzar()">Comenzar prueba →</button>
+  </div>
+</div>
+
+<!-- ===== STICKY TIMER ===== -->
+<div id="timerBar">
+  <div class="tb-logo">30X</div>
+  <div class="tb-bar-wrap">
+    <div class="tb-bar-track"><div class="tb-bar-fill" id="tbFill"></div></div>
+  </div>
+  <div class="tb-timer" id="tbTimer">60:00</div>
+  <div class="tb-answered" id="tbAnswered"><span id="tbCount">0</span>/30 respondidas</div>
+</div>
+
+<!-- ===== SCREEN 1: Prueba ===== -->
+<div id="screen1">
+  <div class="s1-head">
+    <div class="s1-title">Prueba Trafficker Senior — 30X</div>
+    <div class="s1-cand" id="s1Cand"></div>
+  </div>
+
+  <div id="qContainer"></div>
+
+  <div class="s1-footer">
+    <div class="s1-foot-note" id="s1Note"></div>
+    <button class="s1-btn" onclick="confirmarEnvio()">Enviar prueba →</button>
+  </div>
+</div>
+
+<!-- ===== SCREEN 2: Enviando ===== -->
+<div id="screen2">
+  <div class="spinner"></div>
+  <div class="s2-txt">Guardando resultados...</div>
+</div>
+
+<!-- ===== SCREEN 3: Confirmación ===== -->
+<div id="screen3">
+  <div class="s3-icon">✓</div>
+  <div class="s3-title">Prueba completada</div>
+  <div class="s3-msg" id="s3Msg"></div>
+</div>
+
+<script>
+// ===== DATA =====
+const Q = [
+  {id:1, sec:"Meta Ads — Estructura", type:"mcq",
+   title:"¿Qué optimiza Meta Ads cuando eliges el objetivo 'Ventas' en una campaña de conversiones?",
+   opts:["Clicks al sitio web de forma masiva","Mostrar el anuncio a personas con mayor probabilidad de completar la conversión definida","Maximizar el alcance único por menor costo","Aumentar el CTR del anuncio"],
+   correct:1},
+  {id:2, sec:"Meta Ads — Estructura", type:"mcq",
+   title:"¿Cuál es la diferencia funcional entre CBO y ABO en Meta Ads?",
+   opts:["CBO permite crear más ad sets, ABO no","CBO distribuye el presupuesto automáticamente entre ad sets; ABO fija el presupuesto por ad set","CBO solo funciona para campañas de tráfico, ABO para conversiones","No hay diferencia práctica, es solo nomenclatura"],
+   correct:1},
+  {id:3, sec:"Meta Ads — Datos", type:"calc",
+   ctx:"Fórmula: CPC = CPM / (CTR% × 10)",
+   title:"Tienes un ad set con CTR del 0.4% y CPM de $12. ¿Cuál es tu CPC aproximado?",
+   opts:["$0.05","$3.00","$4.80","$12.00"],
+   correct:1},
+  {id:4, sec:"Meta Ads — Audiences", type:"mcq",
+   title:"Estás en fase de testing creativo (TOF). ¿Qué tipo de audiencia usarías primero para validar hooks?",
+   opts:["Lookalike 1% de compradores pasados","Retargeting de visitantes web últimos 30 días","Broad (sin intereses) o intereses amplios — dejar que el algoritmo optimice","Custom audience de lista de clientes"],
+   correct:2},
+  {id:5, sec:"Meta Ads — Pixel", type:"mcq",
+   title:"¿Qué evento del pixel debes tener bien configurado para optimizar campañas de conversión hacia ventas reales?",
+   opts:["PageView","ViewContent","Purchase (con value y currency)","AddToCart"],
+   correct:2},
+  {id:6, sec:"Meta Ads — Escalado", type:"mcq",
+   title:"Un ad set tiene ROAS 8x con $500 de spend. Quieres escalar. ¿Cuál es el enfoque correcto?",
+   opts:["Duplicar el ad set y triplicar el presupuesto de inmediato","Aumentar presupuesto entre 20–30% cada 48–72 horas monitoreando CPM y frecuencia","Pausar y crear una campaña nueva con el mismo creativo","Mover el creativo a una campaña de tráfico para ampliar alcance primero"],
+   correct:1},
+  {id:7, sec:"Copy de performance", type:"mcq",
+   title:"¿Cuál de estos hooks tiene más probabilidad de parar el scroll para un programa de $2.000 dirigido a founders?",
+   opts:["'Aprende a escalar tu negocio con las mejores estrategias'","'Llevamos 3 años enseñando growth a emprendedores LATAM'","'Sigues siendo el cuello de botella de tu empresa — y lo sabes'","'Programa premium para líderes empresariales comprometidos con el crecimiento'"],
+   correct:2},
+  {id:8, sec:"Copy de performance", type:"open",
+   ctx:"30X · programa negociación · 4 semanas · online · ICP: gerentes comerciales B2B Colombia con equipos 3–10 personas · Pain: pierden deals por dar descuentos sin estructura · Copy en español, tono directo",
+   title:"Escribe 2 hooks + 1 ángulo para un programa de negociación de $1.500, dirigido a gerentes comerciales B2B en Colombia.",
+   prompt:"Copy en español LATAM. Debe sonar a criterio real, no a IA.",
+   minC:220},
+  {id:9, sec:"Copy de performance", type:"mcq",
+   title:"¿Cuál es la principal diferencia entre un ángulo y un hook en un video ad?",
+   opts:["Son lo mismo, solo se usan en distintas plataformas","El hook es el elemento visual; el ángulo es el texto","El hook son los primeros 3 segundos que detienen el scroll; el ángulo es el encuadre del problema/solución que sostiene todo el mensaje","El ángulo es el CTA; el hook es el cuerpo del copy"],
+   correct:2},
+  {id:10, sec:"Funnels y CRO", type:"mcq",
+   title:"El formulario de aplicación tiene 60% de abandono en la pregunta 4 de 6. ¿Cuál es tu primera hipótesis y acción?",
+   opts:["Cambiar el color del botón de 'Enviar'","La pregunta 4 genera fricción o tiene formato incómodo — testear eliminándola o reordenando","Reducir el presupuesto hasta optimizar el formulario","Cambiar el objetivo de la campaña a tráfico"],
+   correct:1},
+  {id:11, sec:"Funnels y CRO", type:"open",
+   ctx:"IA para Abogados · $497 · Virtual · 32h · 6 semanas · Compra directa en web · ICP: abogados litigantes y firmas privadas Colombia · Sin llamada de ventas · Spokesperson: Andrés Bilbao",
+   title:"Diseña el funnel completo para IA para Abogados de 30X (compra directa, $497, sin llamada de ventas).",
+   prompt:"Describe cada etapa: canal, creativos, landing, acción esperada y cómo mides conversión en cada etapa. No uses estructura genérica.",
+   minC:250},
+  {id:12, sec:"Funnels y CRO", type:"mcq",
+   title:"¿Cuál métrica del funnel indica que el problema está en la calidad del lead y no en el closer?",
+   opts:["CPL alto","Show-up rate bajo en llamadas","Tasa de cierre baja en llamadas con leads que sí se presentan","CPM en aumento en los últimos 7 días"],
+   correct:1},
+  {id:13, sec:"Tracking y atribución", type:"mcq",
+   title:"Un lead llega por Meta Ads pero en HubSpot aparece como fuente 'Direct'. ¿Cuál es la causa más probable?",
+   opts:["HubSpot tiene un bug con Meta Ads","La landing page no está pasando los parámetros UTM al formulario o al cookie de sesión","El pixel de Meta no está instalado correctamente","El lead usó modo incógnito"],
+   correct:1},
+  {id:14, sec:"Tracking y atribución", type:"open",
+   title:"Explica cómo calcularías el ROAS general de un programa conectando Meta Ads + Typeform + HubSpot + cierre por teléfono.",
+   prompt:"Sé específico: qué campo en HubSpot, qué lógica de matching, cómo atribuyes una venta al ad cuando hay 3–7 días entre el click y el cierre. Menciona los límites del modelo.",
+   minC:200},
+  {id:15, sec:"Tracking y atribución", type:"calc",
+   ctx:"ROAS general = (12×$3.000)/$6.000 = 6x | Meta: (0.7×12×$3.000)/$4.800 = 6.3x | LinkedIn: (0.3×12×$3.000)/$1.200 = 9x",
+   title:"Un programa cerró 12 ventas a $3.000 c/u. Gasto Meta: $4.800. Gasto LinkedIn: $1.200. 70% atribuye a Meta, 30% a LinkedIn. ¿ROAS general y por canal?",
+   opts:["ROAS general 7.5x · Meta 5.25x · LinkedIn 9x","ROAS general 6x · Meta 5.25x · LinkedIn 9x","ROAS general 6x · Meta 6.3x · LinkedIn 9x","ROAS general 7.5x · Meta 6.3x · LinkedIn 7.5x"],
+   correct:2},
+  {id:16, sec:"Detección de errores", type:"error",
+   title:"Esta tabla tiene UN dato incorrecto. Identifícalo y explica por qué con el cálculo.",
+   table:[["Campaña","Spend","Leads","CPL","Calls","Show-up","Ventas","CPA"],
+          ["TOF Video","$2.000","520","$3.84","—","—","—","—"],
+          ["MOF Retargeting","$1.200","95","$12.6","71","75%","9","$133"],
+          ["BOF Direct","$800","28","$28.5","25","88%","7","$114"],
+          ["TOTAL","$4.000","643","$6.2","96","80%","16","$250"]],
+   prompt:"¿Cuál es el dato incorrecto? Muestra el cálculo que lo demuestra.",
+   minC:80},
+  {id:17, sec:"Detección de errores", type:"error",
+   ctx:"Programa: $2.500 ticket · 20 ventas · Spend total $5.000 · El trafficker reporta ROAS 10x.",
+   title:"Revisa este reporte de ROAS y encuentra el error o lo que falta.",
+   table:[["Métrica","Valor reportado"],
+          ["Ingresos totales","$50.000"],
+          ["Spend","$5.000"],
+          ["ROAS","10x"],
+          ["CPA","$250"],
+          ["CVR leads→venta","8% sobre 250 leads"]],
+   prompt:"¿Hay error? ¿Qué falta para que sea ROAS general real y no solo ROAS de plataforma?",
+   minC:80},
+  {id:18, sec:"Detección de errores", type:"error",
+   ctx:"Campaña CBO — Objetivo: Tráfico | Ad Set 1: Interés 'Emprendimiento' $500/día | Ad Set 2: Retargeting visitantes 30d $500/día | Ad Set 3: Lookalike 1% compradores $500/día. El trafficker reporta: leads baratos pero no convierten.",
+   title:"Analiza esta estructura de campaña y di qué está mal desde una perspectiva de performance.",
+   prompt:"Identifica mínimo 2 errores estructurales o de lógica. Explica qué cambiarías y por qué.",
+   minC:120},
+  {id:19, sec:"Lead scoring", type:"mcq",
+   title:"Un lead agenda llamada, es CEO de empresa $1M+ ARR y quiere resultados en 90 días. ¿Cuál es el SLA de contacto ideal?",
+   opts:["24–48 horas después de agendar","Menos de 2 horas desde que agenda","Solo el día de la llamada confirmada","Cuando el closer tenga disponibilidad en la semana"],
+   correct:1},
+  {id:20, sec:"Lead scoring", type:"open",
+   title:"Diseña un sistema de lead scoring para Inmersivo 30X ($6.000). Define variables, pesos y routing entre 2 closers.",
+   prompt:"ICP: founder/CEO LATAM, empresa $300K+ ingresos. 2 closers: uno B2B ticket alto, uno founders early-stage. Define 5+ variables de scoring, cómo las captura Typeform, cómo llegan a HubSpot y cuándo se dispara el routing.",
+   minC:230},
+  {id:21, sec:"Estrategia y priorización", type:"open",
+   title:"Lunes 8am, 5 programas activos, $18k gasto mensual total. ¿Cómo estructuras tu semana?",
+   prompt:"Describe tu cadencia diaria/semanal: qué revisas y cuándo, cómo priorizas si dos programas tienen problemas simultáneos, qué métricas son tus alarmas de pausa inmediata. Menciona herramientas y métricas concretas.",
+   minC:220},
+  {id:22, sec:"Estrategia y priorización", type:"mcq",
+   title:"Tienes presupuesto limitado y 3 programas activos. ¿Cómo decides cuánto asignar a cada uno?",
+   opts:["Igual a todos para no crear sesgos","Basado en ROAS histórico, tamaño del ticket y urgencia del lanzamiento/cierre","Primero al programa con más leads del mes anterior","Basado en las preferencias del Head de Programas"],
+   correct:1},
+  {id:23, sec:"Estrategia y priorización", type:"mcq",
+   title:"¿Cuándo pausarías una campaña sin esperar aprobación?",
+   opts:["Cuando el CPL suba un 10% vs el promedio","Cuando el ROAS general caiga por debajo del break-even o haya un error técnico crítico (pixel caído, URL rota, formulario roto)","Cuando el CTR baje un 5%","Solo con autorización, nunca de forma unilateral"],
+   correct:1},
+  {id:24, sec:"Cálculos", type:"calc",
+   ctx:"CPA máximo = Ticket / ROAS objetivo = $4.000 / 8 = $500",
+   title:"Ticket $4.000 · margen neto 35% · ROAS general mínimo 8x. ¿Cuál es el CPA máximo por venta?",
+   opts:["$500","$350","$400","$450"],
+   correct:0},
+  {id:25, sec:"Cálculos", type:"calc",
+   ctx:"Calls: 1200×0.22=264 | Calls reales: 264×0.68=179 | Ventas: 179×0.18≈32 | CVR e2e: 32/1200=2.7%",
+   title:"1.200 leads · CVR lead→llamada 22% · Show-up 68% · CVR llamada→venta 18%. ¿Ventas esperadas y CVR end-to-end?",
+   opts:["Ventas: 32 · CVR e2e: 2.7%","Ventas: 29 · CVR e2e: 2.4%","Ventas: 41 · CVR e2e: 3.4%","Ventas: 38 · CVR e2e: 3.2%"],
+   correct:0},
+  {id:26, sec:"Cálculos", type:"calc",
+   ctx:"Ingresos meta: 15×$3.500=$52.500 | Presupuesto max: $52.500/10=$5.250 | CPA max: $5.250/15=$350",
+   title:"Meta: 15 ventas · ticket $3.500 · ROAS mínimo 10x. ¿Presupuesto máximo en ads y CPA máximo?",
+   opts:["Presupuesto $5.250 · CPA $350","Presupuesto $5.000 · CPA $333","Presupuesto $4.500 · CPA $300","Presupuesto $6.000 · CPA $400"],
+   correct:0},
+  {id:27, sec:"HubSpot y CRM", type:"mcq",
+   title:"¿Qué propiedad de HubSpot revisas para saber si un contacto entró por un ad de Meta Ads específico?",
+   opts:["'Source' (fuente original)","'UTM Campaign' capturado en el formulario o por cookie de sesión + propiedad personalizada","'Email marketing'","'First conversion' del contact record"],
+   correct:1},
+  {id:28, sec:"HubSpot y CRM", type:"mcq",
+   title:"¿Cómo verificas que el loop Ads → CRM funciona correctamente antes de lanzar?",
+   opts:["Esperas a tener 50 leads y revisas manualmente","Haces un lead de prueba end-to-end: click en ad → formulario → verificas en HubSpot con UTM correcto, fuente correcta y stage correcto","Confías en el pixel de Meta para validar","Revisas el dashboard de Meta Ads al día siguiente"],
+   correct:1},
+  {id:29, sec:"IA y automatización", type:"open",
+   title:"¿Cómo usas IA en tu flujo de trabajo como trafficker? Da 3 ejemplos concretos, no genéricos.",
+   prompt:"No sirve 'uso ChatGPT para copy'. Describe exactamente qué prompt usas, qué output obtienes, cómo lo iteras y cómo te ahorra tiempo o mejora decisiones. Incluye al menos un ejemplo de análisis de datos con IA.",
+   minC:200},
+  {id:30, sec:"Caso final", type:"open",
+   ctx:"Inmersivo 30X · $6.000 USD · Presencial · 50 personas · LATAM · Andrés Bilbao como figura central · HubSpot + closers para cierre · Meta Ads principal canal",
+   title:"Caso final: Inmersivo 30X — $6.000 ticket, 50 cupos, lanzar en 45 días. Diseña la estrategia de paid media completa.",
+   prompt:"Define: presupuesto sugerido, canales, estructura de campañas por etapa (awareness → retargeting → cierre), KPIs por semana, y qué harías en la semana 3 si el ROAS está en 3x. Sin estructura genérica.",
+   minC:300},
+];
+
+const IA_PHRASES = ['en conclusión','en primer lugar','en segundo lugar','en resumen','cabe destacar','es importante mencionar','sin duda','es fundamental','asimismo','por otro lado','a continuación','en este sentido','cabe mencionar','cabe señalar','vale la pena mencionar'];
+
+// ===== STATE =====
+let nombre = '', email = '';
+let secsLeft = 3600;
+let timerID = null;
+let timedOut = false;
+let answered = 0;
+
+// ===== UTILS =====
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function show(id) {
+  ['screen0','screen1','screen2','screen3'].forEach(s => {
+    const el = document.getElementById(s);
+    el.style.display = 'none';
+  });
+  const scr = document.getElementById(id);
+  scr.style.display = (id === 'screen1') ? 'block' : 'flex';
+  document.getElementById('timerBar').style.display = (id === 'screen1') ? 'flex' : 'none';
+}
+
+// ===== START =====
+function comenzar() {
+  nombre = document.getElementById('inpNombre').value.trim();
+  email  = document.getElementById('inpEmail').value.trim();
+  const err = document.getElementById('s0Err');
+  if (!nombre) { err.textContent = 'Escribe tu nombre completo.'; return; }
+  if (!email || !email.includes('@')) { err.textContent = 'Escribe un email válido.'; return; }
+  err.textContent = '';
+
+  document.getElementById('s1Cand').textContent = nombre + '  ·  ' + email;
+  renderQuestions();
+  show('screen1');
+  startTimer();
+  updateProgress();
+}
+
+// ===== TIMER =====
+function startTimer() {
+  timerID = setInterval(() => {
+    secsLeft--;
+    if (secsLeft <= 0) {
+      secsLeft = 0;
+      clearInterval(timerID);
+      timedOut = true;
+      submitPrueba(true);
+    }
+    const m = String(Math.floor(secsLeft / 60)).padStart(2,'0');
+    const s = String(secsLeft % 60).padStart(2,'0');
+    const el = document.getElementById('tbTimer');
+    el.textContent = m + ':' + s;
+    el.className = 'tb-timer' + (secsLeft <= 300 ? ' urgent' : '');
+  }, 1000);
+}
+
+// ===== RENDER =====
+function renderQuestions() {
+  let html = '';
+  let lastSec = '';
+
+  Q.forEach((q, i) => {
+    if (q.sec !== lastSec) {
+      lastSec = q.sec;
+      html += `<div class="sec-header"><span class="sec-name">${esc(q.sec)}</span><div class="sec-line"></div></div>`;
+    }
+
+    const badge = { mcq:'MCQ', calc:'CÁLCULO', open:'ABIERTA', error:'DETECTAR ERROR' }[q.type];
+    const badgeCls = { mcq:'qb-mcq', calc:'qb-calc', open:'qb-open', error:'qb-error' }[q.type];
+
+    html += `<div class="q-card">`;
+    html += `<div class="q-meta"><span class="q-badge ${badgeCls}">${badge}</span><span class="q-num">Pregunta ${i+1} de 30</span></div>`;
+
+    if (q.ctx)   html += `<div class="q-context">${esc(q.ctx)}</div>`;
+    html += `<div class="q-title">${esc(q.title)}</div>`;
+
+    if (q.table) {
+      html += `<table class="q-table"><thead><tr>`;
+      q.table[0].forEach(h => { html += `<th>${esc(h)}</th>`; });
+      html += `</tr></thead><tbody>`;
+      q.table.slice(1).forEach(row => {
+        html += `<tr>`;
+        row.forEach(cell => { html += `<td>${esc(cell)}</td>`; });
+        html += `</tr>`;
+      });
+      html += `</tbody></table>`;
+    }
+
+    if (q.prompt) html += `<div class="q-prompt">${esc(q.prompt)}</div>`;
+
+    if (q.opts) {
+      html += `<div class="q-options" id="opts${q.id}">`;
+      q.opts.forEach((o, oi) => {
+        html += `<div class="q-option" id="opt${q.id}_${oi}" onclick="pick(${q.id},${oi})">
+          <div class="q-radio"><div class="q-radio-dot"></div></div>
+          <div class="q-opt-txt">${esc(o)}</div>
+        </div>`;
+      });
+      html += `</div>`;
+    }
+
+    if (q.type === 'open' || q.type === 'error') {
+      const mc = q.minC || 0;
+      html += `<textarea class="q-textarea" id="ta${q.id}" rows="5"
+        placeholder="Escribe tu respuesta aquí (mínimo ${mc} caracteres)..."
+        oninput="onTA(${q.id},${mc})"></textarea>`;
+      html += `<div class="q-char-row">
+        <span class="q-chars" id="cc${q.id}">0 / ${mc} mín.</span>
+        <span class="q-ia-warn" id="iaw${q.id}">⚠ Detectado lenguaje formulaico</span>
+      </div>`;
+    }
+
+    html += `</div>`;
+  });
+
+  document.getElementById('qContainer').innerHTML = html;
+}
+
+// ===== INTERACTIONS =====
+function pick(qId, optIdx) {
+  document.querySelectorAll(`#opts${qId} .q-option`).forEach(el => el.classList.remove('selected'));
+  document.getElementById(`opt${qId}_${optIdx}`).classList.add('selected');
+  updateProgress();
+}
+
+function onTA(qId, minC) {
+  const ta  = document.getElementById(`ta${qId}`);
+  const cc  = document.getElementById(`cc${qId}`);
+  const iaw = document.getElementById(`iaw${qId}`);
+  const len = ta.value.length;
+  cc.textContent = len + ' / ' + minC + ' mín.';
+  cc.className = 'q-chars' + (len >= minC ? ' ok' : len > 0 ? ' warn' : '');
+  iaw.className = 'q-ia-warn' + (detectIA(ta.value) ? ' show' : '');
+  updateProgress();
+}
+
+function detectIA(text) {
+  const low = text.toLowerCase();
+  return IA_PHRASES.filter(p => low.includes(p)).length >= 2;
+}
+
+function updateProgress() {
+  let count = 0;
+  Q.forEach(q => {
+    if (q.opts) {
+      if (document.querySelector(`#opts${q.id} .q-option.selected`)) count++;
+    } else {
+      const ta = document.getElementById(`ta${q.id}`);
+      if (ta && ta.value.trim().length > 0) count++;
+    }
+  });
+  answered = count;
+  document.getElementById('tbCount').textContent = count;
+  document.getElementById('tbFill').style.width = Math.round(count / 30 * 100) + '%';
+  const left = 30 - count;
+  document.getElementById('s1Note').textContent = left > 0
+    ? `Tienes ${left} pregunta${left > 1 ? 's' : ''} sin responder.`
+    : '¡Todas respondidas! Puedes enviar.';
+}
+
+// ===== SUBMIT =====
+function confirmarEnvio() {
+  const left = 30 - answered;
+  if (left > 0) {
+    if (!confirm(`Tienes ${left} pregunta${left > 1 ? 's' : ''} sin responder. ¿Seguro que quieres enviar?`)) return;
+  }
+  submitPrueba(false);
+}
+
+async function submitPrueba(timeout) {
+  clearInterval(timerID);
+
+  const secsUsed = 3600 - secsLeft;
+  const tm = Math.floor(secsUsed / 60);
+  const ts = secsUsed % 60;
+
+  const answers = {};
+  Q.forEach(q => {
+    if (q.opts) {
+      document.querySelectorAll(`#opts${q.id} .q-option`).forEach((el, i) => {
+        if (el.classList.contains('selected')) answers[q.id] = i;
+      });
+    } else {
+      const ta = document.getElementById(`ta${q.id}`);
+      if (ta) answers[q.id] = ta.value;
+    }
+  });
+
+  // Scoring
+  let mcqCorrectas = 0;
+  Q.filter(q => q.opts).forEach(q => { if (answers[q.id] === q.correct) mcqCorrectas++; });
+  const mcqTotal = 20;
+  const mcqPorcentaje = parseFloat(((mcqCorrectas / mcqTotal) * 100).toFixed(2));
+
+  let abiertasCompletas = 0;
+  Q.filter(q => !q.opts).forEach(q => {
+    const ans = answers[q.id] || '';
+    if (ans.length >= (q.minC || 0)) abiertasCompletas++;
+  });
+  const abiertasTotal = 10;
+
+  const mcqPct  = mcqCorrectas / mcqTotal;
+  const openPct = abiertasCompletas / abiertasTotal;
+  const scorePonderado = Math.round((mcqPct * 0.6 + openPct * 0.4) * 100);
+
+  let flagIA = false;
+  Q.filter(q => !q.opts).forEach(q => {
+    if (detectIA(answers[q.id] || '')) flagIA = true;
+  });
+
+  const pass   = !timeout && mcqPct >= 0.7 && abiertasCompletas >= 4;
+  const review = !timeout && !pass && (mcqPct >= 0.5 || abiertasCompletas >= 3);
+  const veredicto = timeout ? 'NO_APLICA' : pass ? 'PASA' : review ? 'REVISAR' : 'NO_APLICA';
+
+  const respuestas = {};
+  Q.forEach(q => {
+    const raw = answers[q.id];
+    respuestas[q.id] = {
+      tipo: q.type,
+      pregunta: q.title,
+      respuesta: raw !== undefined ? raw : '',
+      seccion: q.sec,
+      ...(q.opts && raw !== undefined ? {
+        opcionTexto: q.opts[raw] || '',
+        esCorrecta: raw === q.correct,
+      } : {}),
+    };
+  });
+
+  const payload = {
+    nombre, email,
+    tiempoSegundos: secsUsed,
+    tiempoFormato: tm + 'm ' + ts + 's',
+    timeout: !!timeout,
+    mcqCorrectas, mcqTotal, mcqPorcentaje,
+    abiertasCompletas, abiertasTotal,
+    scorePonderado, flagIA, veredicto,
+    respuestas,
+  };
+
+  show('screen2');
+
+  try {
+    await fetch('/api/submit-prueba', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+  } catch (e) {}
+
+  document.getElementById('s3Msg').innerHTML =
+    `Gracias, <span class="s3-name">${esc(nombre)}</span>. Tu resultado ha sido registrado. El equipo de 30X revisará tu prueba y se pondrá en contacto contigo pronto.`;
+  show('screen3');
+}
+
+// Enter key on screen 0
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && document.getElementById('screen0').style.display !== 'none') comenzar();
+});
+</script>
+</body>
+</html>

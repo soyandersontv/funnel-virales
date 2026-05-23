@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="robots" content="noindex,nofollow"/>
+<title>30 Días · El Siguiente Nivel — Laura Zabala &amp; Santiago Leal</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0E0420;--bg2:#18092E;--card:#21103F;--card2:#2A1750;
+  --border:rgba(185,122,245,.22);--border-s:rgba(185,122,245,.45);
+  --lav:#B97AF5;--mag:#E879F9;--pink:#F0588E;--gold:#FFD23F;
+  --text:#F5F0FA;--soft:#B8A8D4;--r:16px;
+  --grad:linear-gradient(135deg,#B97AF5,#E879F9,#F0588E);
+  --grad-gold:linear-gradient(135deg,#FFD23F,#FFA500);
+}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;max-width:430px;margin:0 auto;overflow-x:hidden}
+
+/* ── TOP BAR ── */
+.topbar{background:var(--grad);text-align:center;padding:10px 16px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;position:sticky;top:0;z-index:100}
+
+/* ── COUNTDOWN ── */
+.cd-wrap{background:var(--bg2);border-bottom:1px solid var(--border);padding:16px;text-align:center}
+.cd-label{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--soft);margin-bottom:10px}
+.cd-units{display:flex;justify-content:center;gap:8px}
+.cd-block{background:var(--card);border:1px solid var(--border-s);border-radius:10px;padding:8px 12px;min-width:58px;text-align:center}
+.cd-num{display:block;font-size:26px;font-weight:900;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.cd-lbl{font-size:9px;font-weight:700;text-transform:uppercase;color:var(--soft);letter-spacing:.1em}
+
+/* ── HERO ── */
+.hero{padding:32px 20px 0;text-align:center}
+.badge{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border-s);border-radius:999px;padding:6px 14px;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--lav);margin-bottom:20px}
+.hero-label{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);margin-bottom:4px}
+.hero-big{font-size:64px;font-weight:900;font-style:italic;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-title{font-size:40px;font-weight:900;font-style:italic;line-height:1.05;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:20px}
+.hero-desc{font-size:15px;font-weight:600;color:var(--text);line-height:1.55;margin-bottom:10px}
+.hero-sub{font-size:13px;color:var(--soft);line-height:1.55;margin-bottom:24px}
+.date-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,210,63,.1);border:1px solid rgba(255,210,63,.35);border-radius:999px;padding:8px 14px;font-size:12px;font-weight:700;color:var(--gold);margin-bottom:28px}
+.date-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 1.8s ease infinite}
+
+/* ── BUTTONS ── */
+.btn{display:block;width:100%;padding:18px 20px;background:var(--grad);border:none;border-radius:999px;color:#fff;font-size:16px;font-weight:900;letter-spacing:.04em;text-align:center;text-decoration:none;cursor:pointer;box-shadow:0 6px 32px rgba(240,88,142,.35);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(240,88,142,.5)}
+.btn-sub{font-size:11.5px;color:var(--soft);text-align:center;margin-top:8px}
+.btn-wrap{padding:0 20px 32px}
+.stars{font-size:13px;color:var(--gold);letter-spacing:.05em}
+.trust{font-size:12px;color:var(--soft);text-align:center;padding:0 20px 28px}
+
+/* ── PHOTO CARD ── */
+.photo-card{margin:0 20px 40px;border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#3B1A6B,var(--card));border:1px solid var(--border-s);padding:24px;text-align:center;position:relative}
+.top25-badge{display:inline-flex;align-items:center;gap:6px;background:var(--grad-gold);color:#000;font-size:11px;font-weight:900;letter-spacing:.08em;border-radius:999px;padding:6px 14px;margin-bottom:16px}
+.avatar-row{display:flex;justify-content:center;gap:0;margin-bottom:12px}
+.avatar{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;border:3px solid var(--bg)}
+.av-l{background:linear-gradient(135deg,#E879F9,#B97AF5);margin-right:-12px}
+.av-s{background:linear-gradient(135deg,#B97AF5,#6D28D9);margin-left:-12px}
+.photo-name{font-size:18px;font-weight:800;color:#fff;margin-bottom:4px}
+.photo-sub{font-size:11px;color:var(--soft);text-transform:uppercase;letter-spacing:.12em}
+
+/* ── SECTIONS ── */
+section{padding:40px 20px}
+.eyebrow{display:inline-block;border:1px solid var(--border-s);border-radius:999px;padding:5px 12px;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--lav);margin-bottom:14px}
+.eyebrow.pink{color:var(--pink);border-color:rgba(240,88,142,.4)}
+.eyebrow.gold{color:var(--gold);border-color:rgba(255,210,63,.4)}
+h2{font-size:26px;font-weight:900;line-height:1.15;margin-bottom:8px}
+h2 em{font-style:italic;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.s-sub{font-size:13.5px;color:var(--soft);margin-bottom:24px}
+
+/* ── CARDS ── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:10px}
+.card.pink-border{border-color:rgba(240,88,142,.35)}
+.card.gold-border{border-color:rgba(255,210,63,.35)}
+.card.lav-border{border-color:var(--border-s)}
+.card-icon{font-size:28px;margin-bottom:8px}
+.card h3{font-size:15px;font-weight:700;color:#fff;margin-bottom:6px}
+.card p{font-size:13px;color:var(--soft);line-height:1.55}
+.card .tag{display:inline-block;border-radius:999px;padding:3px 10px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-top:10px}
+.tag-red{background:rgba(240,88,142,.15);color:var(--pink);border:1px solid rgba(240,88,142,.3)}
+.tag-gold{background:rgba(255,210,63,.12);color:var(--gold);border:1px solid rgba(255,210,63,.3)}
+.tag-lav{background:rgba(185,122,245,.15);color:var(--lav);border:1px solid rgba(185,122,245,.3)}
+.strikethrough{text-decoration:line-through;color:var(--gold);font-weight:700;font-size:13px}
+
+/* ── PAIN ITEMS ── */
+.pain-item{display:flex;align-items:flex-start;gap:12px;padding:14px;background:var(--card);border:1px solid rgba(240,88,142,.25);border-radius:12px;margin-bottom:8px}
+.pain-x{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:rgba(240,88,142,.2);border:2px solid var(--pink);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:var(--pink)}
+.pain-item p{font-size:13.5px;color:var(--soft);line-height:1.5}
+
+/* ── DATE BOX ── */
+.date-box{background:var(--card2);border:1px solid var(--border-s);border-radius:18px;padding:22px;margin-bottom:16px}
+.date-row{display:flex;align-items:center;gap:12px;padding-bottom:16px;border-bottom:1px dashed var(--border)}
+.date-row:last-child{padding-bottom:0;border-bottom:none;padding-top:16px}
+.date-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.18em;color:var(--lav);margin-bottom:2px}
+.date-val{font-size:20px;font-weight:900;color:#fff}
+.date-arrow{margin-left:auto;font-size:18px;color:var(--pink)}
+.stats-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
+.stat-box{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
+.stat-n{font-size:20px;font-weight:900;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat-l{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--soft)}
+
+/* ── MODULES ── */
+.module{display:flex;gap:12px;align-items:flex-start;padding:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:8px}
+.module-icon{flex-shrink:0;width:40px;height:40px;border-radius:10px;background:rgba(185,122,245,.15);border:1px solid var(--border-s);display:flex;align-items:center;justify-content:center;font-size:18px}
+.module-body h3{font-size:13.5px;font-weight:700;margin-bottom:3px}
+.module-body p{font-size:12px;color:var(--soft);line-height:1.45}
+.module-price{font-size:12px;color:var(--gold);font-weight:700;text-decoration:line-through;margin-top:6px}
+
+/* ── VALUE BOX ── */
+.value-box{background:linear-gradient(180deg,rgba(255,210,63,.08),rgba(255,210,63,.03));border:1px solid rgba(255,210,63,.4);border-radius:14px;padding:20px;text-align:center;margin-bottom:20px}
+.value-label{font-size:11px;font-weight:700;color:var(--soft);margin-bottom:6px}
+.value-price{font-size:32px;font-weight:900;color:var(--gold)}
+
+/* ── BONOS ── */
+.bono-pill{display:inline-block;border-radius:999px;padding:3px 10px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.bono-pill.red{background:rgba(240,88,142,.2);color:var(--pink);border:1px solid rgba(240,88,142,.4)}
+.bono-pill.gold{background:rgba(255,210,63,.15);color:var(--gold);border:1px solid rgba(255,210,63,.4)}
+.bono-card{background:var(--card);border:1px solid rgba(240,88,142,.3);border-radius:var(--r);padding:18px;margin-bottom:10px}
+.bono-card.gold-card{border-color:rgba(255,210,63,.4);background:linear-gradient(180deg,rgba(255,210,63,.05),var(--card))}
+.bono-card h3{font-size:15px;font-weight:800;color:#fff;margin:6px 0}
+.bono-card p{font-size:12.5px;color:var(--soft);line-height:1.5}
+.bono-scarcity{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);margin-top:10px}
+
+/* ── COMPARE ── */
+.compare-card{border-radius:var(--r);padding:18px;margin-bottom:10px}
+.compare-card.before{background:rgba(240,88,142,.06);border:1px solid rgba(240,88,142,.3)}
+.compare-card.after{background:rgba(185,122,245,.07);border:1px solid var(--border-s)}
+.compare-label{display:inline-block;border-radius:999px;padding:4px 12px;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
+.compare-label.b{background:rgba(240,88,142,.2);color:var(--pink)}
+.compare-label.a{background:rgba(185,122,245,.2);color:var(--lav)}
+.compare-divider{text-align:center;font-size:22px;color:var(--lav);margin:4px 0}
+.check-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px;font-size:13px;color:var(--soft);line-height:1.5}
+.check-item .ico{flex-shrink:0;font-size:16px;margin-top:1px}
+
+/* ── FOR WHO ── */
+.for-card{border-radius:var(--r);padding:16px;margin-bottom:10px}
+.for-card.yes{background:rgba(185,122,245,.06);border:1px solid var(--border-s)}
+.for-card.no{background:rgba(240,88,142,.04);border:1px solid rgba(240,88,142,.25)}
+.for-label{display:inline-block;border-radius:999px;padding:4px 12px;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
+.for-label.yes{background:rgba(185,122,245,.2);color:var(--lav)}
+.for-label.no{background:rgba(240,88,142,.15);color:var(--pink)}
+
+/* ── TESTIMONIALS ── */
+.testi{background:var(--card2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:10px}
+.testi-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.testi-av{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0}
+.testi-name{font-size:14px;font-weight:700}
+.testi-country{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--soft)}
+.testi-stars{font-size:11px;color:var(--gold)}
+.testi p{font-size:13.5px;font-weight:600;color:#fff;line-height:1.55}
+.testi-source{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--soft);margin-top:8px}
+
+/* ── STATS GRID ── */
+.stats-4{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:24px}
+.stat4{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center}
+.stat4-n{font-size:22px;font-weight:900;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat4-l{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--soft);margin-top:2px}
+
+/* ── PRICE BLOCK ── */
+.price-block{background:linear-gradient(180deg,rgba(185,122,245,.08),var(--card));border:1px solid var(--border-s);border-radius:20px;padding:24px;text-align:center;margin-bottom:16px;position:relative}
+.price-tag{display:inline-block;background:var(--grad);border-radius:999px;padding:6px 18px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px}
+.price-old{font-size:18px;font-weight:700;text-decoration:line-through;color:var(--gold);opacity:.7;margin-bottom:4px}
+.price-main{font-size:60px;font-weight:900;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.price-usd{font-size:18px;font-weight:700;color:var(--soft);vertical-align:super}
+.price-details{font-size:12px;color:var(--soft);margin:8px 0 16px}
+.payment-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-bottom:16px}
+.pay-pill{border:1px solid var(--border-s);border-radius:8px;padding:5px 10px;font-size:10px;font-weight:700;color:var(--soft);letter-spacing:.06em;text-transform:uppercase}
+.trust-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.trust-item{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:10px 8px;text-align:center;font-size:11px;color:var(--soft);font-weight:600}
+.social-proof{font-size:12px;color:var(--lav);text-align:center;margin-top:12px}
+
+/* ── COPA ── */
+.copa-podio{display:flex;flex-direction:column;gap:8px}
+.podio-card{border-radius:var(--r);padding:16px}
+.podio-card.gold-p{background:linear-gradient(180deg,rgba(255,210,63,.1),rgba(255,210,63,.03));border:2px solid rgba(255,210,63,.5)}
+.podio-card.silver{background:var(--card2);border:1px solid rgba(185,122,245,.3)}
+.podio-card.bronze{background:var(--card);border:1px solid var(--border)}
+.podio-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.15em;color:var(--soft);margin-bottom:6px}
+.podio-card h3{font-size:14px;font-weight:800;color:#fff;margin-bottom:8px}
+.podio-check{font-size:12px;color:var(--soft);display:flex;align-items:flex-start;gap:6px;margin-bottom:4px}
+
+/* ── GUARANTEE ── */
+.guar-card{border-radius:var(--r);padding:18px;margin-bottom:10px;position:relative}
+.guar-card.g1{background:rgba(185,122,245,.05);border:1px solid var(--border-s)}
+.guar-card.g2{background:rgba(240,88,142,.04);border:1px solid rgba(240,88,142,.3)}
+.guar-icon{position:absolute;top:-14px;right:16px;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px}
+.guar-icon.g1{background:linear-gradient(135deg,var(--lav),var(--mag))}
+.guar-icon.g2{background:linear-gradient(135deg,var(--mag),var(--pink))}
+.guar-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--soft);margin-bottom:8px}
+.guar-card h3{font-size:15px;font-weight:800;color:#fff;margin-bottom:8px;line-height:1.35}
+.guar-card p{font-size:12.5px;color:var(--soft);line-height:1.55}
+
+/* ── HOSTS ── */
+.host-card{background:var(--card);border:1px solid var(--border-s);border-radius:18px;padding:20px;text-align:center;margin-bottom:10px}
+.host-av{width:70px;height:70px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;border:3px solid transparent;background-clip:padding-box}
+.host-av.lz{background:linear-gradient(135deg,#E879F9,#B97AF5)}
+.host-av.sl{background:linear-gradient(135deg,#B97AF5,#6D28D9)}
+.host-name{font-size:18px;font-weight:900;color:#fff;margin-bottom:4px}
+.host-role{font-size:9px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--lav);margin-bottom:10px}
+.host-bio{font-size:13px;color:var(--soft);line-height:1.6}
+
+/* ── STICKY BAR ── */
+.sticky-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:rgba(20,6,46,.95);backdrop-filter:blur(16px);border-top:1px solid var(--border-s);padding:10px 16px;display:flex;align-items:center;gap:10px;z-index:200}
+.sticky-price{flex-shrink:0}
+.sticky-price .sp-n{font-size:18px;font-weight:900;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sticky-price .sp-l{font-size:9px;color:var(--soft);font-weight:600;text-transform:uppercase}
+.sticky-bar .btn{padding:13px 20px;font-size:13px;border-radius:999px}
+.pb{padding-bottom:80px}
+
+/* ── DIVIDER ── */
+.divider{height:1px;background:var(--border);margin:0 20px}
+
+/* ── UTILS ── */
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,210,63,.6)}70%{box-shadow:0 0 0 8px rgba(255,210,63,0)}100%{box-shadow:0 0 0 0 rgba(255,210,63,0)}}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">🔥 ENTRENAMIENTO COMIENZA EL 6 DE JUNIO · Cupos limitados</div>
+
+<!-- COUNTDOWN -->
+<div class="cd-wrap">
+  <div class="cd-label">El entrenamiento empieza en:</div>
+  <div class="cd-units">
+    <div class="cd-block"><span class="cd-num" id="cd-d">00</span><span class="cd-lbl">Días</span></div>
+    <div class="cd-block"><span class="cd-num" id="cd-h">00</span><span class="cd-lbl">Horas</span></div>
+    <div class="cd-block"><span class="cd-num" id="cd-m">00</span><span class="cd-lbl">Min</span></div>
+    <div class="cd-block"><span class="cd-num" id="cd-s">00</span><span class="cd-lbl">Seg</span></div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">⭐ El lanzamiento más grande del año ⭐</div>
+  <div class="hero-label">ENTRENAMIENTO</div>
+  <div class="hero-big">30 DÍAS</div>
+  <div class="hero-title">El Siguiente Nivel</div>
+  <p class="hero-desc">30 días para llevar tu negocio a un nivel que nunca imaginaste — con todo lo que nunca hemos abierto en público.</p>
+  <p class="hero-sub">Espionaje viral avanzado · Viral Apps con IA · Superar las 50–100 ventas al día · Inmersión IA Galaxy · Estrategia de escala 10x.</p>
+  <div class="date-pill"><span class="date-dot"></span> 6 de junio al 21 de julio · En vivo con Laura y Santiago</div>
+</section>
+
+<div class="btn-wrap">
+  <a href="https://pay.hotmart.com/I105799724D?off=6l0fiway&bid=1778721395677" target="_blank" class="btn">QUIERO ENTRAR AL SIGUIENTE NIVEL →</a>
+  <p class="btn-sub">Cupos limitados · Bonos exclusivos para los primeros</p>
+</div>
+
+<p class="trust"><span class="stars">★★★★★</span> Más de 12.000 estudiantes en 140+ países · 20+ idiomas</p>
+
+<!-- HOSTS CARD -->
+<div class="photo-card">
+  <div class="top25-badge">🏆 TOP 25 DEL MUNDO · 2026</div>
+  <div class="avatar-row">
+    <div class="avatar av-l">LZ</div>
+    <div class="avatar av-s">SL</div>
+  </div>
+  <div class="photo-name">Laura Zabala &amp; Santiago Leal</div>
+  <div class="photo-sub">Tus hosts en vivo · 30 días</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- LO QUE VAS A REVELAR -->
+<section>
+  <div class="eyebrow">Por primera vez en público</div>
+  <h2>Lo que vamos a revelar <em>no se ha enseñado nunca antes</em></h2>
+  <p class="s-sub">Tres cosas que llevamos años perfeccionando en privado.</p>
+  <div class="card lav-border">
+    <div class="card-icon">🔍</div>
+    <h3>Maestría de Espionaje Viral</h3>
+    <p>El método avanzado para encontrar las ofertas más ganadoras del mundo — antes que nadie.</p>
+  </div>
+  <div class="card lav-border">
+    <div class="card-icon">📱</div>
+    <h3>Viral Apps con IA</h3>
+    <p>La nueva ola de productos. Crea tu propia Viral App con pocos clics, sin saber programar.</p>
+  </div>
+  <div class="card lav-border">
+    <div class="card-icon">🎙️</div>
+    <h3>IA Galaxy · 1 semana</h3>
+    <p>7 días dedicados a la IA al máximo nivel. Cosas de talla mundial solo con tu voz.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PAIN POINTS -->
+<section>
+  <div class="eyebrow pink">Si te identificas con esto...</div>
+  <h2>Sabemos exactamente <em>dónde te está costando</em></h2>
+  <div style="height:16px"></div>
+  <div class="pain-item"><div class="pain-x">✕</div><p>Ya intentaste vender por internet pero sientes que vas dando palos de ciego.</p></div>
+  <div class="pain-item"><div class="pain-x">✕</div><p>Ves a otros con apps, IA y productos virales y no entiendes cómo le hacen.</p></div>
+  <div class="pain-item"><div class="pain-x">✕</div><p>Quieres romper la barrera de las 50–100 ventas al día pero te quedas atascado.</p></div>
+  <div class="pain-item"><div class="pain-x">✕</div><p>La inteligencia artificial te parece complicada y no sabes ni por dónde empezar.</p></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FECHAS -->
+<section>
+  <div class="eyebrow">El programa</div>
+  <h2>30 días que cambian <em>todo</em></h2>
+  <div style="height:16px"></div>
+  <div class="date-box">
+    <div class="date-row">
+      <div><div class="date-label">Empieza</div><div class="date-val">06 JUNIO 2026</div></div>
+      <div class="date-arrow">→</div>
+    </div>
+    <div class="date-row">
+      <div><div class="date-label">Termina</div><div class="date-val">21 JULIO 2026</div></div>
+    </div>
+  </div>
+  <div class="stats-row">
+    <div class="stat-box"><div class="stat-n">30 días</div><div class="stat-l">En vivo</div></div>
+    <div class="stat-box"><div class="stat-n">3 meses</div><div class="stat-l">De acceso</div></div>
+    <div class="stat-box"><div class="stat-n">8</div><div class="stat-l">Módulos</div></div>
+    <div class="stat-box"><div class="stat-n">11</div><div class="stat-l">Bonos extra</div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 8 MÓDULOS -->
+<section>
+  <div class="eyebrow">Lo que incluye el entrenamiento</div>
+  <h2>Todo esto vas a recibir <em>dentro del programa</em></h2>
+  <p class="s-sub">8 módulos en vivo. Aquí van todos juntos por primera vez.</p>
+
+  <div class="module"><div class="module-icon">🕵️</div><div class="module-body"><h3>1. Maestría de Espionaje Viral</h3><p>Encuentra las ofertas más ganadoras del mundo, antes que nadie.</p><div class="module-price">~~$5.000~~</div></div></div>
+  <div class="module"><div class="module-icon">📱</div><div class="module-body"><h3>2. Viral Apps</h3><p>La nueva ola de productos con inteligencia artificial.</p><div class="module-price">~~$5.000~~</div></div></div>
+  <div class="module"><div class="module-icon">⚡</div><div class="module-body"><h3>3. Viral Apps · TRAINING completo</h3><p>Crea tu propia Viral App con pocos clics, sin programar.</p><div class="module-price">~~$10.000~~</div></div></div>
+  <div class="module"><div class="module-icon">🏆</div><div class="module-body"><h3>4. Ofertas más escaladas del mundo</h3><p>Las ofertas que están facturando millones, abiertas para estudiarlas.</p><div class="module-price">~~$7.000~~</div></div></div>
+  <div class="module"><div class="module-icon">🎯</div><div class="module-body"><h3>5. Persuasión · Barrera 50–100 ventas/día</h3><p>El entrenamiento para superar el techo donde se queda el 99%.</p><div class="module-price">~~$6.000~~</div></div></div>
+  <div class="module"><div class="module-icon">🚀</div><div class="module-body"><h3>6. Inmersión IA Galaxy · 1 semana</h3><p>7 días dedicados a la IA al máximo nivel. Solo con tu voz.</p><div class="module-price">~~$2.000~~</div></div></div>
+  <div class="module"><div class="module-icon">🎬</div><div class="module-body"><h3>7. Emulación de Ads IA millonarios</h3><p>Replica los anuncios que facturan millones — con IA haciendo el trabajo.</p><div class="module-price">~~$1.400~~</div></div></div>
+  <div class="module"><div class="module-icon">📈</div><div class="module-body"><h3>8. Estrategia de Escala 10x</h3><p>Multiplica lo que ya estás haciendo por 10 sin perder el control.</p><div class="module-price">~~$4.000~~</div></div></div>
+
+  <div style="height:16px"></div>
+  <div class="value-box">
+    <div class="value-label">Solo el contenido del programa vale:</div>
+    <div class="value-price">$40.400 USD</div>
+  </div>
+  <a href="https://pay.hotmart.com/I105799724D?off=6l0fiway&bid=1778721395677" target="_blank" class="btn">QUIERO TODO ESTO POR $600 →</a>
+  <p class="btn-sub">Sumas 11 bonos más en el siguiente bloque</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- 11 BONOS -->
+<section>
+  <div class="eyebrow gold">Y además...</div>
+  <h2>Te llevas <em>11 bonos</em> adicionales</h2>
+  <p class="s-sub">Algunos son para todos. Otros SOLO para los primeros que compren.</p>
+
+  <div class="bono-card gold-card">
+    <div class="bono-pill gold">🎁 Bono destacado · 4</div>
+    <div class="card-icon">💜</div>
+    <h3>PÚRPURA IA-TOOLS · 7 herramientas IA exclusivas</h3>
+    <p>Generador de Hooks, Rayos X de Ads, Rayos X de Páginas, Gary-Halbert AI, Creation-Escale-ADS, Creation-Escale-VSL y QUIZ-AI. Construidas por nuestro equipo — no las consigues en ningún otro lado.</p>
+  </div>
+
+  <div class="bono-card">
+    <div class="bono-pill red">🎁 Bono 1</div>
+    <div class="card-icon">🧠</div>
+    <h3>Cerebro 10x de Laura y Santiago</h3>
+    <p>Acceso directo para resolverte dudas durante los 30 días del entrenamiento.</p>
+  </div>
+
+  <div class="bono-card">
+    <div class="bono-pill red">🎁 Bono 2</div>
+    <div class="card-icon">🌍</div>
+    <h3>Productos Extranjeros Virales</h3>
+    <p>El programa principal completo.</p>
+    <div class="bono-scarcity">Solo hoy</div>
+  </div>
+
+  <div class="bono-card">
+    <div class="bono-pill red">🎁 Bono 3</div>
+    <div class="card-icon">🔒</div>
+    <h3>Bóveda + Aceleradora de Ventas</h3>
+    <p>3 meses de acceso completos.</p>
+    <div class="bono-scarcity">Solo hoy</div>
+  </div>
+
+  <div class="bono-card">
+    <div class="bono-pill red">🎁 Bono 6</div>
+    <div class="card-icon">📣</div>
+    <h3>Clonuncios</h3>
+    <p>2 meses de acceso para clonar anuncios ganadores.</p>
+  </div>
+
+  <div class="bono-card">
+    <div class="bono-pill red">🎁 Bono 7</div>
+    <div class="card-icon">🍽️</div>
+    <h3>TOP 5 · Almuerzo en el Fire Festival</h3>
+    <p>Los 5 primeros almuerzan con Laura y Santiago en Medellín.</p>
+    <div class="bono-scarcity">Solo primeros 5</div>
+  </div>
+
+  <div class="bono-card">
+    <div class="bono-pill red">🎁 Bono 8</div>
+    <div class="card-icon">👤</div>
+    <h3>TOP 20+20 · Sesión privada 1 a 1</h3>
+    <p>Las primeras 20 mujeres con Laura. Los primeros 20 hombres con Santiago.</p>
+    <div class="bono-scarcity">Primeras 20 + Primeros 20</div>
+  </div>
+
+  <div class="bono-card">
+    <div class="bono-pill red">🎁 Bono 10</div>
+    <div class="card-icon">💬</div>
+    <h3>TOP 10 · Sesión privada Q&amp;A</h3>
+    <p>Los 10 primeros se llevan una sesión privada de Preguntas y Respuestas.</p>
+    <div class="bono-scarcity">Solo primeros 10</div>
+  </div>
+
+  <div class="bono-card gold-card">
+    <div class="bono-pill gold">🎁 Bono destacado · 11 · 90 segundos</div>
+    <div class="card-icon">⚡</div>
+    <h3>Te construimos TU Viral App lista para vender</h3>
+    <p>En 90 segundos te decimos qué app vamos a construirte. Nuestro equipo la hace por ti, lista para empezar a vender. Sin programar, sin enredos.</p>
+    <div class="bono-scarcity">Solo para los primeros que entren</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ANTES / DESPUÉS -->
+<section>
+  <div class="eyebrow">El cambio</div>
+  <h2>Cómo se ve tu vida <em>antes y después</em> de los 30 días</h2>
+  <div style="height:16px"></div>
+  <div class="compare-card before">
+    <div class="compare-label b">Antes</div>
+    <div class="check-item"><span class="ico">❌</span>Vendes poco y te cuesta crecer</div>
+    <div class="check-item"><span class="ico">❌</span>Pruebas productos a la suerte</div>
+    <div class="check-item"><span class="ico">❌</span>Ves a otros con apps y no entiendes</div>
+    <div class="check-item"><span class="ico">❌</span>La IA te parece otro idioma</div>
+    <div class="check-item"><span class="ico">❌</span>No pasas de 5–10 ventas al día</div>
+    <div class="check-item"><span class="ico">❌</span>Sigues con métodos viejos</div>
+  </div>
+  <div class="compare-divider">↓</div>
+  <div class="compare-card after">
+    <div class="compare-label a">Después</div>
+    <div class="check-item"><span class="ico">✅</span>Tienes un sistema validado funcionando</div>
+    <div class="check-item"><span class="ico">✅</span>Sabes exactamente qué productos sí venden</div>
+    <div class="check-item"><span class="ico">✅</span>Tienes tu propia Viral App</div>
+    <div class="check-item"><span class="ico">✅</span>Usas la IA como experto, solo con tu voz</div>
+    <div class="check-item"><span class="ico">✅</span>Pasas la barrera de las 50–100 ventas/día</div>
+    <div class="check-item"><span class="ico">✅</span>Operas con las últimas estrategias del mercado</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PARA QUIÉN -->
+<section>
+  <div class="eyebrow pink">Antes de entrar...</div>
+  <h2>Esto es <em>para ti</em> si...</h2>
+  <div style="height:16px"></div>
+  <div class="for-card yes">
+    <div class="for-label yes">✓ Sí es para ti</div>
+    <div class="check-item"><span class="ico">✅</span>Quieres llevar tu negocio al siguiente nivel</div>
+    <div class="check-item"><span class="ico">✅</span>Quieres pasar las 50–100 ventas al día</div>
+    <div class="check-item"><span class="ico">✅</span>Quieres entrar al mundo de las Viral Apps</div>
+    <div class="check-item"><span class="ico">✅</span>Quieres aprender a manejar la IA al máximo</div>
+    <div class="check-item"><span class="ico">✅</span>Quieres una sesión cara a cara con Laura o Santiago</div>
+    <div class="check-item"><span class="ico">✅</span>Estás dispuesto a aplicar 30 días seguidos</div>
+  </div>
+  <div class="for-card no" style="margin-top:8px">
+    <div class="for-label no">✕ No es</div>
+    <div class="check-item"><span class="ico">❌</span>Un curso de afiliados o vender PDFs</div>
+    <div class="check-item"><span class="ico">❌</span>Promesas mágicas sin trabajo</div>
+    <div class="check-item"><span class="ico">❌</span>Métodos viejos que ya no funcionan</div>
+    <div class="check-item"><span class="ico">❌</span>Para quien no piensa aplicar lo que aprende</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TESTIMONIOS -->
+<section>
+  <div class="eyebrow">Resultados reales</div>
+  <h2>Lo que están logrando <em>personas como tú</em></h2>
+  <div class="stats-4">
+    <div class="stat4"><div class="stat4-n">140+</div><div class="stat4-l">Países</div></div>
+    <div class="stat4"><div class="stat4-n">20+</div><div class="stat4-l">Idiomas</div></div>
+    <div class="stat4"><div class="stat4-n">12.000+</div><div class="stat4-l">Estudiantes</div></div>
+    <div class="stat4"><div class="stat4-n">★★★★★</div><div class="stat4-l">Reseñas</div></div>
+  </div>
+
+  <div class="testi">
+    <div class="testi-head"><div class="testi-av" style="background:linear-gradient(135deg,#E879F9,#B97AF5)">MR</div><div><div class="testi-name">María R.</div><div class="testi-country">México</div><div class="testi-stars">★★★★★</div></div></div>
+    <p>"Pasé de 10 a 65 ventas al día en menos de 3 semanas. La Viral App cambió todo."</p>
+    <div class="testi-source">Productos Extranjeros Virales</div>
+  </div>
+
+  <div class="testi">
+    <div class="testi-head"><div class="testi-av" style="background:linear-gradient(135deg,#B97AF5,#6D28D9)">VC</div><div><div class="testi-name">Valentina C.</div><div class="testi-country">Colombia</div><div class="testi-stars">★★★★★</div></div></div>
+    <p>"Crear mi app sin saber programar me parecía imposible. Lo hicimos en una tarde."</p>
+    <div class="testi-source">Productos Extranjeros Virales</div>
+  </div>
+
+  <div class="testi">
+    <div class="testi-head"><div class="testi-av" style="background:linear-gradient(135deg,#F0588E,#E879F9)">DP</div><div><div class="testi-name">Daniel P.</div><div class="testi-country">España</div><div class="testi-stars">★★★★★</div></div></div>
+    <p>"La IA Galaxy es de otro nivel. Solo con mi voz monto cosas que antes me costaban semanas."</p>
+    <div class="testi-source">Productos Extranjeros Virales</div>
+  </div>
+
+  <div class="testi">
+    <div class="testi-head"><div class="testi-av" style="background:linear-gradient(135deg,#6D28D9,#B97AF5)">SL</div><div><div class="testi-name">Sofía L.</div><div class="testi-country">Chile</div><div class="testi-stars">★★★★★</div></div></div>
+    <p>"Llevaba meses estancada en 15 ventas. Hoy paso de las 80 sin esfuerzo."</p>
+    <div class="testi-source">Productos Extranjeros Virales</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRECIO -->
+<section>
+  <div class="eyebrow gold">Valor real de todo lo que recibes</div>
+  <div class="value-box" style="margin-bottom:10px">
+    <div class="value-label">$40.400 USD + 11 bonos + 3 meses de acceso + doble garantía + la Copa</div>
+  </div>
+  <p style="text-align:center;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin-bottom:16px">Hoy lo recibes todo por solo:</p>
+
+  <div class="price-block">
+    <div class="price-tag">Oferta de lanzamiento</div>
+    <div class="price-old">$40.400 USD</div>
+    <div><span class="price-main">$600</span><span class="price-usd"> USD</span></div>
+    <p class="price-details">Pago único · 3 meses de acceso · Empieza 6 de junio</p>
+    <div class="payment-pills">
+      <span class="pay-pill">Visa</span><span class="pay-pill">Mastercard</span><span class="pay-pill">PayPal</span>
+      <span class="pay-pill">Hotmart</span><span class="pay-pill">PSE</span><span class="pay-pill">Cuotas</span>
+    </div>
+    <a href="https://pay.hotmart.com/I105799724D?off=6l0fiway&bid=1778721395677" target="_blank" class="btn">QUIERO ENTRAR AHORA →</a>
+    <div class="trust-grid">
+      <div class="trust-item">🔒 Pago seguro</div>
+      <div class="trust-item">⚡ Acceso al instante</div>
+      <div class="trust-item">✅ Doble garantía</div>
+      <div class="trust-item">💬 Soporte WhatsApp</div>
+    </div>
+    <div class="social-proof">💜 184 personas se inscribieron en las últimas 24 horas</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- LA COPA -->
+<section>
+  <div class="eyebrow gold">Competencia abierta</div>
+  <h2>La <em>Copa</em> Productos Extranjeros Virales</h2>
+  <p class="s-sub">La persona que más facture del 6 de junio al 6 de septiembre gana premios que van más allá del dinero.</p>
+
+  <div class="copa-podio">
+    <div class="podio-card gold-p">
+      <div class="podio-label">👑 1er Lugar</div>
+      <h3>🏆 Sociedad con Laura y Santiago</h3>
+      <div class="podio-check"><span>✅</span> Sociedad — llevamos tu producto al siguiente nivel</div>
+      <div class="podio-check"><span>✅</span> Sesión privada de 2 horas con Laura y Santiago</div>
+      <div class="podio-check"><span>✅</span> Invitación al podcast oficial</div>
+    </div>
+    <div class="podio-card silver">
+      <div class="podio-label">🥈 2do Lugar</div>
+      <h3>Tecnología + Reconocimiento</h3>
+      <div class="podio-check"><span>✅</span> MacBook Air de regalo</div>
+      <div class="podio-check"><span>✅</span> Invitación al podcast oficial</div>
+    </div>
+    <div class="podio-card bronze">
+      <div class="podio-label">🥉 3er Lugar</div>
+      <h3>Reconocimiento + Tecnología</h3>
+      <div class="podio-check"><span>✅</span> MacBook NEO de regalo</div>
+      <div class="podio-check"><span>✅</span> Reconocimiento en redes sociales</div>
+    </div>
+  </div>
+  <div style="height:12px"></div>
+  <div class="card gold-border" style="text-align:center;padding:14px">
+    <span style="font-size:13px;color:var(--gold);font-weight:700">📅 Período: del 6 de junio al 6 de septiembre</span>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- GARANTÍA -->
+<section>
+  <div class="eyebrow">Tu inversión está protegida</div>
+  <h2>Doble <em>garantía total</em></h2>
+  <p class="s-sub">Tomamos el riesgo nosotros. Ganes o no ganes, no pierdes.</p>
+
+  <div class="guar-card g1">
+    <div class="guar-icon g1">💰</div>
+    <div class="guar-label">Garantía #1 · Si logras los resultados</div>
+    <h3>Si logras los grandes resultados, te devolvemos el dinero</h3>
+    <p>Si superas las 50 ventas al día por más de 7 días seguidos, o los $20.000 dólares, te devolvemos toda tu inversión. Solo pedimos las evidencias.</p>
+  </div>
+
+  <div class="guar-card g2" style="margin-top:20px">
+    <div class="guar-icon g2">🛡️</div>
+    <div class="guar-label">Garantía #2 · Si no logras resultados</div>
+    <h3>Si no logras resultados (siguiendo los pasos), te acompañamos 6 meses</h3>
+    <p>Te invitamos al programa de acompañamiento de la aceleradora de ventas durante 6 meses, sin costo alguno.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- HOSTS -->
+<section>
+  <div class="eyebrow">Quiénes te van a acompañar</div>
+  <h2>Los <em>Top 25 del Mundo</em> contándote todo</h2>
+  <div style="height:16px"></div>
+  <div class="host-card">
+    <div class="host-av lz">LZ</div>
+    <div class="host-name">Laura Zabala</div>
+    <div class="host-role">Empresaria Digital · Top 25 del Mundo</div>
+    <p class="host-bio">Ha vendido productos en más de 140 países y 20 idiomas. Lleva años perfeccionando los métodos que vas a aprender estos 30 días — y aquí los abre todos en público por primera vez.</p>
+  </div>
+  <div class="host-card">
+    <div class="host-av sl">SL</div>
+    <div class="host-name">Santiago Leal</div>
+    <div class="host-role">Empresario Digital · Top 25 del Mundo</div>
+    <p class="host-bio">Co-fundador del sistema que generó más de 12.000 estudiantes en 140+ países. Especialista en escala, IA aplicada a negocios y coaching de alto rendimiento.</p>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<div class="btn-wrap pb">
+  <a href="https://pay.hotmart.com/I105799724D?off=6l0fiway&bid=1778721395677" target="_blank" class="btn">QUIERO ENTRAR AL SIGUIENTE NIVEL →</a>
+  <p class="btn-sub" style="margin-top:8px">$600 USD · Pago único · Doble garantía · Empieza 6 de junio</p>
+</div>
+
+<!-- STICKY BAR -->
+<div class="sticky-bar">
+  <div class="sticky-price">
+    <div class="sp-n">$600</div>
+    <div class="sp-l">Doble garantía</div>
+  </div>
+  <a href="https://pay.hotmart.com/I105799724D?off=6l0fiway&bid=1778721395677" target="_blank" class="btn" style="flex:1">ENTRAR AHORA →</a>
+</div>
+
+<script>
+const TARGET = new Date('2026-06-06T05:00:00Z');
+function tick(){
+  const diff = TARGET - new Date();
+  if(diff<=0){document.querySelector('.cd-wrap').style.display='none';return}
+  const d=Math.floor(diff/86400000),h=Math.floor(diff%86400000/3600000),m=Math.floor(diff%3600000/60000),s=Math.floor(diff%60000/1000);
+  document.getElementById('cd-d').textContent=String(d).padStart(2,'0');
+  document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
+  document.getElementById('cd-m').textContent=String(m).padStart(2,'0');
+  document.getElementById('cd-s').textContent=String(s).padStart(2,'0');
+}
+tick();setInterval(tick,1000);
+</script>
+</body>
+</html>

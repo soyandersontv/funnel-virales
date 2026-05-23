@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sala de Guerra — El Siguiente Nivel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@19.5.7/build/css/intlTelInput.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #030308;
+      --surface: #0C0C18;
+      --card:    #111122;
+      --purple:  #7C3AED;
+      --purpleL: #A78BFA;
+      --purpleG: rgba(124,58,237,0.15);
+      --border:  rgba(167,139,250,0.12);
+      --border2: rgba(167,139,250,0.25);
+      --text:    #F4F4FF;
+      --muted:   #6B7280;
+      --muted2:  #374151;
+      --gold:    #F59E0B;
+      --green:   #22C55E;
+      --red:     #EF4444;
+    }
+
+    html, body { height: 100%; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      text-align: center;
+      padding: 32px 24px 0;
+    }
+    .header-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--purpleL);
+      margin-bottom: 6px;
+    }
+    .header h1 {
+      font-size: clamp(20px, 5vw, 28px);
+      font-weight: 900; letter-spacing: -0.5px;
+      color: #fff;
+    }
+
+    /* ===== WRAP ===== */
+    .wrap { max-width: 480px; margin: 0 auto; padding: 0 16px 80px; }
+
+    /* ===== COUNTER CARD ===== */
+    .counter-card {
+      margin-top: 28px;
+      background: var(--card);
+      border: 1px solid var(--border2);
+      border-radius: 24px;
+      padding: 36px 28px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .counter-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--purple), var(--purpleL), var(--purple));
+      background-size: 200% 100%;
+      animation: shimmer 2s linear infinite;
+    }
+    @keyframes shimmer {
+      0%   { background-position: -200% 0; }
+      100% { background-position:  200% 0; }
+    }
+
+    .counter-label {
+      font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .counter-main {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .counter-num {
+      font-size: clamp(72px, 20vw, 96px);
+      font-weight: 900;
+      letter-spacing: -4px;
+      line-height: 1;
+      background: linear-gradient(135deg, #C084FC, #818CF8, #A78BFA);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      transition: transform 0.3s cubic-bezier(.34,1.56,.64,1);
+    }
+    .counter-num.bump {
+      transform: scale(1.12);
+    }
+    .counter-sep {
+      font-size: 40px; font-weight: 300; color: var(--muted2);
+      line-height: 1; margin-bottom: 4px;
+    }
+    .counter-goal {
+      font-size: 40px; font-weight: 700; color: var(--muted);
+      line-height: 1;
+    }
+    .counter-unit {
+      font-size: 14px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    /* Progress bar */
+    .progress-wrap { margin-bottom: 20px; }
+    .progress-track {
+      height: 14px;
+      background: rgba(124,58,237,0.1);
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid rgba(124,58,237,0.15);
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #6D28D9, #A78BFA);
+      box-shadow: 0 0 16px rgba(124,58,237,0.6);
+      transition: width 0.8s cubic-bezier(.4,0,.2,1);
+      position: relative;
+    }
+    .progress-fill::after {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.25) 50%, transparent 100%);
+      background-size: 200% 100%;
+      animation: slide 1.8s linear infinite;
+    }
+    @keyframes slide {
+      0%   { background-position: -200% 0; }
+      100% { background-position:  200% 0; }
+    }
+    .progress-labels {
+      display: flex; justify-content: space-between;
+      margin-top: 8px;
+    }
+    .progress-pct {
+      font-size: 13px; font-weight: 800; color: var(--purpleL);
+    }
+    .progress-meta {
+      font-size: 13px; font-weight: 600; color: var(--muted);
+    }
+
+    /* Faltan badge */
+    .faltan-row {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .faltan-badge {
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.25);
+      border-radius: 12px; padding: 10px 20px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .faltan-num {
+      font-size: 28px; font-weight: 900; color: var(--red);
+      letter-spacing: -1px;
+    }
+    .faltan-text {
+      font-size: 13px; font-weight: 700; color: #F87171;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      line-height: 1.3; text-align: left;
+    }
+
+    /* ===== EPIC CELEBRATION STATE ===== */
+    .counter-card.meta-reached {
+      background: linear-gradient(160deg, #0A0800 0%, #1C1300 45%, #0A0800 100%);
+      border-color: #D97706;
+      box-shadow:
+        0 0 0 1px rgba(245,158,11,0.35),
+        0 0 60px rgba(245,158,11,0.28),
+        0 0 120px rgba(245,158,11,0.12),
+        inset 0 0 80px rgba(245,158,11,0.06);
+    }
+    .counter-card.meta-reached::before {
+      background: linear-gradient(90deg, #92400E, #F59E0B, #FCD34D, #F59E0B, #92400E);
+      background-size: 200% 100%;
+      height: 4px;
+      animation: goldShimmer 1.4s linear infinite;
+    }
+    @keyframes goldShimmer {
+      0%   { background-position: -200% 0; }
+      100% { background-position:  200% 0; }
+    }
+    .counter-card.meta-reached .counter-num {
+      background: linear-gradient(135deg, #F59E0B 0%, #FCD34D 50%, #F59E0B 100%);
+      -webkit-background-clip: text; background-clip: text;
+      animation: numGlow 2s ease infinite;
+    }
+    @keyframes numGlow {
+      0%,100% { filter: drop-shadow(0 0 18px rgba(245,158,11,0.8)); }
+      50%      { filter: drop-shadow(0 0 36px rgba(245,158,11,1)); }
+    }
+    .counter-card.meta-reached .progress-fill {
+      background: linear-gradient(90deg, #92400E, #D97706, #F59E0B, #FCD34D);
+      box-shadow: 0 0 24px rgba(245,158,11,0.9);
+    }
+
+    /* Epic celebration block */
+    .meta-epic {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px 0 4px;
+    }
+    .meta-epic.visible { display: flex; }
+
+    .meta-trophy-icon {
+      font-size: 68px; line-height: 1; margin-bottom: 10px;
+      filter: drop-shadow(0 0 24px rgba(245,158,11,0.9));
+      animation: trophyBounce 1.3s cubic-bezier(.34,1.56,.64,1) infinite alternate;
+    }
+    @keyframes trophyBounce {
+      from { transform: translateY(0) scale(1) rotate(-4deg); }
+      to   { transform: translateY(-10px) scale(1.1) rotate(4deg); }
+    }
+
+    .meta-title {
+      font-size: clamp(26px, 7vw, 38px);
+      font-weight: 900; letter-spacing: -0.5px;
+      color: #F59E0B;
+      text-shadow: 0 0 30px rgba(245,158,11,0.9), 0 0 60px rgba(245,158,11,0.5);
+      animation: titleGlow 1.6s ease infinite;
+      text-align: center;
+    }
+    @keyframes titleGlow {
+      0%,100% { text-shadow: 0 0 30px rgba(245,158,11,0.9), 0 0 60px rgba(245,158,11,0.5); }
+      50%      { text-shadow: 0 0 50px rgba(245,158,11,1), 0 0 100px rgba(245,158,11,0.7), 0 0 150px rgba(245,158,11,0.3); }
+    }
+
+    .meta-divider-line {
+      width: 80px; height: 2px; margin: 14px auto;
+      background: linear-gradient(90deg, transparent, #F59E0B, transparent);
+      box-shadow: 0 0 12px rgba(245,158,11,0.8);
+    }
+
+    .meta-next-label {
+      font-size: 13px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: rgba(255,255,255,0.6);
+      margin-bottom: 4px;
+    }
+    .meta-next-big {
+      font-size: clamp(20px, 6vw, 28px); font-weight: 900;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: #fff;
+      text-shadow: 0 2px 24px rgba(245,158,11,0.5);
+      animation: nextPulse 2.2s ease infinite;
+      text-align: center;
+    }
+    @keyframes nextPulse {
+      0%,100% { transform: scale(1); opacity: 1; }
+      50%      { transform: scale(1.05); opacity: 0.9; }
+    }
+
+    .meta-msg { display: none; }
+
+    /* ===== FORM CARD ===== */
+    .form-card {
+      margin-top: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px 20px;
+    }
+    .form-title {
+      font-size: 15px; font-weight: 800; color: #fff;
+      margin-bottom: 4px;
+    }
+    .form-sub {
+      font-size: 12px; color: var(--muted); margin-bottom: 18px; line-height: 1.5;
+    }
+    .field { margin-bottom: 10px; }
+    .field input {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid rgba(167,139,250,0.12);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 14px; color: var(--text);
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .field input:focus {
+      border-color: rgba(124,58,237,0.5);
+      box-shadow: 0 0 0 3px rgba(124,58,237,0.1);
+    }
+    .field input::placeholder { color: var(--muted2); }
+
+    /* intl-tel-input overrides */
+    .iti { width: 100%; }
+    .iti__tel-input {
+      width: 100% !important;
+      background: var(--bg) !important;
+      border: 1px solid rgba(167,139,250,0.12) !important;
+      border-radius: 10px !important;
+      padding: 12px 14px 12px 52px !important;
+      font-size: 14px !important;
+      color: var(--text) !important;
+      font-family: 'Inter', sans-serif !important;
+      outline: none !important;
+    }
+    .iti__tel-input:focus {
+      border-color: rgba(124,58,237,0.5) !important;
+      box-shadow: 0 0 0 3px rgba(124,58,237,0.1) !important;
+    }
+    .iti__flag-container { left: 0; }
+    .iti__selected-flag {
+      background: transparent !important;
+      border-radius: 10px 0 0 10px !important;
+      padding: 0 8px 0 12px !important;
+    }
+    .iti__selected-flag:hover, .iti__selected-flag:focus {
+      background: rgba(124,58,237,0.1) !important;
+    }
+    .iti__country-list {
+      background: #1a1a2e !important;
+      border: 1px solid rgba(167,139,250,0.2) !important;
+      border-radius: 10px !important;
+      color: var(--text) !important;
+      max-height: 220px !important;
+    }
+    .iti__country-list .iti__country:hover,
+    .iti__country-list .iti__country.iti__highlight {
+      background: rgba(124,58,237,0.15) !important;
+    }
+    .iti__divider { border-bottom-color: rgba(167,139,250,0.12) !important; }
+    .iti__search-input {
+      background: var(--bg) !important;
+      color: var(--text) !important;
+      border: 1px solid rgba(167,139,250,0.2) !important;
+      border-radius: 6px !important;
+    }
+
+    #form-error {
+      font-size: 12px; color: #F87171;
+      min-height: 16px; margin-bottom: 4px; text-align: center;
+    }
+
+    .btn-venta {
+      width: 100%;
+      background: linear-gradient(135deg, #6D28D9, #9B59FF);
+      color: #fff; font-size: 14px; font-weight: 800;
+      letter-spacing: 0.5px; border: none;
+      border-radius: 12px; padding: 15px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(109,40,217,0.4);
+    }
+    .btn-venta:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-venta:active { transform: translateY(0); }
+    .btn-venta:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    /* ===== SUCCESS FLASH ===== */
+    .success-flash {
+      display: none;
+      background: rgba(34,197,94,0.08);
+      border: 1px solid rgba(34,197,94,0.25);
+      border-radius: 12px; padding: 14px 16px;
+      margin-top: 12px;
+      text-align: center;
+      font-size: 14px; font-weight: 700; color: #4ADE80;
+      line-height: 1.5;
+    }
+
+    /* ===== RECENT SALES ===== */
+    .recent-card {
+      margin-top: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+    }
+    .recent-title {
+      font-size: 12px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .sales-list { display: flex; flex-direction: column; gap: 8px; }
+    .sale-item {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(124,58,237,0.05);
+      border: 1px solid var(--border);
+      border-radius: 10px; padding: 10px 12px;
+      animation: slideIn 0.4s ease;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .sale-icon {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(34,197,94,0.15);
+      border: 1px solid rgba(34,197,94,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; flex-shrink: 0;
+    }
+    .sale-info { flex: 1; min-width: 0; }
+    .sale-nombre {
+      font-size: 13px; font-weight: 700; color: var(--text);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .sale-email {
+      font-size: 11px; color: var(--muted);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .sale-time {
+      font-size: 11px; color: var(--muted2); flex-shrink: 0;
+    }
+    .no-sales {
+      text-align: center; font-size: 13px; color: var(--muted);
+      padding: 16px 0;
+    }
+
+    /* ===== CONFETTI ===== */
+    .confetti-container {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 999; overflow: hidden;
+    }
+    .confetti-piece {
+      position: absolute;
+      width: 8px; height: 8px;
+      border-radius: 2px;
+      animation: confetti-fall 2.5s ease-in forwards;
+    }
+    @keyframes confetti-fall {
+      0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* ===== MOTIVATIONAL QUOTE ===== */
+    .quote-bar {
+      margin-top: 16px;
+      background: linear-gradient(135deg, rgba(124,58,237,0.08), rgba(167,139,250,0.05));
+      border: 1px solid var(--border);
+      border-radius: 14px; padding: 14px 16px;
+      text-align: center;
+    }
+    .quote-text {
+      font-size: 13px; font-weight: 600; color: var(--purpleL);
+      line-height: 1.6; font-style: italic;
+    }
+
+    /* ===== STICKY GOLD BANNER ===== */
+    .meta-banner {
+      display: none;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1001;
+      padding: 11px 16px;
+      text-align: center;
+      background: linear-gradient(90deg, #78350F, #D97706, #F59E0B, #FCD34D, #F59E0B, #D97706, #78350F);
+      background-size: 300% 100%;
+      animation: bannerFlow 4s linear infinite;
+      box-shadow: 0 4px 24px rgba(245,158,11,0.5);
+    }
+    .meta-banner.visible { display: block; }
+    @keyframes bannerFlow {
+      0%   { background-position: 0% 0; }
+      100% { background-position: 300% 0; }
+    }
+    .meta-banner-inner {
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px; flex-wrap: wrap;
+      font-size: 13px; font-weight: 900; letter-spacing: 1px;
+      text-transform: uppercase; color: #000;
+    }
+    .meta-banner-inner .bsep { opacity: 0.4; font-weight: 400; }
+
+    /* ===== FULL-SCREEN OVERLAY ===== */
+    .meta-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,0.97);
+      flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 40px 28px;
+      animation: overlayIn 0.6s cubic-bezier(.34,1.56,.64,1);
+    }
+    .meta-overlay.visible { display: flex; }
+    @keyframes overlayIn {
+      from { opacity: 0; transform: scale(0.94); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .ov-trophy {
+      font-size: clamp(80px, 22vw, 110px); line-height: 1; margin-bottom: 16px;
+      filter: drop-shadow(0 0 40px rgba(245,158,11,1));
+      animation: trophyIn 0.7s cubic-bezier(.34,1.56,.64,1) both,
+                 trophyFloat 1.6s ease 0.7s infinite alternate;
+    }
+    @keyframes trophyIn {
+      from { transform: scale(0) rotate(-180deg); opacity: 0; }
+      to   { transform: scale(1) rotate(0deg);   opacity: 1; }
+    }
+    @keyframes trophyFloat {
+      from { transform: translateY(0)   scale(1); }
+      to   { transform: translateY(-12px) scale(1.08); }
+    }
+
+    .ov-eyebrow {
+      font-size: 13px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: rgba(245,158,11,0.6);
+      animation: revealUp 0.5s 0.3s ease both;
+      margin-bottom: 6px;
+    }
+    .ov-title {
+      font-size: clamp(36px, 11vw, 64px); font-weight: 900; line-height: 1;
+      letter-spacing: -2px;
+      background: linear-gradient(135deg, #F59E0B, #FCD34D, #F59E0B);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 0 30px rgba(245,158,11,0.8));
+      animation: revealUp 0.5s 0.45s ease both;
+    }
+    .ov-title2 {
+      font-size: clamp(36px, 11vw, 64px); font-weight: 900; line-height: 1;
+      letter-spacing: -2px;
+      background: linear-gradient(135deg, #FCD34D, #FBBF24, #F59E0B);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      animation: revealUp 0.5s 0.6s ease both;
+      margin-bottom: 28px;
+    }
+    @keyframes revealUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .ov-divider {
+      width: 100px; height: 2px; margin: 0 auto 28px;
+      background: linear-gradient(90deg, transparent, #F59E0B, transparent);
+      box-shadow: 0 0 16px rgba(245,158,11,0.8);
+      animation: revealUp 0.5s 0.7s ease both;
+    }
+
+    .ov-sub {
+      font-size: 16px; font-weight: 700; color: rgba(255,255,255,0.55);
+      letter-spacing: 3px; text-transform: uppercase;
+      animation: revealUp 0.5s 0.8s ease both;
+      margin-bottom: 6px;
+    }
+    .ov-next {
+      font-size: clamp(26px, 8vw, 40px); font-weight: 900; letter-spacing: -0.5px;
+      color: #fff;
+      text-shadow: 0 0 30px rgba(245,158,11,0.5);
+      animation: revealUp 0.5s 0.95s ease both, nextPulse2 2s ease 2s infinite;
+      margin-bottom: 32px;
+    }
+    @keyframes nextPulse2 {
+      0%,100% { transform: scale(1); }
+      50%      { transform: scale(1.04); }
+    }
+
+    .ov-close {
+      background: linear-gradient(135deg, #92400E, #D97706, #F59E0B);
+      color: #000; font-size: 15px; font-weight: 900;
+      letter-spacing: 0.5px; text-transform: uppercase;
+      border: none; border-radius: 14px; padding: 16px 36px;
+      cursor: pointer;
+      box-shadow: 0 4px 28px rgba(245,158,11,0.55);
+      animation: revealUp 0.5s 1.1s ease both;
+      transition: transform 0.15s, opacity 0.15s;
+    }
+    .ov-close:hover { transform: translateY(-2px); opacity: 0.9; }
+
+    /* ===== PRIMERA META BADGE (permanent) ===== */
+    .logro-card {
+      margin-top: 20px;
+      background: linear-gradient(135deg, #0D0800 0%, #1C1000 50%, #0D0800 100%);
+      border: 1px solid rgba(245,158,11,0.4);
+      border-radius: 16px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 0 24px rgba(245,158,11,0.12), inset 0 0 40px rgba(245,158,11,0.04);
+      position: relative;
+      overflow: hidden;
+    }
+    .logro-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, #92400E, #F59E0B, #FCD34D, #F59E0B, #92400E);
+      background-size: 200% 100%;
+      animation: goldShimmer 2.4s linear infinite;
+    }
+    .logro-check {
+      width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(245,158,11,0.12);
+      border: 2px solid rgba(245,158,11,0.5);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 900; color: #F59E0B;
+    }
+    .logro-info { flex: 1; min-width: 0; }
+    .logro-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(245,158,11,0.7);
+      margin-bottom: 2px;
+    }
+    .logro-valor {
+      font-size: 14px; font-weight: 900; color: #FCD34D;
+      letter-spacing: -0.2px;
+    }
+    .logro-icon {
+      font-size: 28px; flex-shrink: 0;
+      filter: drop-shadow(0 0 10px rgba(245,158,11,0.7));
+    }
+
+    @media (max-width: 380px) {
+      .counter-num { font-size: 64px; }
+      .form-card, .recent-card { padding: 16px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Gold sticky banner -->
+<div class="meta-banner" id="metaBanner">
+  <div class="meta-banner-inner">
+    <span>🎉</span>
+    <span>¡100 Ventas!</span>
+    <span class="bsep">·</span>
+    <span>¡Meta final alcanzada!</span>
+    <span>🎉</span>
+  </div>
+</div>
+
+<!-- Full-screen celebration overlay -->
+<div class="meta-overlay" id="metaOverlay">
+  <div class="ov-trophy">🏆</div>
+  <div class="ov-eyebrow">¡El equipo lo volvió a lograr!</div>
+  <div class="ov-title">¡100 VENTAS!</div>
+  <div class="ov-title2">META FINAL</div>
+  <div class="ov-divider"></div>
+  <div class="ov-sub">¡SOMOS</div>
+  <div class="ov-next">⚔ EL SIGUIENTE NIVEL ⚔</div>
+  <button class="ov-close" onclick="closeOverlay()">¡A celebrar! 🎉</button>
+</div>
+
+<div class="wrap">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-eyebrow">⚔️ Sala de guerra</div>
+    <h1>El Siguiente Nivel — Cierre</h1>
+  </div>
+
+  <!-- Permanent achievement: primera meta -->
+  <div class="logro-card">
+    <div class="logro-check">✓</div>
+    <div class="logro-info">
+      <div class="logro-label">Primera meta cumplida</div>
+      <div class="logro-valor">60 ventas — ¡El equipo lo logró!</div>
+    </div>
+    <div class="logro-icon">🏆</div>
+  </div>
+
+  <!-- Counter card -->
+  <div class="counter-card" id="counterCard">
+    <div class="counter-label">Ventas registradas</div>
+
+    <div class="counter-main">
+      <div class="counter-num" id="counterNum">--</div>
+      <div class="counter-sep">/</div>
+      <div class="counter-goal">100</div>
+    </div>
+    <div class="counter-unit">ventas</div>
+
+    <div class="progress-wrap">
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill" style="width:0%"></div>
+      </div>
+      <div class="progress-labels">
+        <span class="progress-pct" id="progressPct">0%</span>
+        <span class="progress-meta" id="progressMeta">Cargando...</span>
+      </div>
+    </div>
+
+    <div class="faltan-row" id="faltanRow">
+      <div class="faltan-badge">
+        <div class="faltan-num" id="faltanNum">--</div>
+        <div class="faltan-text">ventas<br/>pendientes</div>
+      </div>
+    </div>
+
+    <div class="meta-epic" id="metaEpic">
+      <div class="meta-trophy-icon">🏆</div>
+      <div class="meta-title">¡100 VENTAS!</div>
+      <div class="meta-divider-line"></div>
+      <div class="meta-next-label">¡Somos</div>
+      <div class="meta-next-big">⚔ El Siguiente Nivel ⚔</div>
+    </div>
+
+    <div class="meta-msg" id="metaMsg"></div>
+  </div>
+
+  <!-- Quote -->
+  <div class="quote-bar">
+    <div class="quote-text" id="quoteText">"El equipo que cierra junto, celebra junto."</div>
+  </div>
+
+  <!-- Form -->
+  <div class="form-card">
+    <div class="form-title">🔥 Registrar nueva venta</div>
+    <div class="form-sub">Agrega el nombre y correo del comprador para actualizar el contador y notificar al equipo.</div>
+
+    <div class="field">
+      <input type="text" id="vendedor" placeholder="¿Quién vendió? (tu nombre)" autocomplete="off" />
+    </div>
+    <div class="field">
+      <input type="text" id="nombre" placeholder="Nombre del comprador" autocomplete="off" />
+    </div>
+    <div class="field">
+      <input type="tel" id="celular" placeholder="Celular del comprador" autocomplete="off" />
+    </div>
+
+    <div id="form-error"></div>
+
+    <button class="btn-venta" id="btnVenta" onclick="registrarVenta()">
+      ⚡ REGISTRAR VENTA
+    </button>
+
+    <div class="success-flash" id="successFlash"></div>
+  </div>
+
+  <!-- Recent sales -->
+  <div class="recent-card">
+    <div class="recent-title">Ventas de esta sesión</div>
+    <div class="sales-list" id="salesList">
+      <div class="no-sales">Las ventas que registres aquí aparecerán abajo.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Confetti container -->
+<div class="confetti-container" id="confettiContainer"></div>
+
+<script>
+  const QUOTES = [
+    '"El equipo que cierra junto, celebra junto."',
+    '"Cada venta es un paso más hacia la meta. ¡Sigan empujando!"',
+    '"No paren. Cada segundo cuenta. ¡Vamos por el cierre!"',
+    '"El éxito no es suerte — es el equipo que no se rinde."',
+    '"Una venta más. Siempre una venta más."',
+    '"Los campeones no esperan el momento — lo crean."',
+    '"Hoy cerramos. Mañana celebramos."',
+    '"El equipo está en modo bestia. ¡Nadie los para!"',
+  ];
+
+  const COLORS = ['#F59E0B','#FCD34D','#FBBF24','#7C3AED','#A78BFA','#fff','#F59E0B','#FCD34D','#EF4444','#22C55E'];
+
+  let currentData = { total: 0, goal: 100, faltan: 100, pct: 0 };
+  let celebrationRunning = false;
+  let localSales = [];
+  let quoteIdx = 0;
+
+  function updateQuote() {
+    quoteIdx = (quoteIdx + 1) % QUOTES.length;
+    document.getElementById('quoteText').textContent = QUOTES[quoteIdx];
+  }
+  setInterval(updateQuote, 8000);
+
+  function renderCounter(data, bump) {
+    currentData = data;
+    const numEl = document.getElementById('counterNum');
+    const fillEl = document.getElementById('progressFill');
+    const pctEl  = document.getElementById('progressPct');
+    const metaEl = document.getElementById('progressMeta');
+    const faltEl = document.getElementById('faltanNum');
+    const card   = document.getElementById('counterCard');
+    const metaMsg = document.getElementById('metaMsg');
+
+    numEl.textContent = data.total;
+    fillEl.style.width = data.pct + '%';
+    pctEl.textContent  = data.pct + '%';
+    faltEl.textContent = data.faltan;
+
+    if (data.faltan === 0) {
+      metaEl.textContent = '100 / 100 ventas ✦';
+      card.classList.add('meta-reached');
+      document.getElementById('faltanRow').style.display = 'none';
+      document.getElementById('metaEpic').classList.add('visible');
+      if (!celebrationRunning) {
+        celebrationRunning = true;
+        document.getElementById('metaBanner').classList.add('visible');
+        document.body.style.paddingTop = '44px';
+        showOverlay();
+        launchConfetti();
+        setTimeout(launchConfetti, 1000);
+        setTimeout(launchConfetti, 2200);
+        setTimeout(launchConfetti, 3600);
+        setInterval(launchConfetti, 9000);
+      }
+    } else {
+      metaEl.textContent = 'Faltan ' + data.faltan + ' para la meta';
+    }
+
+    if (bump) {
+      numEl.classList.add('bump');
+      setTimeout(() => numEl.classList.remove('bump'), 400);
+    }
+  }
+
+  async function fetchCount() {
+    try {
+      const r = await fetch('/api/venta');
+      const d = await r.json();
+      renderCounter(d, false);
+    } catch {}
+  }
+
+  function addSaleToList(vendedor, nombre, email) {
+    const list = document.getElementById('salesList');
+    const noSales = list.querySelector('.no-sales');
+    if (noSales) noSales.remove();
+
+    const now = new Date();
+    const time = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
+
+    const item = document.createElement('div');
+    item.className = 'sale-item';
+    item.innerHTML = `
+      <div class="sale-icon">✅</div>
+      <div class="sale-info">
+        <div class="sale-nombre">${nombre}</div>
+        <div class="sale-email">${email}</div>
+      </div>
+      <div style="text-align:right;flex-shrink:0;">
+        <div style="font-size:11px;font-weight:700;color:#A78BFA;">${vendedor}</div>
+        <div class="sale-time">${time}</div>
+      </div>
+    `;
+    list.insertBefore(item, list.firstChild);
+
+    localSales.unshift({ nombre, email, time });
+    if (localSales.length > 10) {
+      localSales.pop();
+      list.removeChild(list.lastChild);
+    }
+  }
+
+  function showOverlay() {
+    const ov = document.getElementById('metaOverlay');
+    ov.classList.add('visible');
+    setTimeout(closeOverlay, 12000);
+  }
+  function closeOverlay() {
+    const ov = document.getElementById('metaOverlay');
+    ov.style.transition = 'opacity 0.6s ease';
+    ov.style.opacity = '0';
+    setTimeout(() => { ov.classList.remove('visible'); ov.style.opacity = ''; ov.style.transition = ''; }, 650);
+  }
+
+  function launchConfetti() {
+    const container = document.getElementById('confettiContainer');
+    container.innerHTML = '';
+    for (let i = 0; i < 120; i++) {
+      const piece = document.createElement('div');
+      piece.className = 'confetti-piece';
+      piece.style.left  = Math.random() * 100 + 'vw';
+      piece.style.background = COLORS[Math.floor(Math.random() * COLORS.length)];
+      piece.style.animationDelay = Math.random() * 1.2 + 's';
+      piece.style.animationDuration = (1.8 + Math.random() * 1.2) + 's';
+      piece.style.width  = (6 + Math.random() * 8) + 'px';
+      piece.style.height = (6 + Math.random() * 8) + 'px';
+      container.appendChild(piece);
+    }
+    setTimeout(() => container.innerHTML = '', 4000);
+  }
+
+  async function registrarVenta() {
+    const vendedor = document.getElementById('vendedor').value.trim();
+    const nombre   = document.getElementById('nombre').value.trim();
+    const celular  = itiPhone.getNumber().trim();
+    const errEl    = document.getElementById('form-error');
+    const btn      = document.getElementById('btnVenta');
+    const flash    = document.getElementById('successFlash');
+
+    errEl.textContent = '';
+    flash.style.display = 'none';
+
+    if (!vendedor) { errEl.textContent = 'Escribe quién realizó la venta.'; return; }
+    if (!nombre)   { errEl.textContent = 'Escribe el nombre del comprador.'; return; }
+    if (!celular) { errEl.textContent = 'Escribe el celular del comprador.'; return; }
+
+    btn.disabled = true;
+    btn.textContent = 'Registrando...';
+
+    try {
+      const r = await fetch('/api/venta', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ vendedor, nombre, celular }),
+      });
+      const d = await r.json();
+
+      if (!r.ok) throw new Error(d.error || 'Error');
+
+      renderCounter(d, true);
+      addSaleToList(vendedor, nombre, celular);
+      launchConfetti();
+
+      flash.textContent = '🎉 ¡Venta registrada! Notificación enviada al equipo.';
+      flash.style.display = 'block';
+
+      document.getElementById('vendedor').value = '';
+      document.getElementById('nombre').value   = '';
+      itiPhone.setNumber('');
+
+      setTimeout(() => flash.style.display = 'none', 4000);
+
+    } catch (e) {
+      errEl.textContent = 'Error al registrar. Intenta de nuevo.';
+    }
+
+    btn.disabled = false;
+    btn.innerHTML = '⚡ REGISTRAR VENTA';
+  }
+
+  document.querySelectorAll('input').forEach(el => {
+    el.addEventListener('keydown', e => { if (e.key === 'Enter') registrarVenta(); });
+  });
+
+  // Load count on start and refresh every 30s
+  fetchCount();
+  setInterval(fetchCount, 30000);
+</script>
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@19.5.7/build/js/intlTelInput.min.js"></script>
+<script>
+  var itiPhone = window.intlTelInput(document.getElementById('celular'), {
+    initialCountry: 'co',
+    preferredCountries: ['co', 'mx', 'us', 've', 'ec', 'pe', 'cl', 'ar'],
+    separateDialCode: true,
+    utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@19.5.7/build/js/utils.js',
+  });
+</script>
+</body>
+</html>

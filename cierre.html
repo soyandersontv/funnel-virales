@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¡Últimos 30 minutos! — El Siguiente Nivel</title>
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){
+      if(f.fbq)return;
+      n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
+      t=b.createElement(e);t.async=!0;t.src=v;
+      s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)
+    }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1985622431943479');
+    fbq('track','PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=1985622431943479&ev=PageView&noscript=1"/>
+  </noscript>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #06060F;
+      --surface: #0E0E1C;
+      --surface2: #131326;
+      --purple:  #7C3AED;
+      --purpleL: #A78BFA;
+      --border:  rgba(167,139,250,0.1);
+      --border2: rgba(167,139,250,0.2);
+      --text:    #F4F4FF;
+      --muted:   #71717A;
+      --muted2:  #3F3F46;
+      --red:     #EF4444;
+      --green:   #22C55E;
+      --amber:   #F59E0B;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== TOP URGENCY STRIP ===== */
+    .urgency-strip {
+      background: linear-gradient(90deg, #7f1d1d, #991b1b, #7f1d1d);
+      background-size: 200% 100%;
+      animation: urgency-move 3s linear infinite;
+      color: #fff;
+      padding: 8px 16px;
+      text-align: center;
+      font-size: 12px; font-weight: 800; letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+    @keyframes urgency-move {
+      0%   { background-position: 0% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .urgency-strip span { animation: blink-text 1.2s ease infinite; display: inline-block; }
+    @keyframes blink-text {
+      0%,100% { opacity: 1; }
+      50%     { opacity: 0.7; }
+    }
+
+    /* ===== COUNTDOWN BAR ===== */
+    .cdbar {
+      background: var(--red);
+      color: #fff;
+      padding: 10px 16px;
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px;
+      font-size: 11px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase;
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 20px rgba(239,68,68,0.5);
+    }
+    .cd-label { opacity: .95; font-size: 10px; }
+    .cd-units { display: flex; align-items: center; gap: 3px; }
+    .cd-block { display: flex; align-items: baseline; gap: 1px; }
+    .cd-num   { font-size: 15px; font-weight: 900; }
+    .cd-lbl   { font-size: 9px; font-weight: 700; opacity: .8; }
+    .cd-sep   { font-size: 13px; font-weight: 900; opacity: .6; margin: 0 2px; }
+
+    /* ===== HERO PHOTO ===== */
+    .hero-photo {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      background: url('fotos/fondo.webp') center center / cover no-repeat;
+    }
+    .hero-photo::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(6,6,15,.38);
+      pointer-events: none; z-index: 1;
+    }
+    .hero-photo img {
+      position: relative; z-index: 2;
+      width: 100%; max-width: 600px;
+      height: auto; display: block; object-fit: contain;
+    }
+    .hero-photo::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 180px;
+      background: linear-gradient(transparent, var(--bg));
+      pointer-events: none; z-index: 3;
+    }
+
+    /* ===== WRAPPER ===== */
+    .wrap {
+      max-width: 480px;
+      margin: 0 auto;
+      padding-bottom: 80px;
+    }
+
+    /* ===== HERO TEXT ===== */
+    .hero-text {
+      padding: 8px 24px 36px;
+      text-align: center;
+    }
+    .pill {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.3);
+      border-radius: 999px;
+      padding: 7px 16px;
+      font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      color: #F87171;
+      margin-bottom: 20px;
+      animation: pill-pulse 2s ease infinite;
+    }
+    @keyframes pill-pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.3); }
+      50%     { box-shadow: 0 0 0 6px rgba(239,68,68,0); }
+    }
+    .pill-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--red);
+      animation: pulse-r 1.2s ease infinite;
+    }
+    @keyframes pulse-r {
+      0%   { box-shadow: 0 0 0 0 rgba(239,68,68,.8); }
+      70%  { box-shadow: 0 0 0 8px rgba(239,68,68,0); }
+      100% { box-shadow: 0 0 0 0 rgba(239,68,68,0); }
+    }
+    .hero-text h1 {
+      font-size: clamp(30px, 9vw, 46px);
+      font-weight: 900; line-height: 1.06; letter-spacing: -1.5px;
+      color: #fff; margin-bottom: 14px;
+    }
+    .hero-text h1 .grad {
+      background: linear-gradient(135deg, #C084FC 0%, #818CF8 50%, #A78BFA 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-sub {
+      font-size: 15px; color: var(--muted); line-height: 1.7;
+      max-width: 360px; margin: 0 auto 28px;
+    }
+
+    /* ===== CTA BUTTONS ===== */
+    .cta-group { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+
+    .btn-hotmart {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: linear-gradient(135deg, #7C3AED 0%, #9B59FF 50%, #A78BFA 100%);
+      color: #fff; font-size: 15px; font-weight: 800; letter-spacing: 0.3px;
+      border-radius: 14px; padding: 18px 24px;
+      text-decoration: none;
+      box-shadow: 0 4px 28px rgba(124,58,237,0.45);
+      transition: opacity 0.2s, transform 0.15s;
+      width: 100%;
+    }
+    .btn-hotmart:hover { opacity: 0.92; transform: translateY(-1px); }
+    .btn-hotmart:active { transform: translateY(0); }
+
+    .btn-cuotas {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: linear-gradient(135deg, #92400e 0%, #d97706 60%, #f59e0b 100%);
+      color: #fff; font-size: 14px; font-weight: 800; letter-spacing: 0.3px;
+      border-radius: 14px; padding: 16px 24px;
+      text-decoration: none;
+      box-shadow: 0 4px 24px rgba(245,158,11,0.35);
+      transition: opacity 0.2s, transform 0.15s;
+      width: 100%;
+    }
+    .btn-cuotas:hover { opacity: 0.92; transform: translateY(-1px); }
+    .btn-cuotas:active { transform: translateY(0); }
+    .btn-cuotas-label {
+      display: flex; flex-direction: column; align-items: center; line-height: 1.2;
+    }
+    .btn-cuotas-main { font-size: 15px; font-weight: 800; }
+    .btn-cuotas-sub  { font-size: 11px; font-weight: 600; opacity: 0.85; }
+
+    .btn-wa {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: var(--green);
+      color: #fff; font-size: 15px; font-weight: 800; letter-spacing: 0.3px;
+      border-radius: 14px; padding: 18px 24px;
+      text-decoration: none;
+      box-shadow: 0 4px 24px rgba(34,197,94,0.35);
+      transition: opacity 0.2s, transform 0.15s;
+      width: 100%;
+    }
+    .btn-wa:hover { opacity: 0.92; transform: translateY(-1px); }
+    .btn-wa:active { transform: translateY(0); }
+
+    /* ===== URGENCY BLOCK (mid-page) ===== */
+    .urgency-block {
+      margin: 0 20px;
+      background: linear-gradient(135deg, rgba(239,68,68,0.08), rgba(239,68,68,0.04));
+      border: 1px solid rgba(239,68,68,0.3);
+      border-radius: 20px;
+      padding: 24px 20px;
+      text-align: center;
+    }
+    .urgency-block-icon {
+      font-size: 36px; margin-bottom: 10px;
+      animation: shake 2s ease infinite;
+    }
+    @keyframes shake {
+      0%,100% { transform: rotate(0deg); }
+      10%     { transform: rotate(-12deg); }
+      20%     { transform: rotate(12deg); }
+      30%     { transform: rotate(-8deg); }
+      40%     { transform: rotate(8deg); }
+      50%,90% { transform: rotate(0deg); }
+    }
+    .urgency-block h2 {
+      font-size: clamp(20px, 6vw, 26px); font-weight: 900; color: #fff;
+      letter-spacing: -0.5px; margin-bottom: 8px; line-height: 1.1;
+    }
+    .urgency-block h2 .red { color: #F87171; }
+    .urgency-block p {
+      font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 20px;
+    }
+    .urgency-mini-cd {
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      margin-bottom: 20px;
+    }
+    .umcd-block {
+      background: rgba(239,68,68,0.15);
+      border: 1px solid rgba(239,68,68,0.3);
+      border-radius: 10px; padding: 8px 12px;
+      text-align: center; min-width: 52px;
+    }
+    .umcd-num {
+      font-size: 24px; font-weight: 900; color: #F87171; display: block; line-height: 1;
+    }
+    .umcd-lbl {
+      font-size: 9px; font-weight: 700; color: #F87171; opacity: 0.7;
+      text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-top: 2px;
+    }
+    .umcd-sep { font-size: 20px; font-weight: 900; color: #F87171; opacity: 0.5; }
+
+    /* ===== DIVIDER ===== */
+    .divider {
+      height: 1px; background: var(--border);
+      margin: 36px 24px;
+    }
+
+    /* ===== SECTION LABEL ===== */
+    .s-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--purpleL);
+      text-align: center; margin-bottom: 6px;
+    }
+    .s-title {
+      font-size: clamp(22px, 6vw, 32px); font-weight: 900;
+      letter-spacing: -0.8px; color: #fff;
+      text-align: center; margin-bottom: 8px; line-height: 1.15;
+    }
+    .s-sub {
+      font-size: 14px; color: var(--muted); line-height: 1.65;
+      text-align: center; margin-bottom: 28px;
+    }
+
+    /* ===== REVEALS ===== */
+    .reveals { padding: 0 20px; display: flex; flex-direction: column; gap: 10px; }
+    .reveal-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 20px 18px;
+      display: flex; align-items: flex-start; gap: 16px;
+      transition: border-color 0.2s;
+    }
+    .reveal-card:hover { border-color: var(--border2); }
+    .reveal-num {
+      font-size: 28px; font-weight: 900; line-height: 1;
+      background: linear-gradient(135deg, var(--purple), var(--purpleL));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      flex-shrink: 0; min-width: 32px;
+    }
+    .reveal-body strong {
+      display: block; font-size: 15px; font-weight: 800; color: #fff;
+      margin-bottom: 5px; line-height: 1.3;
+    }
+    .reveal-body span { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+    /* ===== INCLUDES LIST ===== */
+    .includes { padding: 0 20px; }
+    .inc-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 20px 20px;
+    }
+    .inc-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .inc-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .inc-item:first-child { padding-top: 0; }
+    .inc-check {
+      width: 20px; height: 20px; border-radius: 50%;
+      background: rgba(124,58,237,0.15);
+      border: 1px solid rgba(124,58,237,0.3);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .inc-check svg { width: 10px; height: 10px; }
+    .inc-item span { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.35; }
+
+    /* ===== BONUSES ===== */
+    .bonuses { padding: 0 20px; display: flex; flex-direction: column; gap: 10px; }
+    .bonus-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 18px 18px;
+      position: relative; overflow: hidden;
+    }
+    .bonus-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--purple), var(--purpleL));
+    }
+    .bonus-tag {
+      font-size: 10px; font-weight: 800; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--purpleL);
+      margin-bottom: 8px; display: block;
+    }
+    .bonus-card strong {
+      display: block; font-size: 15px; font-weight: 800; color: #fff;
+      margin-bottom: 6px; line-height: 1.3;
+    }
+    .bonus-card p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+    .bonus-tools {
+      display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px;
+    }
+    .bonus-tool {
+      background: rgba(124,58,237,0.12);
+      border: 1px solid rgba(124,58,237,0.2);
+      border-radius: 8px; padding: 5px 10px;
+      font-size: 11px; font-weight: 700; color: var(--purpleL);
+    }
+    .today-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.25);
+      border-radius: 999px; padding: 4px 10px;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.8px;
+      text-transform: uppercase; color: #F87171;
+      margin-bottom: 16px;
+    }
+
+    /* ===== PROOF NUMBERS ===== */
+    .proof-grid {
+      padding: 0 20px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .proof-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px; padding: 18px 16px;
+      text-align: center;
+    }
+    .proof-num {
+      font-size: 28px; font-weight: 900; letter-spacing: -1px;
+      background: linear-gradient(135deg, var(--purple), var(--purpleL));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 4px;
+    }
+    .proof-label { font-size: 12px; color: var(--muted); font-weight: 600; }
+
+    /* ===== BEFORE / AFTER ===== */
+    .ba-grid { padding: 0 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .ba-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 16px 14px;
+    }
+    .ba-head {
+      font-size: 12px; font-weight: 800; letter-spacing: 0.8px;
+      text-transform: uppercase; margin-bottom: 12px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .ba-head.before { color: #F87171; }
+    .ba-head.after  { color: #4ADE80; }
+    .ba-item {
+      font-size: 12px; line-height: 1.55; color: var(--muted);
+      padding: 6px 0; border-bottom: 1px solid var(--border);
+      display: flex; align-items: flex-start; gap: 6px;
+    }
+    .ba-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .ba-item .mark { flex-shrink: 0; margin-top: 1px; }
+
+    /* ===== GUARANTEE ===== */
+    .guarantee { padding: 0 20px; display: flex; flex-direction: column; gap: 10px; }
+    .guar-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 20px 18px;
+      display: flex; align-items: flex-start; gap: 14px;
+    }
+    .guar-icon {
+      font-size: 28px; flex-shrink: 0; line-height: 1;
+    }
+    .guar-body strong {
+      display: block; font-size: 14px; font-weight: 800;
+      color: #fff; margin-bottom: 6px; line-height: 1.3;
+    }
+    .guar-body p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+    /* ===== COPA ===== */
+    .copa-grid { padding: 0 20px; display: flex; flex-direction: column; gap: 10px; }
+    .copa-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 18px 18px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .copa-place { font-size: 28px; flex-shrink: 0; }
+    .copa-body strong { display: block; font-size: 14px; font-weight: 800; color: #fff; margin-bottom: 3px; }
+    .copa-body span { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+    /* ===== PRICE BLOCK ===== */
+    .price-block {
+      margin: 0 20px;
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-radius: 20px; padding: 28px 24px;
+      text-align: center;
+    }
+    .price-label {
+      font-size: 12px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 8px;
+    }
+    .price-amount {
+      font-size: 56px; font-weight: 900; letter-spacing: -2px;
+      color: #fff; line-height: 1; margin-bottom: 4px;
+    }
+    .price-amount span { font-size: 28px; font-weight: 700; vertical-align: super; margin-right: 2px; }
+    .price-note {
+      font-size: 13px; color: var(--muted); margin-bottom: 16px; line-height: 1.5;
+    }
+    .price-note strong { color: var(--purpleL); }
+    .price-cuotas-note {
+      font-size: 12px; color: #FCD34D; font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .close-warning {
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.3);
+      border-radius: 12px; padding: 14px 16px;
+      font-size: 14px; font-weight: 800; color: #F87171;
+      margin-bottom: 20px; line-height: 1.5;
+      animation: warn-pulse 2s ease infinite;
+    }
+    @keyframes warn-pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.2); }
+      50%     { box-shadow: 0 0 0 8px rgba(239,68,68,0); }
+    }
+
+    /* ===== INDUCTION NOTE ===== */
+    .induction {
+      margin: 16px 20px 0;
+      background: rgba(124,58,237,0.06);
+      border: 1px solid rgba(124,58,237,0.18);
+      border-radius: 12px; padding: 14px 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .induction-icon { font-size: 22px; flex-shrink: 0; }
+    .induction-text { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .induction-text strong { color: var(--purpleL); }
+
+    /* ===== FINAL URGENCY ===== */
+    .final-urgency {
+      margin: 0 20px;
+      text-align: center;
+      padding: 20px 0 0;
+    }
+    .final-urgency p {
+      font-size: 12px; color: var(--muted2); margin-top: 12px; line-height: 1.5;
+    }
+
+    @media (max-width: 380px) {
+      .hero-text h1 { font-size: 28px; }
+      .price-amount { font-size: 44px; }
+      .ba-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP URGENCY STRIP -->
+  <div class="urgency-strip">
+    <span>🔥 ¡CIERRE EN 30 MINUTOS! — INGRESA AHORA ANTES DE QUE SE CIERRE 🔥</span>
+  </div>
+
+  <!-- COUNTDOWN BAR -->
+  <div class="cdbar" id="cdbar">
+    <span class="cd-label">CIERRA EN:</span>
+    <div class="cd-units">
+      <div class="cd-block"><span class="cd-num" id="cd-h">00</span><span class="cd-lbl">H</span></div>
+      <span class="cd-sep">·</span>
+      <div class="cd-block"><span class="cd-num" id="cd-m">00</span><span class="cd-lbl">M</span></div>
+      <span class="cd-sep">·</span>
+      <div class="cd-block"><span class="cd-num" id="cd-s">00</span><span class="cd-lbl">S</span></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <!-- HERO PHOTO -->
+    <div class="hero-photo">
+      <img src="fotos/lauysanti.png" alt="Laura Zabala y Santiago Leal" />
+    </div>
+
+    <!-- HORAS IMAGE -->
+    <img src="fotos/horas.png" alt="Últimas horas para ingresar al Siguiente Nivel" style="width:100%;display:block;" />
+
+    <!-- HERO TEXT -->
+    <div class="hero-text">
+      <div class="pill"><span class="pill-dot"></span> Cierre inminente · Entra ahora</div>
+      <h1>Esta es tu<br/><span class="grad">última oportunidad</span></h1>
+      <p class="hero-sub">Por primera vez en público, las 3 cosas que llevamos años perfeccionando en privado. 1 año de acceso completo. En minutos se cierra para siempre.</p>
+      <div class="cta-group">
+        <a href="https://pay.hotmart.com/I105799724D?off=6l0fiway&bid=1778695351799" target="_blank" class="btn-hotmart">
+          🔥 Quiero comprar ahora
+        </a>
+        <a href="https://pay.hotmart.com/I105799724D?off=1loa22ad" target="_blank" class="btn-cuotas">
+          <div class="btn-cuotas-label">
+            <span class="btn-cuotas-main">💳 Pagar en cuotas</span>
+            <span class="btn-cuotas-sub">Accede hoy · paga poco a poco</span>
+          </div>
+        </a>
+        <a href="https://wa.link/nggw2b" target="_blank" class="btn-wa">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          Comprar por WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- URGENCY BLOCK -->
+    <div class="urgency-block">
+      <div class="urgency-block-icon">⏰</div>
+      <h2>Quedan <span class="red">minutos</span><br/>para cerrar</h2>
+      <p>Cuando el contador llegue a cero, el acceso se cierra. No habrá lista de espera, no abriremos de nuevo hoy. Ahora o nunca.</p>
+      <div class="urgency-mini-cd">
+        <div class="umcd-block">
+          <span class="umcd-num" id="umcd-h">00</span>
+          <span class="umcd-lbl">horas</span>
+        </div>
+        <span class="umcd-sep">:</span>
+        <div class="umcd-block">
+          <span class="umcd-num" id="umcd-m">00</span>
+          <span class="umcd-lbl">min</span>
+        </div>
+        <span class="umcd-sep">:</span>
+        <div class="umcd-block">
+          <span class="umcd-num" id="umcd-s">00</span>
+          <span class="umcd-lbl">seg</span>
+        </div>
+      </div>
+      <div class="cta-group">
+        <a href="https://pay.hotmart.com/I105799724D?off=6l0fiway&bid=1778695351799" target="_blank" class="btn-hotmart">
+          🔥 Ingresa ahora
+        </a>
+        <a href="https://pay.hotmart.com/I105799724D?off=1loa22ad" target="_blank" class="btn-cuotas">
+          <div class="btn-cuotas-label">
+            <span class="btn-cuotas-main">💳 Pagar en cuotas</span>
+            <span class="btn-cuotas-sub">Accede hoy · paga poco a poco</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 3 REVEALS -->
+    <div style="padding: 0 20px; margin-bottom: 24px;">
+      <div class="s-label">Por primera vez en público</div>
+      <div class="s-title">El método<br/>avanzado</div>
+      <div class="s-sub">Tres cosas que llevamos años perfeccionando en privado. Hoy las abrimos.</div>
+    </div>
+
+    <div class="reveals">
+      <div class="reveal-card">
+        <div class="reveal-num">01</div>
+        <div class="reveal-body">
+          <strong>Maestría de Espionaje Viral</strong>
+          <span>El método avanzado para encontrar las ofertas más ganadoras del mundo — antes que nadie. Sin adivinar. Sin probar a la suerte.</span>
+        </div>
+      </div>
+      <div class="reveal-card">
+        <div class="reveal-num">02</div>
+        <div class="reveal-body">
+          <strong>Viral Apps con IA</strong>
+          <span>La nueva ola de productos digitales. Crea tu propia Viral App con pocos clics, sin saber programar. Lo que ves hacer a otros — por fin lo entiendes.</span>
+        </div>
+      </div>
+      <div class="reveal-card">
+        <div class="reveal-num">03</div>
+        <div class="reveal-body">
+          <strong>Inmersión IA Galaxy</strong>
+          <span>7 días dedicados a la IA al máximo nivel. Cosas de talla mundial usando solo tu voz. La inteligencia artificial deja de ser otro idioma.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- INCLUDES -->
+    <div style="padding: 0 20px; margin-bottom: 20px;">
+      <div class="s-label">El entrenamiento completo</div>
+      <div class="s-title">Todo lo que incluye</div>
+    </div>
+
+    <div class="includes">
+      <div class="inc-card">
+        <div class="inc-item">
+          <div class="inc-check"><svg viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span>Maestría de Espionaje Viral</span>
+        </div>
+        <div class="inc-item">
+          <div class="inc-check"><svg viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span>Viral Apps + Training completo</span>
+        </div>
+        <div class="inc-item">
+          <div class="inc-check"><svg viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span>Las ofertas más escaladas del mundo</span>
+        </div>
+        <div class="inc-item">
+          <div class="inc-check"><svg viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span>Persuasión · Barrera 50–100 ventas/día</span>
+        </div>
+        <div class="inc-item">
+          <div class="inc-check"><svg viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span>Inmersión IA Galaxy · 1 semana completa</span>
+        </div>
+        <div class="inc-item">
+          <div class="inc-check"><svg viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span>Emulación de Ads IA millonarios</span>
+        </div>
+        <div class="inc-item">
+          <div class="inc-check"><svg viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span>Estrategia de Escala 10x</span>
+        </div>
+        <div class="inc-item">
+          <div class="inc-check"><svg viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span>1 año de acceso completo a todo</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- BONUSES -->
+    <div style="padding: 0 20px; margin-bottom: 20px;">
+      <div class="today-badge">⚡ Solo si compras hoy</div>
+      <div class="s-title">5 bonos exclusivos</div>
+      <div class="s-sub">Desaparecen al cierre. No estarán en ninguna apertura futura.</div>
+    </div>
+
+    <div class="bonuses">
+      <div class="bonus-card">
+        <span class="bonus-tag">Bono #1</span>
+        <strong>Cerebro 10X de Laura y Santiago</strong>
+        <p>Acceso directo para resolver todas tus dudas con los mentores. En vivo, sin filtros, sin intermediarios.</p>
+      </div>
+      <div class="bonus-card">
+        <span class="bonus-tag">Bono #2 · Destacado</span>
+        <strong>Púrpura IA-Tools</strong>
+        <p>7 herramientas de IA construidas por el equipo. No las consigues en ningún otro lado.</p>
+        <div class="bonus-tools">
+          <span class="bonus-tool">⚡ Hooks</span>
+          <span class="bonus-tool">🔬 Rayos X Ads</span>
+          <span class="bonus-tool">🔍 Rayos X Páginas</span>
+          <span class="bonus-tool">📖 Gary-Halbert</span>
+          <span class="bonus-tool">🎯 Escale-ADS</span>
+          <span class="bonus-tool">🎬 Escale-VSL</span>
+          <span class="bonus-tool">🧩 Quiz-AI</span>
+        </div>
+      </div>
+      <div class="bonus-card">
+        <span class="bonus-tag">Bono #3</span>
+        <strong>Entrenamiento introductorio a VSLs</strong>
+        <p>Formación base para dominar la creación y optimización de Video Sales Letters. El punto de partida para vender con video.</p>
+      </div>
+      <div class="bonus-card">
+        <span class="bonus-tag">Bono #4</span>
+        <strong>Clonuncios — 2 meses de acceso</strong>
+        <p>Herramienta para investigar y encontrar los anuncios ganadores del mercado en tiempo real.</p>
+      </div>
+      <div class="bonus-card">
+        <span class="bonus-tag">Bono #5</span>
+        <strong>Coaching de Mindset Galaxy</strong>
+        <p>Para convertirte en Hotmart Galaxy en menos de 3 años. Dirigido personalmente por Santiago Leal.</p>
+      </div>
+    </div>
+
+    <div style="padding: 0 20px; margin-top: 24px;">
+      <div class="cta-group">
+        <a href="https://pay.hotmart.com/I105799724D?off=6l0fiway&bid=1778695351799" target="_blank" class="btn-hotmart">
+          🔥 Quiero comprar ahora
+        </a>
+        <a href="https://pay.hotmart.com/I105799724D?off=1loa22ad" target="_blank" class="btn-cuotas">
+          <div class="btn-cuotas-label">
+            <span class="btn-cuotas-main">💳 Pagar en cuotas</span>
+            <span class="btn-cuotas-sub">Accede hoy · paga poco a poco</span>
+          </div>
+        </a>
+        <a href="https://wa.link/nggw2b" target="_blank" class="btn-wa">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          Comprar por WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- SOCIAL PROOF -->
+    <div style="padding: 0 20px; margin-bottom: 20px;">
+      <div class="s-title">Personas como tú<br/>ya están adentro</div>
+    </div>
+    <div class="proof-grid">
+      <div class="proof-card">
+        <div class="proof-num">12K+</div>
+        <div class="proof-label">Estudiantes</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-num">140+</div>
+        <div class="proof-label">Países</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-num">20+</div>
+        <div class="proof-label">Idiomas</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-num">★★★★★</div>
+        <div class="proof-label">Reseñas</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- BEFORE / AFTER -->
+    <div style="padding: 0 20px; margin-bottom: 20px;">
+      <div class="s-title">Tu vida antes<br/>y después</div>
+    </div>
+    <div class="ba-grid">
+      <div class="ba-card">
+        <div class="ba-head before">✕ Antes</div>
+        <div class="ba-item"><span class="mark">✕</span><span>Vendes poco y te cuesta crecer</span></div>
+        <div class="ba-item"><span class="mark">✕</span><span>Pruebas productos a la suerte</span></div>
+        <div class="ba-item"><span class="mark">✕</span><span>Ves apps e IA y no entiendes cómo</span></div>
+        <div class="ba-item"><span class="mark">✕</span><span>No pasas de 5–10 ventas al día</span></div>
+        <div class="ba-item"><span class="mark">✕</span><span>Sigues con métodos viejos</span></div>
+      </div>
+      <div class="ba-card">
+        <div class="ba-head after">✓ Después</div>
+        <div class="ba-item"><span class="mark" style="color:#4ADE80">✓</span><span>Sistema validado funcionando</span></div>
+        <div class="ba-item"><span class="mark" style="color:#4ADE80">✓</span><span>Sabes exactamente qué vende</span></div>
+        <div class="ba-item"><span class="mark" style="color:#4ADE80">✓</span><span>Tienes tu propia Viral App</span></div>
+        <div class="ba-item"><span class="mark" style="color:#4ADE80">✓</span><span>50–100 ventas/día desbloqueadas</span></div>
+        <div class="ba-item"><span class="mark" style="color:#4ADE80">✓</span><span>Usas IA como experto</span></div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- GUARANTEE -->
+    <div style="padding: 0 20px; margin-bottom: 20px;">
+      <div class="s-label">Sin riesgo para ti</div>
+      <div class="s-title">Doble garantía total</div>
+      <div class="s-sub">Tomamos el riesgo nosotros. Ganes o no ganes, no pierdes.</div>
+    </div>
+    <div class="guarantee">
+      <div class="guar-card">
+        <div class="guar-icon">💰</div>
+        <div class="guar-body">
+          <strong>Si logras los resultados</strong>
+          <p>Si superas las 50 ventas al día por más de 7 días seguidos, o pasas los $20.000 dólares facturados, te devolvemos toda tu inversión.</p>
+        </div>
+      </div>
+      <div class="guar-card">
+        <div class="guar-icon">🛡️</div>
+        <div class="guar-body">
+          <strong>Si no logras resultados</strong>
+          <p>Si aplicaste todos los pasos y no conseguiste resultados, te invitamos al programa Aceleradora de Ventas por 6 meses sin costo alguno.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- COPA PEV -->
+    <div style="padding: 0 20px; margin-bottom: 20px;">
+      <div class="s-label">Competencia interna</div>
+      <div class="s-title">La Copa PEV</div>
+      <div class="s-sub">La persona que más facture entre el 6 de junio y el 6 de septiembre gana premios que van más allá del dinero.</div>
+    </div>
+    <div class="copa-grid">
+      <div class="copa-card">
+        <div class="copa-place">🏆</div>
+        <div class="copa-body">
+          <strong>1er Lugar</strong>
+          <span>Sociedad con Laura y Santi · Sesión privada 2h · Podcast oficial · Redes sociales</span>
+        </div>
+      </div>
+      <div class="copa-card">
+        <div class="copa-place">🥈</div>
+        <div class="copa-body">
+          <strong>2do Lugar</strong>
+          <span>MacBook Air · Podcast oficial · Redes sociales</span>
+        </div>
+      </div>
+      <div class="copa-card">
+        <div class="copa-place">🥉</div>
+        <div class="copa-body">
+          <strong>3er Lugar</strong>
+          <span>MacBook NEO · Podcast oficial · Redes sociales</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- PRICE + CTA -->
+    <div class="price-block">
+      <div class="price-label">Hoy lo recibes todo por solo</div>
+      <div class="price-amount"><span>$</span>600</div>
+      <div class="price-note">1 año de acceso completo · <strong>5 bonos exclusivos incluidos</strong></div>
+      <div class="price-cuotas-note">💳 También disponible en cuotas — empieza sin pagar todo hoy</div>
+      <div class="close-warning">
+        🔒 SE CIERRA EN MINUTOS<br/>Esta es tu última oportunidad — no lo volvemos a abrir
+      </div>
+      <div class="cta-group">
+        <a href="https://pay.hotmart.com/I105799724D?off=6l0fiway&bid=1778695351799" target="_blank" class="btn-hotmart">
+          🔥 Quiero comprar ahora
+        </a>
+        <a href="https://pay.hotmart.com/I105799724D?off=1loa22ad" target="_blank" class="btn-cuotas">
+          <div class="btn-cuotas-label">
+            <span class="btn-cuotas-main">💳 Pagar en cuotas</span>
+            <span class="btn-cuotas-sub">Accede hoy · paga poco a poco</span>
+          </div>
+        </a>
+        <a href="https://wa.link/nggw2b" target="_blank" class="btn-wa">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          Comprar por WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- INDUCTION NOTE -->
+    <div class="induction">
+      <div class="induction-icon">📅</div>
+      <div class="induction-text">
+        <strong>Sesión de Inducción mañana a las 3:00 PM Colombia</strong> — solo para quienes ya estén adentro. Entra hoy y mañana estás con toda la comunidad.
+      </div>
+    </div>
+
+    <!-- FINAL URGENCY -->
+    <div class="final-urgency">
+      <p>🔒 Compra 100% segura a través de Hotmart · Garantía activa · Acceso inmediato</p>
+    </div>
+
+  </div>
+
+  <script>
+    /* Countdown — starts at 30 minutes from page load */
+    const TARGET = new Date(Date.now() + 30 * 60 * 1000);
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function tick() {
+      const diff = TARGET - new Date();
+      if (diff <= 0) {
+        document.getElementById('cdbar').innerHTML = '<span style="font-size:12px;font-weight:800;color:#fff;letter-spacing:.8px;text-transform:uppercase;">🔒 INSCRIPCIONES CERRADAS</span>';
+        ['umcd-h','umcd-m','umcd-s','cd-h','cd-m','cd-s'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.textContent = '00';
+        });
+        return;
+      }
+      const h = Math.floor(diff / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+
+      document.getElementById('cd-h').textContent  = pad(h);
+      document.getElementById('cd-m').textContent  = pad(m);
+      document.getElementById('cd-s').textContent  = pad(s);
+      document.getElementById('umcd-h').textContent = pad(h);
+      document.getElementById('umcd-m').textContent = pad(m);
+      document.getElementById('umcd-s').textContent = pad(s);
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    /* Pixel button events */
+    function trackPixel(event) {
+      try {
+        if (typeof fbq !== 'function') return;
+        var el = event.currentTarget;
+        if (el.classList.contains('btn-hotmart')) fbq('track', 'Lead');
+        if (el.classList.contains('btn-cuotas'))  fbq('track', 'Lead');
+        if (el.classList.contains('btn-wa'))       fbq('track', 'Contact');
+      } catch(e) {}
+    }
+    document.querySelectorAll('.btn-hotmart, .btn-cuotas, .btn-wa').forEach(function(btn) {
+      btn.addEventListener('click', trackPixel);
+    });
+  </script>
+
+</body>
+</html>
