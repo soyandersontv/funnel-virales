@@ -54,42 +54,36 @@
 
     /* ===== TOP URGENCY STRIP ===== */
     .urgency-strip {
-      background: linear-gradient(90deg, #7f1d1d, #991b1b, #7f1d1d);
-      background-size: 200% 100%;
-      animation: urgency-move 3s linear infinite;
+      background: #111;
       color: #fff;
-      padding: 8px 16px;
+      padding: 7px 16px;
       text-align: center;
-      font-size: 12px; font-weight: 800; letter-spacing: 1.2px;
-      text-transform: uppercase;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
     }
-    @keyframes urgency-move {
-      0%   { background-position: 0% 0; }
-      100% { background-position: 200% 0; }
-    }
-    .urgency-strip span { animation: blink-text 1.2s ease infinite; display: inline-block; }
-    @keyframes blink-text {
-      0%,100% { opacity: 1; }
-      50%     { opacity: 0.7; }
-    }
+    .urgency-strip span { color: #FCA5A5; }
 
     /* ===== COUNTDOWN BAR ===== */
     .cdbar {
-      background: var(--red);
+      background: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%);
       color: #fff;
-      padding: 10px 16px;
+      padding: 14px 20px;
       display: flex; align-items: center; justify-content: center;
-      gap: 10px;
-      font-size: 11px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase;
+      gap: 16px;
       position: sticky; top: 0; z-index: 100;
-      box-shadow: 0 2px 20px rgba(239,68,68,0.5);
+      box-shadow: 0 4px 24px rgba(185,28,28,0.7);
     }
-    .cd-label { opacity: .95; font-size: 10px; }
-    .cd-units { display: flex; align-items: center; gap: 3px; }
-    .cd-block { display: flex; align-items: baseline; gap: 1px; }
-    .cd-num   { font-size: 15px; font-weight: 900; }
-    .cd-lbl   { font-size: 9px; font-weight: 700; opacity: .8; }
-    .cd-sep   { font-size: 13px; font-weight: 900; opacity: .6; margin: 0 2px; }
+    .cd-label {
+      font-size: 10px; font-weight: 800; letter-spacing: 2px;
+      text-transform: uppercase; opacity: 0.75;
+    }
+    .cd-units { display: flex; align-items: center; gap: 6px; }
+    .cd-block { display: flex; flex-direction: column; align-items: center; gap: 0; }
+    .cd-num   {
+      font-size: 28px; font-weight: 900; line-height: 1;
+      letter-spacing: -1px;
+    }
+    .cd-lbl   { font-size: 8px; font-weight: 700; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+    .cd-sep   { font-size: 22px; font-weight: 900; opacity: 0.4; padding-bottom: 10px; }
 
     /* ===== HERO PHOTO ===== */
     .hero-photo {
@@ -512,18 +506,18 @@
 
   <!-- TOP URGENCY STRIP -->
   <div class="urgency-strip">
-    <span>🔥 CIERRA HOY A LAS 11:59 PM — ÚLTIMA OPORTUNIDAD PARA ENTRAR AL MÉTODO UNICORNIO 🔥</span>
+    🔥 <span>ÚLTIMA OPORTUNIDAD</span> — Cierra hoy a las 11:59 PM · No hay lista de espera
   </div>
 
   <!-- COUNTDOWN BAR -->
   <div class="cdbar" id="cdbar">
-    <span class="cd-label">CIERRA HOY:</span>
+    <span class="cd-label">Cierra en</span>
     <div class="cd-units">
-      <div class="cd-block"><span class="cd-num" id="cd-h">00</span><span class="cd-lbl">H</span></div>
-      <span class="cd-sep">·</span>
-      <div class="cd-block"><span class="cd-num" id="cd-m">00</span><span class="cd-lbl">M</span></div>
-      <span class="cd-sep">·</span>
-      <div class="cd-block"><span class="cd-num" id="cd-s">00</span><span class="cd-lbl">S</span></div>
+      <div class="cd-block"><span class="cd-num" id="cd-h">00</span><span class="cd-lbl">horas</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block"><span class="cd-num" id="cd-m">00</span><span class="cd-lbl">min</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block"><span class="cd-num" id="cd-s">00</span><span class="cd-lbl">seg</span></div>
     </div>
   </div>
 
