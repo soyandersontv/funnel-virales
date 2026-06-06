@@ -170,51 +170,54 @@
     }
 
     /* ===== CTA BUTTONS ===== */
-    .cta-group { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+    .cta-group { display: flex; flex-direction: column; gap: 12px; width: 100%; }
 
     .btn-hotmart {
       display: flex; align-items: center; justify-content: center; gap: 10px;
-      background: linear-gradient(135deg, #7C3AED 0%, #9B59FF 50%, #A78BFA 100%);
-      color: #fff; font-size: 15px; font-weight: 800; letter-spacing: 0.3px;
-      border-radius: 14px; padding: 18px 24px;
+      background: #6D28D9;
+      color: #fff; font-size: 16px; font-weight: 900; letter-spacing: -0.2px;
+      border-radius: 16px; padding: 20px 24px;
       text-decoration: none;
-      box-shadow: 0 4px 28px rgba(124,58,237,0.45);
-      transition: opacity 0.2s, transform 0.15s;
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.08) inset, 0 6px 32px rgba(109,40,217,0.6);
+      border: 1.5px solid rgba(255,255,255,0.15);
+      transition: filter 0.15s, transform 0.12s;
       width: 100%;
     }
-    .btn-hotmart:hover { opacity: 0.92; transform: translateY(-1px); }
-    .btn-hotmart:active { transform: translateY(0); }
+    .btn-hotmart:hover { filter: brightness(1.12); transform: translateY(-2px); }
+    .btn-hotmart:active { transform: translateY(0); filter: brightness(0.96); }
 
     .btn-cuotas {
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      background: linear-gradient(135deg, #92400e 0%, #d97706 60%, #f59e0b 100%);
-      color: #fff; font-size: 14px; font-weight: 800; letter-spacing: 0.3px;
-      border-radius: 14px; padding: 16px 24px;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: #B45309;
+      color: #fff; font-size: 14px; font-weight: 800; letter-spacing: -0.1px;
+      border-radius: 16px; padding: 18px 24px;
       text-decoration: none;
-      box-shadow: 0 4px 24px rgba(245,158,11,0.35);
-      transition: opacity 0.2s, transform 0.15s;
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.08) inset, 0 6px 24px rgba(180,83,9,0.55);
+      border: 1.5px solid rgba(255,255,255,0.15);
+      transition: filter 0.15s, transform 0.12s;
       width: 100%;
     }
-    .btn-cuotas:hover { opacity: 0.92; transform: translateY(-1px); }
-    .btn-cuotas:active { transform: translateY(0); }
+    .btn-cuotas:hover { filter: brightness(1.12); transform: translateY(-2px); }
+    .btn-cuotas:active { transform: translateY(0); filter: brightness(0.96); }
     .btn-cuotas-label {
-      display: flex; flex-direction: column; align-items: center; line-height: 1.2;
+      display: flex; flex-direction: column; align-items: center; line-height: 1.25;
     }
-    .btn-cuotas-main { font-size: 15px; font-weight: 800; }
-    .btn-cuotas-sub  { font-size: 11px; font-weight: 600; opacity: 0.85; }
+    .btn-cuotas-main { font-size: 16px; font-weight: 900; }
+    .btn-cuotas-sub  { font-size: 11px; font-weight: 600; opacity: 0.8; margin-top: 2px; }
 
     .btn-wa {
       display: flex; align-items: center; justify-content: center; gap: 10px;
-      background: var(--green);
-      color: #fff; font-size: 15px; font-weight: 800; letter-spacing: 0.3px;
-      border-radius: 14px; padding: 18px 24px;
+      background: #16A34A;
+      color: #fff; font-size: 16px; font-weight: 900; letter-spacing: -0.2px;
+      border-radius: 16px; padding: 20px 24px;
       text-decoration: none;
-      box-shadow: 0 4px 24px rgba(34,197,94,0.35);
-      transition: opacity 0.2s, transform 0.15s;
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.08) inset, 0 6px 28px rgba(22,163,74,0.55);
+      border: 1.5px solid rgba(255,255,255,0.15);
+      transition: filter 0.15s, transform 0.12s;
       width: 100%;
     }
-    .btn-wa:hover { opacity: 0.92; transform: translateY(-1px); }
-    .btn-wa:active { transform: translateY(0); }
+    .btn-wa:hover { filter: brightness(1.1); transform: translateY(-2px); }
+    .btn-wa:active { transform: translateY(0); filter: brightness(0.96); }
 
     /* ===== URGENCY BLOCK (mid-page) ===== */
     .urgency-block {
@@ -512,12 +515,12 @@
 
   <!-- TOP URGENCY STRIP -->
   <div class="urgency-strip">
-    <span>🔥 CIERRA HOY A LAS 12:00 PM — ÚLTIMA OPORTUNIDAD PARA ENTRAR AL MÉTODO UNICORNIO 🔥</span>
+    <span>🔥 CIERRA HOY A LAS 11:59 PM — ÚLTIMA OPORTUNIDAD PARA ENTRAR AL MÉTODO UNICORNIO 🔥</span>
   </div>
 
   <!-- COUNTDOWN BAR -->
   <div class="cdbar" id="cdbar">
-    <span class="cd-label">CIERRA A LAS 12 PM HOY:</span>
+    <span class="cd-label">CIERRA HOY:</span>
     <div class="cd-units">
       <div class="cd-block"><span class="cd-num" id="cd-h">00</span><span class="cd-lbl">H</span></div>
       <span class="cd-sep">·</span>
@@ -539,7 +542,7 @@
 
     <!-- HERO TEXT -->
     <div class="hero-text">
-      <div class="pill"><span class="pill-dot"></span> Cierra hoy a las 12:00 PM · No hay más</div>
+      <div class="pill"><span class="pill-dot"></span> Cierra hoy a las 11:59 PM · No hay más</div>
       <h1>El entrenamiento<br/>de ventas del<br/><span class="grad">Método Unicornio</span></h1>
       <p class="hero-sub">El sistema completo que usamos para pasar de 0 a 50–100 ventas diarias. Hoy a las 12:00 PM se cierra y no vuelve a abrirse. Entra ahora.</p>
       <div class="cta-group">
@@ -562,8 +565,8 @@
     <!-- URGENCY BLOCK -->
     <div class="urgency-block">
       <div class="urgency-block-icon">⏰</div>
-      <h2>Cierra hoy<br/>a las <span class="red">12:00 PM</span></h2>
-      <p>A las 12:00 PM Colombia el acceso se cierra. No habrá próxima oportunidad, no abriremos de nuevo hoy. Si no entras ahora, te quedas afuera.</p>
+      <h2>Cierra hoy<br/>a las <span class="red">11:59 PM</span></h2>
+      <p>Cuando el contador llegue a cero, el acceso se cierra. No habrá próxima oportunidad ni lista de espera. Si no entras ahora, te quedas afuera.</p>
       <div class="urgency-mini-cd">
         <div class="umcd-block">
           <span class="umcd-num" id="umcd-h">00</span>
@@ -882,7 +885,7 @@
       <div class="price-note">1 año de acceso completo · <strong>5 bonos exclusivos incluidos</strong></div>
       <div class="price-cuotas-note">💳 También disponible en cuotas — empieza sin pagar todo hoy</div>
       <div class="close-warning">
-        🔒 CIERRA HOY A LAS 12:00 PM<br/>Después de esa hora no hay acceso — ni lista de espera
+        🔒 CIERRA HOY A LAS 11:59 PM<br/>Después de esa hora no hay acceso — ni lista de espera
       </div>
       <div class="cta-group">
         <a href="https://pay.hotmart.com/I105799724D?off=6l0fiway&bid=1778695351799" target="_blank" class="btn-hotmart">
@@ -917,11 +920,11 @@
   </div>
 
   <script>
-    /* Countdown — target: today at 12:00 PM Colombia (UTC-5 = 17:00 UTC) */
+    /* Countdown — target: tonight at 23:59 Colombia (UTC-5 = 04:59 UTC tomorrow) */
     const now = new Date();
     const TARGET = new Date(now);
-    TARGET.setUTCHours(17, 0, 0, 0);
-    if (TARGET <= now) TARGET.setUTCDate(TARGET.getUTCDate() + 1);
+    TARGET.setUTCHours(4, 59, 0, 0);
+    TARGET.setUTCDate(TARGET.getUTCDate() + 1);
 
     function pad(n) { return String(n).padStart(2, '0'); }
 
