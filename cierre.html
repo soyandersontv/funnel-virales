@@ -98,12 +98,12 @@
     .wrap {
       max-width: 480px;
       margin: 0 auto;
-      padding-bottom: 80px;
+      padding: 0 16px 80px;
     }
 
     /* ===== HERO TEXT ===== */
     .hero-text {
-      padding: 8px 24px 36px;
+      padding: 8px 0 28px;
       text-align: center;
     }
     .pill {
@@ -194,7 +194,7 @@
 
     /* ===== URGENCY BLOCK (mid-page) ===== */
     .urgency-block {
-      margin: 0 20px;
+      margin: 0;
       background: linear-gradient(135deg, rgba(239,68,68,0.08), rgba(239,68,68,0.04));
       border: 1px solid rgba(239,68,68,0.3);
       border-radius: 20px;
@@ -263,7 +263,7 @@
     }
 
     /* ===== REVEALS ===== */
-    .reveals { padding: 0 20px; display: flex; flex-direction: column; gap: 10px; }
+    .reveals { display: flex; flex-direction: column; gap: 10px; }
     .reveal-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -285,7 +285,7 @@
     .reveal-body span { font-size: 13px; color: var(--muted); line-height: 1.55; }
 
     /* ===== INCLUDES LIST ===== */
-    .includes { padding: 0 20px; }
+    .includes { }
     .inc-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -309,7 +309,7 @@
     .inc-item span { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.35; }
 
     /* ===== BONUSES ===== */
-    .bonuses { padding: 0 20px; display: flex; flex-direction: column; gap: 10px; }
+    .bonuses { display: flex; flex-direction: column; gap: 10px; }
     .bonus-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -351,7 +351,6 @@
 
     /* ===== PROOF NUMBERS ===== */
     .proof-grid {
-      padding: 0 20px;
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 10px;
     }
@@ -370,7 +369,7 @@
     .proof-label { font-size: 12px; color: var(--muted); font-weight: 600; }
 
     /* ===== BEFORE / AFTER ===== */
-    .ba-grid { padding: 0 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .ba-card {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: 14px; padding: 16px 14px;
@@ -391,7 +390,7 @@
     .ba-item .mark { flex-shrink: 0; margin-top: 1px; }
 
     /* ===== GUARANTEE ===== */
-    .guarantee { padding: 0 20px; display: flex; flex-direction: column; gap: 10px; }
+    .guarantee { display: flex; flex-direction: column; gap: 10px; }
     .guar-card {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: 16px; padding: 20px 18px;
@@ -407,7 +406,7 @@
     .guar-body p { font-size: 13px; color: var(--muted); line-height: 1.55; }
 
     /* ===== COPA ===== */
-    .copa-grid { padding: 0 20px; display: flex; flex-direction: column; gap: 10px; }
+    .copa-grid { display: flex; flex-direction: column; gap: 10px; }
     .copa-card {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: 16px; padding: 18px 18px;
@@ -419,7 +418,7 @@
 
     /* ===== PRICE BLOCK ===== */
     .price-block {
-      margin: 0 20px;
+      margin: 0;
       background: var(--surface);
       border: 1px solid var(--border2);
       border-radius: 20px; padding: 28px 24px;
@@ -457,7 +456,7 @@
 
     /* ===== INDUCTION NOTE ===== */
     .induction {
-      margin: 16px 20px 0;
+      margin: 16px 0 0;
       background: rgba(124,58,237,0.06);
       border: 1px solid rgba(124,58,237,0.18);
       border-radius: 12px; padding: 14px 16px;
@@ -469,7 +468,7 @@
 
     /* ===== FINAL URGENCY ===== */
     .final-urgency {
-      margin: 0 20px;
+      margin: 0;
       text-align: center;
       padding: 20px 0 0;
     }
@@ -614,7 +613,7 @@
     <div class="divider"></div>
 
     <!-- 3 REVEALS -->
-    <div style="padding: 0 20px; margin-bottom: 24px;">
+    <div style="margin-bottom: 24px;">
       <div class="s-label">Por primera vez todo junto</div>
       <div class="s-title">Exactamente lo que<br/>necesitas para llegar<br/>a 50–100 ventas/día</div>
       <div class="s-sub">No teoría. El mismo sistema que usamos nosotros, paso a paso.</div>
@@ -647,11 +646,11 @@
     <div class="divider"></div>
 
     <!-- POR QUÉ CIERRA -->
-    <div style="padding: 0 20px; margin-bottom: 20px;">
+    <div style="margin-bottom: 20px;">
       <div class="s-label">Lo que estás obteniendo</div>
       <div class="s-title">La oferta más<br/>completa que<br/>hemos hecho</div>
     </div>
-    <div style="padding: 0 20px; display: flex; flex-direction: column; gap: 10px; margin-bottom: 8px;">
+    <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 8px;">
       <div class="reveal-card" style="border-left: 3px solid #7C3AED;">
         <div style="font-size:26px; line-height:1; flex-shrink:0;">📦</div>
         <div class="reveal-body">
@@ -678,7 +677,7 @@
     <div class="divider"></div>
 
     <!-- INCLUDES -->
-    <div style="padding: 0 20px; margin-bottom: 20px;">
+    <div style="margin-bottom: 20px;">
       <div class="s-label">El entrenamiento completo</div>
       <div class="s-title">Todo lo que incluye</div>
     </div>
@@ -723,7 +722,7 @@
     <div class="divider"></div>
 
     <!-- BONUSES -->
-    <div style="padding: 0 20px; margin-bottom: 20px;">
+    <div style="margin-bottom: 20px;">
       <div class="today-badge">⚡ Solo si compras hoy</div>
       <div class="s-title">5 bonos exclusivos</div>
       <div class="s-sub">Desaparecen al cierre. No estarán en ninguna apertura futura.</div>
@@ -766,7 +765,7 @@
       </div>
     </div>
 
-    <div style="padding: 0 20px; margin-top: 24px;">
+    <div style="margin-top: 24px;">
       <div class="cta-group">
         <a href="https://pay.hotmart.com/I105799724D?off=6l0fiway&bid=1778695351799" target="_blank" class="btn-hotmart">
           🔥 Quiero comprar ahora
@@ -787,7 +786,7 @@
     <div class="divider"></div>
 
     <!-- SOCIAL PROOF -->
-    <div style="padding: 0 20px; margin-bottom: 20px;">
+    <div style="margin-bottom: 20px;">
       <div class="s-title">Personas como tú<br/>ya están adentro</div>
     </div>
     <div class="proof-grid">
@@ -812,7 +811,7 @@
     <div class="divider"></div>
 
     <!-- BEFORE / AFTER -->
-    <div style="padding: 0 20px; margin-bottom: 20px;">
+    <div style="margin-bottom: 20px;">
       <div class="s-title">Tu vida antes<br/>y después</div>
     </div>
     <div class="ba-grid">
@@ -837,7 +836,7 @@
     <div class="divider"></div>
 
     <!-- GUARANTEE -->
-    <div style="padding: 0 20px; margin-bottom: 20px;">
+    <div style="margin-bottom: 20px;">
       <div class="s-label">Sin riesgo para ti</div>
       <div class="s-title">Doble garantía total</div>
       <div class="s-sub">Tomamos el riesgo nosotros. Ganes o no ganes, no pierdes.</div>
@@ -862,7 +861,7 @@
     <div class="divider"></div>
 
     <!-- COPA PEV -->
-    <div style="padding: 0 20px; margin-bottom: 20px;">
+    <div style="margin-bottom: 20px;">
       <div class="s-label">Competencia interna</div>
       <div class="s-title">La Copa PEV</div>
       <div class="s-sub">La persona que más facture entre el 6 de junio y el 6 de septiembre gana premios que van más allá del dinero.</div>
