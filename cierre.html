@@ -52,38 +52,20 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ===== TOP URGENCY STRIP ===== */
-    .urgency-strip {
-      background: #111;
-      color: #fff;
-      padding: 7px 16px;
-      text-align: center;
-      font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
-    }
-    .urgency-strip span { color: #FCA5A5; }
-
     /* ===== COUNTDOWN BAR ===== */
     .cdbar {
       background: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%);
       color: #fff;
-      padding: 14px 20px;
+      padding: 16px 20px;
       display: flex; align-items: center; justify-content: center;
-      gap: 16px;
       position: sticky; top: 0; z-index: 100;
       box-shadow: 0 4px 24px rgba(185,28,28,0.7);
     }
-    .cd-label {
-      font-size: 10px; font-weight: 800; letter-spacing: 2px;
-      text-transform: uppercase; opacity: 0.75;
-    }
-    .cd-units { display: flex; align-items: center; gap: 6px; }
-    .cd-block { display: flex; flex-direction: column; align-items: center; gap: 0; }
-    .cd-num   {
-      font-size: 28px; font-weight: 900; line-height: 1;
-      letter-spacing: -1px;
-    }
-    .cd-lbl   { font-size: 8px; font-weight: 700; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
-    .cd-sep   { font-size: 22px; font-weight: 900; opacity: 0.4; padding-bottom: 10px; }
+    .cd-units { display: flex; align-items: center; gap: 8px; }
+    .cd-block { display: flex; flex-direction: column; align-items: center; }
+    .cd-num   { font-size: 32px; font-weight: 900; line-height: 1; letter-spacing: -1px; }
+    .cd-lbl   { font-size: 9px; font-weight: 700; opacity: 0.6; text-transform: uppercase; letter-spacing: 1px; margin-top: 3px; }
+    .cd-sep   { font-size: 24px; font-weight: 900; opacity: 0.35; padding-bottom: 14px; }
 
     /* ===== HERO PHOTO ===== */
     .hero-photo {
@@ -504,20 +486,17 @@
 </head>
 <body>
 
-  <!-- TOP URGENCY STRIP -->
-  <div class="urgency-strip">
-    🔥 <span>ÚLTIMA OPORTUNIDAD</span> — Cierra hoy a las 11:59 PM · No hay lista de espera
-  </div>
-
-  <!-- COUNTDOWN BAR -->
+  <!-- COUNTDOWN BAR (único header) -->
   <div class="cdbar" id="cdbar">
-    <span class="cd-label">Cierra en</span>
-    <div class="cd-units">
-      <div class="cd-block"><span class="cd-num" id="cd-h">00</span><span class="cd-lbl">horas</span></div>
-      <span class="cd-sep">:</span>
-      <div class="cd-block"><span class="cd-num" id="cd-m">00</span><span class="cd-lbl">min</span></div>
-      <span class="cd-sep">:</span>
-      <div class="cd-block"><span class="cd-num" id="cd-s">00</span><span class="cd-lbl">seg</span></div>
+    <div style="text-align:center;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;opacity:0.7;margin-bottom:8px;">🔥 Cierra hoy a las 11:59 PM</div>
+      <div class="cd-units">
+        <div class="cd-block"><span class="cd-num" id="cd-h">00</span><span class="cd-lbl">horas</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-block"><span class="cd-num" id="cd-m">00</span><span class="cd-lbl">min</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-block"><span class="cd-num" id="cd-s">00</span><span class="cd-lbl">seg</span></div>
+      </div>
     </div>
   </div>
 
