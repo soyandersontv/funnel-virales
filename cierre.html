@@ -943,11 +943,12 @@
   </a>
 
   <script>
-    /* Countdown — target: tonight at 23:59 Colombia (UTC-5 = 04:59 UTC tomorrow) */
+    /* Countdown — target: 23:59 Colombia (UTC-5 = 04:59 UTC).
+       If that moment today has already passed, jump to tomorrow. */
     const now = new Date();
     const TARGET = new Date(now);
     TARGET.setUTCHours(4, 59, 0, 0);
-    TARGET.setUTCDate(TARGET.getUTCDate() + 1);
+    if (TARGET <= now) TARGET.setUTCDate(TARGET.getUTCDate() + 1);
 
     function pad(n) { return String(n).padStart(2, '0'); }
 
