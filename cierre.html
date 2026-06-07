@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cierra hoy a las 12:00 PM — El Siguiente Nivel</title>
+  <title>Cierra hoy a las 5:00 PM — El Siguiente Nivel</title>
 
   <!-- Meta Pixel -->
   <script>
@@ -509,7 +509,7 @@
 
     <!-- HERO TEXT -->
     <div class="hero-text">
-      <div class="pill"><span class="pill-dot"></span> Cierra hoy a las 11:59 PM — No se vuelve a abrir</div>
+      <div class="pill"><span class="pill-dot"></span> Cierra hoy a las 5:00 PM — No se vuelve a abrir</div>
       <h1>El entrenamiento<br/>de ventas del<br/><span class="grad">Método Unicornio</span></h1>
       <p class="hero-sub">Mira el video. Luego decide.</p>
 
@@ -579,7 +579,7 @@
     <!-- URGENCY BLOCK -->
     <div class="urgency-block">
       <div class="urgency-block-icon">⏰</div>
-      <h2>Cierra hoy<br/>a las <span class="red">11:59 PM</span></h2>
+      <h2>Cierra hoy<br/>a las <span class="red">5:00 PM</span></h2>
       <p>Cuando el contador llegue a cero, el acceso se cierra. No habrá próxima oportunidad ni lista de espera. Si no entras ahora, te quedas afuera.</p>
       <div class="urgency-mini-cd">
         <div class="umcd-block">
@@ -668,7 +668,7 @@
       <div class="reveal-card" style="border-left: 3px solid #EF4444;">
         <div style="font-size:26px; line-height:1; flex-shrink:0;">⏰</div>
         <div class="reveal-body">
-          <strong>Cierra hoy a las 11:59 PM</strong>
+          <strong>Cierra hoy a las 5:00 PM</strong>
           <span>No hay lista de espera. No hay "avísame cuando abra". Cuando el contador llega a cero, el acceso se cierra. Punto.</span>
         </div>
       </div>
@@ -902,7 +902,7 @@
       <div class="price-note">8 entrenamientos + 5 bonos + 1 año de acceso completo</div>
       <div class="price-cuotas-note">💳 También en cuotas — empieza hoy sin pagar todo</div>
       <div class="close-warning">
-        🔒 CIERRA A LAS 11:59 PM — Minutos del <span id="cd-m2">--</span>:<span id="cd-s2">--</span>
+        🔒 CIERRA A LAS 5:00 PM — Minutos del <span id="cd-m2">--</span>:<span id="cd-s2">--</span>
       </div>
       <div class="cta-group">
         <a href="https://pay.hotmart.com/I105799724D?off=6l0fiway&src=TSL" target="_blank" class="btn-hotmart">
@@ -943,11 +943,11 @@
   </a>
 
   <script>
-    /* Countdown — target: 23:59 Colombia (UTC-5 = 04:59 UTC).
+    /* Countdown — target: 17:00 Colombia (UTC-5 = 22:00 UTC).
        If that moment today has already passed, jump to tomorrow. */
     const now = new Date();
     const TARGET = new Date(now);
-    TARGET.setUTCHours(4, 59, 0, 0);
+    TARGET.setUTCHours(22, 0, 0, 0);
     if (TARGET <= now) TARGET.setUTCDate(TARGET.getUTCDate() + 1);
 
     function pad(n) { return String(n).padStart(2, '0'); }
