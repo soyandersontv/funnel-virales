@@ -308,12 +308,21 @@
 
     /* ── TICKETS ──────────────────────────── */
     .tickets-section { background: var(--surface); }
-    .tickets-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px; align-items: start;
+
+    /* Layout: VIP card top full-width, then 2 side cards below */
+    .tickets-vip-wrap {
+      position: relative; margin-bottom: 16px;
     }
-    @media(max-width:860px) { .tickets-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; } }
+    .ticket-recommended-bar {
+      background: linear-gradient(90deg, #F59E0B 0%, #D97706 100%);
+      text-align: center; font-size: 11px; font-weight: 800;
+      letter-spacing: 1.5px; text-transform: uppercase; color: #000;
+      padding: 8px; border-radius: 16px 16px 0 0;
+    }
+    .tickets-secondary {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    @media(max-width:680px) { .tickets-secondary { grid-template-columns: 1fr; } }
 
     .ticket {
       background: var(--card); border: 1px solid var(--border);
@@ -321,61 +330,92 @@
       position: relative; overflow: hidden;
       transition: transform .15s;
     }
-    .ticket:hover { transform: translateY(-3px); }
-    .ticket.popular {
-      border-color: rgba(239,68,68,0.5);
-      background: linear-gradient(180deg, #120A0A 0%, var(--card) 100%);
-    }
+    .ticket:hover { transform: translateY(-2px); }
+    .ticket.secondary { opacity: .85; }
+    .ticket.secondary:hover { opacity: 1; transform: translateY(-2px); }
+
     .ticket.vip {
-      border-color: rgba(245,158,11,0.5);
-      background: linear-gradient(180deg, #110D00 0%, var(--card) 100%);
+      border: 2px solid rgba(245,158,11,0.7);
+      border-radius: 0 0 20px 20px;
+      background: linear-gradient(145deg, #16100A 0%, #0E0E1C 60%);
+      padding: 36px 36px 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
     }
+    @media(max-width:680px) {
+      .ticket.vip { grid-template-columns: 1fr; gap: 24px; padding: 28px 22px; }
+    }
+
+    .vip-left {}
+    .vip-right { display: flex; flex-direction: column; }
+
     .ticket-glow {
-      position: absolute; top: -80px; right: -80px;
-      width: 200px; height: 200px; border-radius: 50%;
-      pointer-events: none; filter: blur(60px); opacity: .5;
+      position: absolute; top: -100px; right: -100px;
+      width: 300px; height: 300px; border-radius: 50%;
+      pointer-events: none; filter: blur(80px); opacity: .35;
+      background: rgba(245,158,11,0.5);
     }
-    .popular .ticket-glow { background: rgba(239,68,68,0.35); }
-    .vip     .ticket-glow { background: rgba(245,158,11,0.35); }
+    .ticket.secondary .ticket-glow { display: none; }
 
     .ticket-tag {
-      display: inline-block; margin-bottom: 20px;
+      display: inline-flex; align-items: center; gap: 5px;
+      margin-bottom: 16px;
       font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
       border-radius: 100px; padding: 4px 12px;
     }
-    .ticket:not(.popular):not(.vip) .ticket-tag { background: rgba(99,102,241,0.15); color: #818CF8; border: 1px solid rgba(99,102,241,0.3); }
-    .popular .ticket-tag { background: rgba(239,68,68,0.15); color: #F87171; border: 1px solid rgba(239,68,68,0.3); }
-    .vip     .ticket-tag { background: rgba(245,158,11,0.15); color: #FCD34D; border: 1px solid rgba(245,158,11,0.3); }
+    .ticket.vip      .ticket-tag { background: rgba(245,158,11,0.2); color: #FCD34D; border: 1px solid rgba(245,158,11,0.4); font-size: 11px; }
+    .ticket.alumni   .ticket-tag { background: rgba(99,102,241,0.12); color: #818CF8; border: 1px solid rgba(99,102,241,0.25); }
+    .ticket.normal   .ticket-tag { background: rgba(255,255,255,0.06); color: var(--muted); border: 1px solid var(--border); }
 
-    .ticket-name { font-size: 20px; font-weight: 800; margin-bottom: 6px; }
-    .ticket-price-row { display: flex; align-items: flex-end; gap: 6px; margin-bottom: 24px; }
-    .ticket-price { font-size: 44px; font-weight: 900; letter-spacing: -2px; line-height: 1; }
-    .ticket:not(.popular):not(.vip) .ticket-price { color: #818CF8; }
-    .popular .ticket-price { color: var(--red); }
-    .vip     .ticket-price { color: var(--gold); }
-    .ticket-currency { font-size: 14px; font-weight: 700; color: var(--muted); padding-bottom: 8px; }
+    .ticket-name { margin-bottom: 4px; }
+    .ticket.vip    .ticket-name { font-size: 28px; font-weight: 900; letter-spacing: -.8px; }
+    .ticket.alumni .ticket-name { font-size: 18px; font-weight: 800; }
+    .ticket.normal .ticket-name { font-size: 18px; font-weight: 800; }
 
-    .ticket-divider { border: none; border-top: 1px solid var(--border); margin: 0 0 20px; }
-    .ticket-perks { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+    .ticket-price-row { display: flex; align-items: flex-end; gap: 6px; margin-bottom: 8px; }
+    .ticket-price { font-weight: 900; letter-spacing: -2px; line-height: 1; }
+    .ticket.vip    .ticket-price { font-size: 56px; color: var(--gold); }
+    .ticket.alumni .ticket-price { font-size: 38px; color: #818CF8; }
+    .ticket.normal .ticket-price { font-size: 38px; color: rgba(255,255,255,0.6); }
+    .ticket-currency { font-size: 14px; font-weight: 700; color: var(--muted); padding-bottom: 10px; }
+
+    .vip-value-anchor {
+      font-size: 12px; color: rgba(245,158,11,0.7); font-weight: 600; margin-bottom: 20px;
+    }
+    .vip-value-anchor s { color: var(--muted-2); margin-right: 6px; }
+
+    .ticket-divider { border: none; border-top: 1px solid var(--border); margin: 0 0 18px; }
+
+    .ticket-perks { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 24px; }
     .ticket-perks li {
       display: flex; align-items: flex-start; gap: 10px;
-      font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.45;
+      font-size: 13px; line-height: 1.45;
     }
+    .ticket.vip    .ticket-perks li { color: rgba(255,255,255,0.9); font-size: 14px; }
+    .ticket.secondary .ticket-perks li { color: rgba(255,255,255,0.6); }
+
     .perk-check {
-      width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0; margin-top: 1px;
+      width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0; margin-top: 2px;
       display: flex; align-items: center; justify-content: center;
       font-size: 10px; font-weight: 800;
     }
-    .ticket:not(.popular):not(.vip) .perk-check { background: rgba(99,102,241,0.2); color: #818CF8; }
-    .popular .perk-check { background: rgba(239,68,68,0.2); color: #F87171; }
-    .vip     .perk-check { background: rgba(245,158,11,0.2); color: #FCD34D; }
+    .ticket.vip    .perk-check { background: rgba(245,158,11,0.25); color: #FCD34D; }
+    .ticket.alumni .perk-check { background: rgba(99,102,241,0.15); color: #818CF8; }
+    .ticket.normal .perk-check { background: rgba(255,255,255,0.06); color: var(--muted); }
 
     .ticket-cupo {
       display: flex; align-items: center; gap: 8px;
-      background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2);
+      background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3);
       border-radius: 10px; padding: 10px 14px;
-      font-size: 12px; font-weight: 600; color: #FCD34D;
+      font-size: 12px; font-weight: 700; color: #FCD34D;
       margin-bottom: 20px;
+    }
+
+    .vip-includes-title {
+      font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      color: rgba(245,158,11,0.6); margin-bottom: 12px;
     }
 
     .btn-buy {
@@ -385,9 +425,17 @@
       transition: opacity .15s, transform .1s;
     }
     .btn-buy:active { transform: scale(.98); }
-    .ticket:not(.popular):not(.vip) .btn-buy { background: linear-gradient(135deg,#6366F1,#4F46E5); color: #fff; }
-    .popular .btn-buy { background: linear-gradient(135deg,#EF4444,#DC2626); color: #fff; }
-    .vip     .btn-buy { background: linear-gradient(135deg,#F59E0B,#D97706); color: #000; font-weight: 800; }
+    .ticket.vip    .btn-buy {
+      background: linear-gradient(135deg,#F59E0B,#D97706); color: #000; font-weight: 900;
+      font-size: 16px; padding: 17px;
+      box-shadow: 0 8px 32px rgba(245,158,11,0.35);
+    }
+    .ticket.alumni .btn-buy { background: rgba(99,102,241,0.15); border: 1px solid rgba(99,102,241,0.3); color: #818CF8; }
+    .ticket.normal .btn-buy { background: rgba(255,255,255,0.06); border: 1px solid var(--border); color: var(--muted); }
+
+    .btn-buy-sub {
+      text-align: center; font-size: 11px; color: var(--muted-2); margin-top: 10px;
+    }
 
     /* ── AGENDA ───────────────────────────── */
     .agenda-layout {
@@ -744,14 +792,54 @@
   <div class="container">
     <div class="section-header center">
       <div class="section-eyebrow">Entradas</div>
-      <h2 class="section-title">Elige cómo quieres vivirlo</h2>
-      <p class="section-sub">Plazas limitadas. El VIP tiene solo 20 cupos.</p>
+      <h2 class="section-title">Elige tu lugar en el evento</h2>
+      <p class="section-sub">El VIP es la experiencia completa. Los demás son el punto de entrada.</p>
     </div>
-    <div class="tickets-grid">
+
+    <!-- VIP — CARD PRINCIPAL -->
+    <div class="tickets-vip-wrap">
+      <div class="ticket-recommended-bar">⭐ Mejor opción · Más elegida por el equipo</div>
+      <div class="ticket vip">
+        <div class="ticket-glow"></div>
+
+        <!-- Columna izquierda: precio y CTA -->
+        <div class="vip-left">
+          <div class="ticket-tag">🏆 VIP Exclusivo</div>
+          <div class="ticket-name">Entrada VIP</div>
+          <div class="ticket-price-row">
+            <span class="ticket-price">$500</span>
+            <span class="ticket-currency">USD</span>
+          </div>
+          <div class="vip-value-anchor"><s>Valor real estimado: +$1,200 USD</s> Solo pagas $500</div>
+          <div class="ticket-cupo">🔒 Solo 20 cupos · Se agotan pronto</div>
+          <a href="https://wa.link/mf0uw5" target="_blank" class="btn-buy"
+             onclick="try{fbq('track','InitiateCheckout',{content_name:'VIP',value:500,currency:'USD'})}catch(e){}">
+            Quiero mi lugar VIP →
+          </a>
+          <div class="btn-buy-sub">Pago seguro · Cupo garantizado al confirmar</div>
+        </div>
+
+        <!-- Columna derecha: beneficios -->
+        <div class="vip-right">
+          <div class="vip-includes-title">Todo lo que incluye</div>
+          <ul class="ticket-perks">
+            <li><span class="perk-check">✓</span>Sesión privada exclusiva 10:00 – 10:30 AM (solo VIP)</li>
+            <li><span class="perk-check">✓</span>Asientos garantizados en primera y segunda fila</li>
+            <li><span class="perk-check">✓</span>Cena especial noche del sábado 28 con Laura, Santiago y el equipo</li>
+            <li><span class="perk-check">✓</span>Merch exclusivo El Siguiente Nivel (no disponible en ningún otro lado)</li>
+            <li><span class="perk-check">✓</span>+2 meses extra de Aurapesca incluidos</li>
+            <li><span class="perk-check">✓</span>Acceso completo al evento: 4 charlas, networking y premios</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ALUMNI + NORMAL — OPCIONES SECUNDARIAS -->
+    <div class="tickets-secondary">
 
       <!-- ALUMNI -->
-      <div class="ticket">
-        <div class="ticket-glow"></div>
+      <div class="ticket alumni secondary">
         <div class="ticket-tag">Alumnos</div>
         <div class="ticket-name">Entrada Alumni</div>
         <div class="ticket-price-row">
@@ -760,21 +848,20 @@
         </div>
         <hr class="ticket-divider"/>
         <ul class="ticket-perks">
-          <li><span class="perk-check">✓</span>Acceso completo al evento (11:30 AM)</li>
-          <li><span class="perk-check">✓</span>4 charlas con speakers de alto nivel</li>
-          <li><span class="perk-check">✓</span>Espacio de almuerzo en C.C. Mayorca</li>
-          <li><span class="perk-check">✓</span>Ceremonia de entrega de premios</li>
-          <li><span class="perk-check">✓</span>Exclusivo para alumnos activos del Método Unicornio</li>
+          <li><span class="perk-check">✓</span>Acceso al evento 11:30 AM</li>
+          <li><span class="perk-check">✓</span>4 charlas con speakers</li>
+          <li><span class="perk-check">✓</span>Almuerzo en C.C. Mayorca</li>
+          <li><span class="perk-check">✓</span>Ceremonia de premios</li>
         </ul>
         <a href="https://wa.link/mf0uw5" target="_blank" class="btn-buy"
            onclick="try{fbq('track','InitiateCheckout',{content_name:'Alumni',value:20,currency:'USD'})}catch(e){}">
-          Reservar Alumni →
+          Reservar Alumni
         </a>
+        <div class="btn-buy-sub">Solo alumnos activos del Método Unicornio</div>
       </div>
 
       <!-- NORMAL -->
-      <div class="ticket popular">
-        <div class="ticket-glow"></div>
+      <div class="ticket normal secondary">
         <div class="ticket-tag">Entrada General</div>
         <div class="ticket-name">Entrada Normal</div>
         <div class="ticket-price-row">
@@ -783,40 +870,16 @@
         </div>
         <hr class="ticket-divider"/>
         <ul class="ticket-perks">
-          <li><span class="perk-check">✓</span>Acceso completo al evento (11:30 AM)</li>
-          <li><span class="perk-check">✓</span>4 charlas con speakers de alto nivel</li>
-          <li><span class="perk-check">✓</span>Espacio de almuerzo en C.C. Mayorca</li>
-          <li><span class="perk-check">✓</span>Ceremonia de entrega de premios</li>
-          <li><span class="perk-check">✓</span>Abierto al público general</li>
+          <li><span class="perk-check">✓</span>Acceso al evento 11:30 AM</li>
+          <li><span class="perk-check">✓</span>4 charlas con speakers</li>
+          <li><span class="perk-check">✓</span>Almuerzo en C.C. Mayorca</li>
+          <li><span class="perk-check">✓</span>Ceremonia de premios</li>
         </ul>
         <a href="https://wa.link/mf0uw5" target="_blank" class="btn-buy"
            onclick="try{fbq('track','InitiateCheckout',{content_name:'Normal',value:30,currency:'USD'})}catch(e){}">
-          Reservar entrada →
+          Reservar entrada
         </a>
-      </div>
-
-      <!-- VIP -->
-      <div class="ticket vip">
-        <div class="ticket-glow"></div>
-        <div class="ticket-tag">⭐ VIP Exclusivo</div>
-        <div class="ticket-name">Entrada VIP</div>
-        <div class="ticket-price-row">
-          <span class="ticket-price">$500</span>
-          <span class="ticket-currency">USD</span>
-        </div>
-        <div class="ticket-cupo">🔒 Solo 20 cupos disponibles</div>
-        <ul class="ticket-perks">
-          <li><span class="perk-check">✓</span>Sesión privada exclusiva 10:00 – 10:30 AM</li>
-          <li><span class="perk-check">✓</span>Primera y segunda fila aseguradas</li>
-          <li><span class="perk-check">✓</span>Cena especial noche del sábado con Laura, Santiago y el equipo</li>
-          <li><span class="perk-check">✓</span>Merch exclusivo El Siguiente Nivel</li>
-          <li><span class="perk-check">✓</span>+2 meses extra de Aurapesca incluidos</li>
-          <li><span class="perk-check">✓</span>Todo lo de la entrada general</li>
-        </ul>
-        <a href="https://wa.link/mf0uw5" target="_blank" class="btn-buy"
-           onclick="try{fbq('track','InitiateCheckout',{content_name:'VIP',value:500,currency:'USD'})}catch(e){}">
-          Quiero el VIP →
-        </a>
+        <div class="btn-buy-sub">Abierto al público general</div>
       </div>
 
     </div>
