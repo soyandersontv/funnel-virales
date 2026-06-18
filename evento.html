@@ -3,527 +3,1158 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Evento Presencial — El Siguiente Nivel · Medellín 28 Jun</title>
+  <title>El Siguiente Nivel · Medellín 28 Jun 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800&display=swap" rel="stylesheet" />
 
   <!-- Meta Pixel -->
-  <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-    document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init','1985622431943479');
-    fbq('track','PageView');
-  </script>
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1985622431943479');fbq('track','PageView');</script>
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:      #06060F;
-      --card:    #0E0E1C;
-      --border:  rgba(255,255,255,0.08);
-      --red:     #EF4444;
-      --purple:  #A855F7;
-      --gold:    #F59E0B;
-      --text:    #FFFFFF;
-      --muted:   rgba(255,255,255,0.55);
+      --bg:        #06060E;
+      --surface:   #0C0C1A;
+      --card:      #10101E;
+      --border:    rgba(255,255,255,0.07);
+      --border-hi: rgba(139,92,246,0.35);
+      --purple:    #7C3AED;
+      --purple-2:  #A855F7;
+      --purple-3:  #C084FC;
+      --purple-4:  #E9D5FF;
+      --gold:      #F59E0B;
+      --red:       #EF4444;
+      --green:     #22C55E;
+      --text:      #FFFFFF;
+      --muted:     rgba(255,255,255,0.5);
+      --muted-2:   rgba(255,255,255,0.3);
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', -apple-system, sans-serif;
       background: var(--bg);
       color: var(--text);
       -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    .wrap { max-width: 480px; margin: 0 auto; padding: 0 16px 100px; }
+    /* ── NAV ─────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(6,6,14,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1140px; margin: 0 auto;
+      padding: 0 24px;
+      height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 15px; font-weight: 800; letter-spacing: -.3px; color: #fff;
+      text-decoration: none;
+    }
+    .nav-logo-dot {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: linear-gradient(135deg, var(--purple), var(--purple-2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 28px; list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px; font-weight: 500; color: var(--muted);
+      text-decoration: none; transition: color .15s;
+    }
+    .nav-links a:hover { color: #fff; }
+    @media(max-width:700px) { .nav-links { display: none; } }
+    .nav-cta {
+      display: inline-flex; align-items: center;
+      background: var(--purple); color: #fff;
+      font-size: 13px; font-weight: 700;
+      padding: 8px 18px; border-radius: 8px;
+      text-decoration: none; transition: opacity .15s;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { opacity: .88; }
 
     /* ── HERO ─────────────────────────────── */
     .hero {
-      text-align: center;
-      padding: 48px 0 32px;
+      position: relative;
+      min-height: 100svh;
+      display: flex; flex-direction: column; justify-content: center;
+      overflow: hidden;
+      padding: 80px 24px 60px;
     }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(168,85,247,0.15);
-      border: 1px solid rgba(168,85,247,0.35);
-      border-radius: 100px;
-      padding: 6px 14px;
-      font-size: 12px;
-      font-weight: 700;
-      color: #C084FC;
-      letter-spacing: .5px;
-      text-transform: uppercase;
-      margin-bottom: 20px;
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 60% 20%, rgba(124,58,237,0.22) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 90% 80%, rgba(168,85,247,0.1) 0%, transparent 55%),
+        var(--bg);
     }
-    .hero-badge span { width: 6px; height: 6px; background: #A855F7; border-radius: 50%; display: inline-block; animation: pulse 1.4s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+    .hero-img-placeholder {
+      position: absolute; right: -60px; top: 0; bottom: 0;
+      width: 55%; z-index: 0;
+      background: linear-gradient(135deg, rgba(124,58,237,0.18) 0%, rgba(168,85,247,0.08) 100%);
+      clip-path: polygon(12% 0%, 100% 0%, 100% 100%, 0% 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-img-placeholder .img-label {
+      font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.2);
+      letter-spacing: 1.5px; text-transform: uppercase;
+      transform: rotate(-3deg);
+    }
+    @media(max-width:900px) { .hero-img-placeholder { display: none; } }
+
+    .hero-inner {
+      position: relative; z-index: 1;
+      max-width: 1140px; margin: 0 auto; width: 100%;
+    }
+    .hero-date-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--border-hi);
+      background: rgba(124,58,237,0.1);
+      border-radius: 100px; padding: 6px 16px;
+      font-size: 13px; font-weight: 600; color: var(--purple-3);
+      margin-bottom: 28px;
+    }
+    .hero-date-badge span { width: 6px; height: 6px; border-radius: 50%; background: var(--purple-2); display: inline-block; animation: blink 1.6s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
 
     .hero h1 {
-      font-size: clamp(32px, 9vw, 46px);
-      font-weight: 900;
-      line-height: 1.05;
-      letter-spacing: -1.5px;
-      margin-bottom: 12px;
+      font-size: clamp(38px, 7vw, 76px);
+      font-weight: 900; line-height: 1.02; letter-spacing: -2.5px;
+      margin-bottom: 10px; max-width: 600px;
     }
-    .hero h1 em { font-style: normal; color: var(--red); }
-    .hero-sub {
-      font-size: 16px;
-      color: var(--muted);
-      line-height: 1.5;
-      margin-bottom: 28px;
-    }
-
-    /* ── COUNTDOWN ────────────────────────── */
-    .cd-block {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 24px 20px;
-      margin-bottom: 28px;
-      text-align: center;
-    }
-    .cd-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
-    .cd-nums { display: flex; justify-content: center; align-items: flex-end; gap: 8px; }
-    .cd-unit { display: flex; flex-direction: column; align-items: center; }
-    .cd-num {
-      font-size: 38px; font-weight: 900; letter-spacing: -2px; line-height: 1;
-      background: linear-gradient(135deg, #fff 0%, #C084FC 100%);
+    .hero h1 .accent {
+      background: linear-gradient(90deg, var(--purple-2) 0%, var(--purple-3) 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    .cd-tag { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-top: 4px; }
-    .cd-sep { font-size: 28px; font-weight: 900; color: var(--muted); padding-bottom: 10px; }
-
-    /* ── INFO BAR ─────────────────────────── */
-    .info-bar {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 32px;
+    .hero-tagline {
+      font-size: clamp(15px, 2.5vw, 19px); font-weight: 500;
+      color: var(--muted); line-height: 1.55; max-width: 480px;
+      margin-bottom: 36px;
     }
-    .info-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 14px 16px;
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 52px; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, var(--purple) 0%, #6D28D9 100%);
+      color: #fff; font-size: 15px; font-weight: 700;
+      padding: 14px 28px; border-radius: 12px; text-decoration: none;
+      transition: transform .12s, opacity .12s;
+      box-shadow: 0 8px 32px rgba(124,58,237,0.4);
     }
-    .info-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
-    .info-text { display: flex; flex-direction: column; }
-    .info-title { font-size: 13px; font-weight: 700; color: #fff; }
-    .info-desc { font-size: 12px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
-
-    /* ── SECTION TITLE ────────────────────── */
-    .section-title {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-align: center;
-      margin-bottom: 16px;
+    .btn-primary:hover { transform: translateY(-1px); opacity: .92; }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.06); border: 1px solid var(--border);
+      color: #fff; font-size: 15px; font-weight: 600;
+      padding: 14px 24px; border-radius: 12px; text-decoration: none;
+      transition: background .15s;
     }
+    .btn-secondary:hover { background: rgba(255,255,255,0.1); }
 
-    /* ── TICKETS ──────────────────────────── */
-    .tickets { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
-
-    .ticket-card {
-      border-radius: 20px;
-      padding: 22px 20px;
-      border: 1px solid var(--border);
-      background: var(--card);
-      position: relative;
-      overflow: hidden;
+    /* ── COUNTDOWN ────────────────────────── */
+    .countdown-row {
+      display: flex; gap: 20px; flex-wrap: wrap;
     }
-    .ticket-card.alumni  { border-color: rgba(99,102,241,0.4); }
-    .ticket-card.normal  { border-color: rgba(239,68,68,0.35); }
-    .ticket-card.vip     { border-color: rgba(245,158,11,0.5); background: linear-gradient(135deg, #0E0E1C 0%, #1A1200 100%); }
-
-    .ticket-card.vip::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at top right, rgba(245,158,11,0.12) 0%, transparent 65%);
-      pointer-events: none;
+    .cd-unit {
+      display: flex; flex-direction: column; align-items: center;
     }
-
-    .ticket-badge {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      border-radius: 100px;
-      padding: 3px 10px;
-      margin-bottom: 10px;
+    .cd-num {
+      font-size: clamp(32px,5vw,48px); font-weight: 900; line-height: 1;
+      letter-spacing: -2px;
+      background: linear-gradient(180deg, #fff 0%, var(--purple-3) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    .alumni  .ticket-badge { background: rgba(99,102,241,0.2); color: #818CF8; border: 1px solid rgba(99,102,241,0.3); }
-    .normal  .ticket-badge { background: rgba(239,68,68,0.15); color: #F87171; border: 1px solid rgba(239,68,68,0.25); }
-    .vip     .ticket-badge { background: rgba(245,158,11,0.2); color: #FCD34D; border: 1px solid rgba(245,158,11,0.35); }
+    .cd-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-top: 5px; }
+    .cd-sep { font-size: 36px; font-weight: 900; color: var(--muted-2); align-self: flex-start; margin-top: 4px; }
 
-    .ticket-name { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
-    .ticket-price {
-      font-size: 36px; font-weight: 900; letter-spacing: -1.5px; line-height: 1;
-      margin-bottom: 12px;
-    }
-    .alumni  .ticket-price { color: #818CF8; }
-    .normal  .ticket-price { color: var(--red); }
-    .vip     .ticket-price { color: var(--gold); }
-
-    .ticket-perks { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
-    .ticket-perks li { font-size: 13px; color: var(--muted); display: flex; align-items: flex-start; gap: 8px; line-height: 1.4; }
-    .ticket-perks li::before { content: '✓'; font-weight: 800; flex-shrink: 0; margin-top: 1px; }
-    .alumni  .ticket-perks li::before { color: #818CF8; }
-    .normal  .ticket-perks li::before { color: var(--red); }
-    .vip     .ticket-perks li::before { color: var(--gold); }
-
-    .vip-cupo {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.25);
-      border-radius: 8px; padding: 6px 12px;
-      font-size: 12px; font-weight: 700; color: #FCD34D;
-      margin-bottom: 16px;
-    }
-
-    .btn-ticket {
-      display: block; width: 100%;
-      text-decoration: none; text-align: center;
-      font-size: 15px; font-weight: 800;
-      border-radius: 14px; padding: 14px;
-      border: none; cursor: pointer;
-      transition: opacity .15s, transform .1s;
-    }
-    .btn-ticket:active { transform: scale(.98); opacity: .9; }
-
-    .alumni  .btn-ticket { background: linear-gradient(135deg,#6366F1,#4F46E5); color: #fff; }
-    .normal  .btn-ticket { background: linear-gradient(135deg,#EF4444,#DC2626); color: #fff; }
-    .vip     .btn-ticket { background: linear-gradient(135deg,#F59E0B,#D97706); color: #000; }
-
-    /* ── AGENDA ───────────────────────────── */
-    .agenda { margin-bottom: 36px; }
-    .agenda-list { display: flex; flex-direction: column; gap: 0; }
-    .agenda-item {
-      display: flex; gap: 16px;
-      padding: 14px 0;
+    /* ── STATS BAR ────────────────────────── */
+    .stats-bar {
+      border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      position: relative;
+      background: var(--surface);
     }
-    .agenda-item:last-child { border-bottom: none; }
-    .agenda-time {
-      font-size: 12px; font-weight: 700; color: var(--muted);
-      min-width: 64px; padding-top: 2px; flex-shrink: 0;
+    .stats-inner {
+      max-width: 1140px; margin: 0 auto; padding: 0 24px;
+      display: flex; justify-content: center; flex-wrap: wrap;
     }
-    .agenda-content { flex: 1; }
-    .agenda-name { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 2px; }
-    .agenda-detail { font-size: 12px; color: var(--muted); line-height: 1.4; }
-    .agenda-dot {
-      position: absolute; left: 80px; top: 50%; transform: translateY(-50%);
-      width: 8px; height: 8px; border-radius: 50%; background: var(--purple);
-      box-shadow: 0 0 8px var(--purple);
-      display: none;
+    .stat {
+      padding: 22px 32px; display: flex; flex-direction: column; align-items: center;
+      border-right: 1px solid var(--border);
+      gap: 4px;
     }
+    .stat:last-child { border-right: none; }
+    .stat-num { font-size: 28px; font-weight: 900; letter-spacing: -1px; color: var(--purple-3); }
+    .stat-label { font-size: 12px; font-weight: 500; color: var(--muted); }
+    @media(max-width:600px) {
+      .stats-inner { gap: 0; }
+      .stat { padding: 18px 20px; border-right: none; border-bottom: 1px solid var(--border); width: 50%; }
+      .stat:nth-child(odd) { border-right: 1px solid var(--border); }
+      .stat:last-child, .stat:nth-last-child(2):nth-child(odd) { border-bottom: none; }
+    }
+
+    /* ── GENERIC SECTION ──────────────────── */
+    .section { padding: 80px 24px; }
+    .section-sm { padding: 60px 24px; }
+    .container { max-width: 1140px; margin: 0 auto; }
+    .section-header { margin-bottom: 48px; }
+    .section-header.center { text-align: center; }
+    .section-eyebrow {
+      display: inline-block;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--purple-2); margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(26px, 4vw, 40px); font-weight: 800;
+      letter-spacing: -1px; line-height: 1.1;
+    }
+    .section-sub {
+      font-size: 16px; color: var(--muted); line-height: 1.6; margin-top: 10px;
+    }
+
+    /* ── EXPERIENCE ───────────────────────── */
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    @media(max-width:700px) { .experience-grid { grid-template-columns: 1fr; } }
+    @media(min-width:701px) and (max-width:900px) { .experience-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .exp-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 28px 24px;
+      transition: border-color .2s, transform .15s;
+    }
+    .exp-card:hover { border-color: var(--border-hi); transform: translateY(-2px); }
+    .exp-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: rgba(124,58,237,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; margin-bottom: 16px;
+    }
+    .exp-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+    .exp-desc { font-size: 13px; color: var(--muted); line-height: 1.55; }
 
     /* ── SPEAKERS ─────────────────────────── */
-    .speakers { display: flex; gap: 12px; margin-bottom: 36px; }
-    .speaker-card {
-      flex: 1; background: var(--card); border: 1px solid var(--border);
-      border-radius: 16px; padding: 18px 14px; text-align: center;
+    .speakers-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
     }
-    .speaker-avatar {
-      width: 60px; height: 60px; border-radius: 50%;
-      background: linear-gradient(135deg,#7C3AED,#A855F7);
-      margin: 0 auto 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px; font-weight: 900; color: #fff;
-    }
-    .speaker-name { font-size: 14px; font-weight: 800; margin-bottom: 2px; }
-    .speaker-role { font-size: 11px; color: var(--muted); }
+    @media(max-width:900px) { .speakers-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media(max-width:500px)  { .speakers-grid { grid-template-columns: repeat(2, 1fr); } }
 
-    /* ── LOCATION ─────────────────────────── */
-    .location-card {
+    .speaker-card {
       background: var(--card); border: 1px solid var(--border);
-      border-radius: 20px; overflow: hidden; margin-bottom: 36px;
+      border-radius: 20px; overflow: hidden;
+      transition: border-color .2s;
     }
-    .location-map {
-      width: 100%; height: 160px; background: #0D0D1F;
-      display: flex; align-items: center; justify-content: center;
-      border-bottom: 1px solid var(--border); font-size: 13px; color: var(--muted);
+    .speaker-card:hover { border-color: var(--border-hi); }
+    .speaker-card.featured {
+      grid-column: span 2;
+      display: flex; flex-direction: row;
+    }
+    @media(max-width:700px) { .speaker-card.featured { grid-column: span 2; flex-direction: column; } }
+
+    .speaker-photo {
+      width: 100%; aspect-ratio: 1;
+      background: linear-gradient(135deg, rgba(124,58,237,0.3) 0%, rgba(16,16,30,0.8) 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
       position: relative; overflow: hidden;
     }
-    .location-map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-    .location-info { padding: 16px 18px; }
-    .location-name { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
-    .location-addr { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .speaker-card.featured .speaker-photo { width: 220px; min-height: 220px; flex-shrink: 0; aspect-ratio: unset; }
+    @media(max-width:700px) { .speaker-card.featured .speaker-photo { width: 100%; min-height: 180px; } }
 
-    /* ── URGENCY ──────────────────────────── */
-    .urgency-block {
-      background: rgba(239,68,68,0.08);
-      border: 1px solid rgba(239,68,68,0.25);
-      border-radius: 16px; padding: 18px;
-      text-align: center; margin-bottom: 28px;
-      font-size: 14px; color: var(--muted); line-height: 1.5;
+    .speaker-photo-initials {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: rgba(124,58,237,0.5); border: 2px solid rgba(168,85,247,0.4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; font-weight: 800; color: var(--purple-3);
+      margin-bottom: 8px;
     }
-    .urgency-block strong { color: var(--red); }
+    .speaker-photo-hint { font-size: 10px; color: rgba(255,255,255,0.2); letter-spacing: 1px; text-transform: uppercase; }
+
+    .speaker-info { padding: 18px 16px; }
+    .speaker-card.featured .speaker-info { padding: 24px; display: flex; flex-direction: column; justify-content: center; }
+    .speaker-name { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
+    .speaker-card.featured .speaker-name { font-size: 22px; letter-spacing: -.5px; }
+    .speaker-role { font-size: 12px; color: var(--purple-3); font-weight: 600; margin-bottom: 8px; }
+    .speaker-bio { font-size: 13px; color: var(--muted); line-height: 1.5; display: none; }
+    .speaker-card.featured .speaker-bio { display: block; }
+    .speaker-tag {
+      display: inline-block; margin-top: 12px;
+      font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase;
+      background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.3);
+      color: var(--purple-3); border-radius: 100px; padding: 4px 10px;
+    }
+
+    .speaker-coming {
+      display: flex; align-items: center; justify-content: center;
+      aspect-ratio: 1; background: var(--card); border: 1px dashed var(--border);
+      border-radius: 20px; flex-direction: column; gap: 6px;
+    }
+    .speaker-coming-icon { font-size: 24px; opacity: .4; }
+    .speaker-coming-text { font-size: 11px; color: var(--muted-2); font-weight: 600; letter-spacing: .5px; }
+
+    /* ── TICKETS ──────────────────────────── */
+    .tickets-section { background: var(--surface); }
+    .tickets-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px; align-items: start;
+    }
+    @media(max-width:860px) { .tickets-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; } }
+
+    .ticket {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 24px; padding: 32px 28px;
+      position: relative; overflow: hidden;
+      transition: transform .15s;
+    }
+    .ticket:hover { transform: translateY(-3px); }
+    .ticket.popular {
+      border-color: rgba(239,68,68,0.5);
+      background: linear-gradient(180deg, #120A0A 0%, var(--card) 100%);
+    }
+    .ticket.vip {
+      border-color: rgba(245,158,11,0.5);
+      background: linear-gradient(180deg, #110D00 0%, var(--card) 100%);
+    }
+    .ticket-glow {
+      position: absolute; top: -80px; right: -80px;
+      width: 200px; height: 200px; border-radius: 50%;
+      pointer-events: none; filter: blur(60px); opacity: .5;
+    }
+    .popular .ticket-glow { background: rgba(239,68,68,0.35); }
+    .vip     .ticket-glow { background: rgba(245,158,11,0.35); }
+
+    .ticket-tag {
+      display: inline-block; margin-bottom: 20px;
+      font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
+      border-radius: 100px; padding: 4px 12px;
+    }
+    .ticket:not(.popular):not(.vip) .ticket-tag { background: rgba(99,102,241,0.15); color: #818CF8; border: 1px solid rgba(99,102,241,0.3); }
+    .popular .ticket-tag { background: rgba(239,68,68,0.15); color: #F87171; border: 1px solid rgba(239,68,68,0.3); }
+    .vip     .ticket-tag { background: rgba(245,158,11,0.15); color: #FCD34D; border: 1px solid rgba(245,158,11,0.3); }
+
+    .ticket-name { font-size: 20px; font-weight: 800; margin-bottom: 6px; }
+    .ticket-price-row { display: flex; align-items: flex-end; gap: 6px; margin-bottom: 24px; }
+    .ticket-price { font-size: 44px; font-weight: 900; letter-spacing: -2px; line-height: 1; }
+    .ticket:not(.popular):not(.vip) .ticket-price { color: #818CF8; }
+    .popular .ticket-price { color: var(--red); }
+    .vip     .ticket-price { color: var(--gold); }
+    .ticket-currency { font-size: 14px; font-weight: 700; color: var(--muted); padding-bottom: 8px; }
+
+    .ticket-divider { border: none; border-top: 1px solid var(--border); margin: 0 0 20px; }
+    .ticket-perks { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+    .ticket-perks li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.45;
+    }
+    .perk-check {
+      width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0; margin-top: 1px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 800;
+    }
+    .ticket:not(.popular):not(.vip) .perk-check { background: rgba(99,102,241,0.2); color: #818CF8; }
+    .popular .perk-check { background: rgba(239,68,68,0.2); color: #F87171; }
+    .vip     .perk-check { background: rgba(245,158,11,0.2); color: #FCD34D; }
+
+    .ticket-cupo {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2);
+      border-radius: 10px; padding: 10px 14px;
+      font-size: 12px; font-weight: 600; color: #FCD34D;
+      margin-bottom: 20px;
+    }
+
+    .btn-buy {
+      display: block; width: 100%; text-align: center;
+      font-size: 15px; font-weight: 700; padding: 15px;
+      border-radius: 14px; text-decoration: none; border: none; cursor: pointer;
+      transition: opacity .15s, transform .1s;
+    }
+    .btn-buy:active { transform: scale(.98); }
+    .ticket:not(.popular):not(.vip) .btn-buy { background: linear-gradient(135deg,#6366F1,#4F46E5); color: #fff; }
+    .popular .btn-buy { background: linear-gradient(135deg,#EF4444,#DC2626); color: #fff; }
+    .vip     .btn-buy { background: linear-gradient(135deg,#F59E0B,#D97706); color: #000; font-weight: 800; }
+
+    /* ── AGENDA ───────────────────────────── */
+    .agenda-layout {
+      display: grid; grid-template-columns: 260px 1fr; gap: 48px; align-items: start;
+    }
+    @media(max-width:760px) { .agenda-layout { grid-template-columns: 1fr; gap: 32px; } }
+
+    .agenda-sidebar {
+      position: sticky; top: 80px;
+    }
+    @media(max-width:760px) { .agenda-sidebar { position: static; } }
+
+    .agenda-side-title { font-size: 22px; font-weight: 800; letter-spacing: -.5px; margin-bottom: 8px; }
+    .agenda-side-sub { font-size: 14px; color: var(--muted); line-height: 1.55; margin-bottom: 24px; }
+    .agenda-meta { display: flex; flex-direction: column; gap: 10px; }
+    .agenda-meta-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px; color: var(--muted);
+    }
+    .agenda-meta-icon { font-size: 16px; width: 20px; text-align: center; }
+
+    .agenda-timeline { display: flex; flex-direction: column; gap: 0; }
+    .agenda-item {
+      display: flex; gap: 20px; padding: 20px 0;
+      border-bottom: 1px solid var(--border); position: relative;
+    }
+    .agenda-item:first-child { padding-top: 0; }
+    .agenda-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .agenda-time-col { width: 78px; flex-shrink: 0; padding-top: 2px; }
+    .agenda-time { font-size: 12px; font-weight: 700; color: var(--purple-3); white-space: nowrap; }
+    .agenda-duration { font-size: 11px; color: var(--muted-2); margin-top: 2px; }
+
+    .agenda-dot-line {
+      display: flex; flex-direction: column; align-items: center; flex-shrink: 0;
+    }
+    .agenda-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--purple); border: 2px solid var(--purple-3);
+      box-shadow: 0 0 10px rgba(168,85,247,0.5);
+      flex-shrink: 0; margin-top: 4px;
+    }
+    .agenda-item.special .agenda-dot { background: var(--gold); border-color: #FCD34D; box-shadow: 0 0 10px rgba(245,158,11,0.5); }
+    .agenda-item.break .agenda-dot   { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.2); box-shadow: none; }
+
+    .agenda-line { flex: 1; width: 1px; background: var(--border); margin: 4px 0; }
+    .agenda-item:last-child .agenda-line { display: none; }
+
+    .agenda-body { flex: 1; padding-top: 2px; }
+    .agenda-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .agenda-item.special .agenda-title { color: #FCD34D; }
+    .agenda-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .agenda-badge {
+      display: inline-block; margin-top: 8px;
+      font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase;
+      border-radius: 100px; padding: 3px 10px;
+    }
+    .badge-vip  { background: rgba(245,158,11,0.1); color: #FCD34D; border: 1px solid rgba(245,158,11,0.25); }
+    .badge-talk { background: rgba(124,58,237,0.1); color: var(--purple-3); border: 1px solid rgba(124,58,237,0.25); }
+    .badge-break{ background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--border); }
+
+    /* ── VENUE ────────────────────────────── */
+    .venue-layout {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start;
+    }
+    @media(max-width:760px) { .venue-layout { grid-template-columns: 1fr; } }
+
+    .venue-photo {
+      border-radius: 20px; overflow: hidden; aspect-ratio: 4/3;
+      background: linear-gradient(135deg, rgba(124,58,237,0.2) 0%, rgba(6,6,14,0.9) 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      border: 1px solid var(--border); gap: 8px;
+    }
+    .venue-photo-icon { font-size: 40px; opacity: .4; }
+    .venue-photo-hint { font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 1px; text-transform: uppercase; }
+
+    .venue-map {
+      border-radius: 20px; overflow: hidden; aspect-ratio: 4/3; border: 1px solid var(--border);
+    }
+    .venue-map iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+    .venue-details { display: flex; flex-direction: column; gap: 16px; }
+    .venue-name { font-size: 26px; font-weight: 800; letter-spacing: -.5px; margin-bottom: 4px; }
+    .venue-address { font-size: 15px; color: var(--muted); line-height: 1.55; }
+
+    .venue-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .venue-chip {
+      display: flex; align-items: center; gap: 6px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 8px 14px;
+      font-size: 13px; color: rgba(255,255,255,0.8); font-weight: 500;
+    }
+
+    /* ── SOCIAL PROOF ─────────────────────── */
+    .proof-section { background: var(--surface); }
+    .proof-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    }
+    @media(max-width:700px) { .proof-grid { grid-template-columns: 1fr; } }
+
+    .proof-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 24px;
+    }
+    .proof-stars { color: #F59E0B; font-size: 14px; letter-spacing: 2px; margin-bottom: 12px; }
+    .proof-quote { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 16px; font-style: italic; }
+    .proof-author { display: flex; align-items: center; gap: 10px; }
+    .proof-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--purple-2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 800; color: #fff;
+      flex-shrink: 0;
+    }
+    .proof-name { font-size: 13px; font-weight: 700; }
+    .proof-role { font-size: 11px; color: var(--muted); }
+
+    /* ── FAQ ──────────────────────────────── */
+    .faq-list { display: flex; flex-direction: column; gap: 0; max-width: 720px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      padding: 20px 0; font-family: inherit;
+      font-size: 15px; font-weight: 600; color: #fff; text-align: left;
+      transition: color .15s;
+    }
+    .faq-q:hover { color: var(--purple-3); }
+    .faq-icon { font-size: 20px; color: var(--muted); flex-shrink: 0; transition: transform .2s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--purple-3); }
+    .faq-a {
+      font-size: 14px; color: var(--muted); line-height: 1.65;
+      max-height: 0; overflow: hidden; transition: max-height .3s ease, padding .3s;
+    }
+    .faq-item.open .faq-a { max-height: 400px; padding-bottom: 18px; }
+
+    /* ── FINAL CTA ────────────────────────── */
+    .final-cta {
+      text-align: center; padding: 80px 24px;
+      background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(124,58,237,0.2) 0%, transparent 70%);
+    }
+    .final-cta h2 { font-size: clamp(26px,5vw,46px); font-weight: 900; letter-spacing: -1.5px; margin-bottom: 12px; }
+    .final-cta p  { font-size: 16px; color: var(--muted); margin-bottom: 32px; }
+    .final-cta-btns { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+
+    /* ── FOOTER ───────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .footer-inner { max-width: 1140px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+    .footer-copy { font-size: 13px; color: var(--muted-2); }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; }
 
     /* ── FLOATING WA ──────────────────────── */
-    .btn-wa-float {
-      position: fixed; bottom: 20px; right: 20px;
+    .wa-float {
+      position: fixed; bottom: 24px; right: 24px; z-index: 200;
       width: 56px; height: 56px; border-radius: 50%;
       background: linear-gradient(135deg,#25D366,#1AAB54);
       display: flex; align-items: center; justify-content: center;
-      text-decoration: none; z-index: 999;
-      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      text-decoration: none;
+      box-shadow: 0 4px 24px rgba(37,211,102,0.4);
+      transition: transform .15s;
     }
-    .btn-wa-float svg { width: 28px; height: 28px; fill: #fff; }
+    .wa-float:hover { transform: scale(1.08); }
+    .wa-float svg { width: 28px; height: 28px; fill: #fff; }
   </style>
 </head>
 <body>
 
-<div class="wrap">
-
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-badge"><span></span> Evento Presencial · Medellín</div>
-    <h1>El Siguiente Nivel<br/><em>en vivo</em></h1>
-    <p class="hero-sub">Un día completo junto a Laura, Santiago y los mejores vendedores del Método Unicornio. Solo una vez. Solo en Medellín.</p>
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">
+      <div class="nav-logo-dot">🦄</div>
+      El Siguiente Nivel
+    </a>
+    <ul class="nav-links">
+      <li><a href="#experiencia">Experiencia</a></li>
+      <li><a href="#speakers">Speakers</a></li>
+      <li><a href="#tickets">Entradas</a></li>
+      <li><a href="#agenda">Agenda</a></li>
+      <li><a href="#lugar">Lugar</a></li>
+    </ul>
+    <a href="#tickets" class="nav-cta" onclick="try{fbq('track','ViewContent')}catch(e){}">Ver entradas →</a>
   </div>
+</nav>
 
-  <!-- COUNTDOWN -->
-  <div class="cd-block">
-    <div class="cd-label">Faltan para el evento</div>
-    <div class="cd-nums">
-      <div class="cd-unit"><span class="cd-num" id="cd-d">00</span><span class="cd-tag">Días</span></div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-img-placeholder"><span class="img-label">Foto del evento</span></div>
+
+  <div class="hero-inner">
+    <div class="hero-date-badge">
+      <span></span>
+      Sábado 28 de Junio · Medellín, Colombia
+    </div>
+    <h1>El Siguiente<br/>Nivel <span class="accent">en vivo</span></h1>
+    <p class="hero-tagline">Un día completo con los mejores vendedores del Método Unicornio. Charlas, networking, premios y la cena que no olvidarás.</p>
+
+    <div class="hero-actions">
+      <a href="#tickets" class="btn-primary">Reservar mi lugar →</a>
+      <a href="#agenda"  class="btn-secondary">Ver agenda</a>
+    </div>
+
+    <div class="countdown-row">
+      <div class="cd-unit"><span class="cd-num" id="cd-d">00</span><span class="cd-label">Días</span></div>
       <div class="cd-sep">:</div>
-      <div class="cd-unit"><span class="cd-num" id="cd-h">00</span><span class="cd-tag">Horas</span></div>
+      <div class="cd-unit"><span class="cd-num" id="cd-h">00</span><span class="cd-label">Horas</span></div>
       <div class="cd-sep">:</div>
-      <div class="cd-unit"><span class="cd-num" id="cd-m">00</span><span class="cd-tag">Min</span></div>
+      <div class="cd-unit"><span class="cd-num" id="cd-m">00</span><span class="cd-label">Min</span></div>
       <div class="cd-sep">:</div>
-      <div class="cd-unit"><span class="cd-num" id="cd-s">00</span><span class="cd-tag">Seg</span></div>
+      <div class="cd-unit"><span class="cd-num" id="cd-s">00</span><span class="cd-label">Seg</span></div>
     </div>
   </div>
+</section>
 
-  <!-- INFO -->
-  <div class="info-bar">
-    <div class="info-item">
-      <div class="info-icon">📅</div>
-      <div class="info-text">
-        <span class="info-title">Sábado 28 de Junio, 2026</span>
-        <span class="info-desc">Evento público: 11:30 AM — 5:00 PM<br/>Evento privado presencial: 10:00 AM — 10:30 AM</span>
-      </div>
-    </div>
-    <div class="info-item">
-      <div class="info-icon">📍</div>
-      <div class="info-text">
-        <span class="info-title">Iglesia AVIVA · Envigado</span>
-        <span class="info-desc">Cra 43A #49 B sur 45, Local 102 · Envigado, Antioquia</span>
-      </div>
-    </div>
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat"><span class="stat-num">4</span><span class="stat-label">Charlas en vivo</span></div>
+    <div class="stat"><span class="stat-num">20</span><span class="stat-label">Cupos VIP</span></div>
+    <div class="stat"><span class="stat-num">+73</span><span class="stat-label">Ventas en el lanzamiento</span></div>
+    <div class="stat"><span class="stat-num">1</span><span class="stat-label">Solo un día</span></div>
   </div>
+</div>
 
-  <!-- SPEAKERS -->
-  <p class="section-title">Anfitriones</p>
-  <div class="speakers">
-    <div class="speaker-card">
-      <div class="speaker-avatar">L</div>
-      <div class="speaker-name">Laura Zabala</div>
-      <div class="speaker-role">El Siguiente Nivel</div>
+<!-- EXPERIENCIA -->
+<section class="section" id="experiencia">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-eyebrow">¿Qué vas a vivir?</div>
+      <h2 class="section-title">Un evento que cambia cómo vendes</h2>
+      <p class="section-sub">No es una clase. Es una experiencia que solo ocurre una vez.</p>
     </div>
-    <div class="speaker-card">
-      <div class="speaker-avatar">S</div>
-      <div class="speaker-name">Santiago Leal</div>
-      <div class="speaker-role">El Siguiente Nivel</div>
-    </div>
-  </div>
-
-  <!-- TICKETS -->
-  <p class="section-title">Elige tu entrada</p>
-  <div class="tickets">
-
-    <!-- ALUMNI -->
-    <div class="ticket-card alumni">
-      <span class="ticket-badge">Alumnos</span>
-      <div class="ticket-name">Entrada Alumni</div>
-      <div class="ticket-price">$20 USD</div>
-      <ul class="ticket-perks">
-        <li>Acceso completo al evento (11:30 AM – 5 PM)</li>
-        <li>4 charlas con speakers invitados</li>
-        <li>Espacio de almuerzo en Mayorca</li>
-        <li>Entrega de premios de ventas</li>
-        <li>Solo para alumnos activos del Método Unicornio</li>
-      </ul>
-      <a href="https://wa.link/mf0uw5" target="_blank" class="btn-ticket"
-         onclick="try{fbq('track','InitiateCheckout',{content_name:'Alumni',value:20,currency:'USD'})}catch(e){}">
-        Reservar mi lugar →
-      </a>
-    </div>
-
-    <!-- NORMAL -->
-    <div class="ticket-card normal">
-      <span class="ticket-badge">Entrada General</span>
-      <div class="ticket-name">Entrada Normal</div>
-      <div class="ticket-price">$30 USD</div>
-      <ul class="ticket-perks">
-        <li>Acceso completo al evento (11:30 AM – 5 PM)</li>
-        <li>4 charlas con speakers invitados</li>
-        <li>Espacio de almuerzo en Mayorca</li>
-        <li>Entrega de premios de ventas</li>
-      </ul>
-      <a href="https://wa.link/mf0uw5" target="_blank" class="btn-ticket"
-         onclick="try{fbq('track','InitiateCheckout',{content_name:'Normal',value:30,currency:'USD'})}catch(e){}">
-        Reservar mi lugar →
-      </a>
-    </div>
-
-    <!-- VIP -->
-    <div class="ticket-card vip">
-      <span class="ticket-badge">⭐ VIP Exclusivo</span>
-      <div class="ticket-name">Entrada VIP</div>
-      <div class="ticket-price">$500 USD</div>
-      <div class="vip-cupo">🔒 Solo 20 cupos disponibles</div>
-      <ul class="ticket-perks">
-        <li>Asientos primera y segunda fila (vista privilegiada)</li>
-        <li>Cena especial noche del sábado 28 con todo el equipo, Laura y Santiago</li>
-        <li>Merch exclusivo El Siguiente Nivel</li>
-        <li>Evento privado presencial 10 AM – 10:30 AM (solo VIP)</li>
-        <li>+2 meses extra de Aurapesca incluidos</li>
-        <li>Todo lo incluido en entrada general</li>
-      </ul>
-      <a href="https://wa.link/mf0uw5" target="_blank" class="btn-ticket"
-         onclick="try{fbq('track','InitiateCheckout',{content_name:'VIP',value:500,currency:'USD'})}catch(e){}">
-        Quiero el VIP →
-      </a>
-    </div>
-
-  </div>
-
-  <!-- AGENDA -->
-  <p class="section-title">Agenda del día</p>
-  <div class="agenda">
-    <div class="agenda-list">
-      <div class="agenda-item">
-        <div class="agenda-time">10:00 AM</div>
-        <div class="agenda-content">
-          <div class="agenda-name">🔒 Evento Privado VIP</div>
-          <div class="agenda-detail">Solo asistentes VIP · Acceso exclusivo 10:00 – 10:30 AM</div>
-        </div>
+    <div class="experience-grid">
+      <div class="exp-card">
+        <div class="exp-icon">🎤</div>
+        <div class="exp-title">Charlas de alto impacto</div>
+        <div class="exp-desc">4 sesiones con speakers curados por Laura y Santiago. Estrategias reales, sin relleno.</div>
       </div>
-      <div class="agenda-item">
-        <div class="agenda-time">11:30 AM</div>
-        <div class="agenda-content">
-          <div class="agenda-name">Bienvenida e Introducción</div>
-          <div class="agenda-detail">Laura Zabala & Santiago Leal dan la bienvenida al equipo</div>
-        </div>
+      <div class="exp-card">
+        <div class="exp-icon">🤝</div>
+        <div class="exp-title">Networking real</div>
+        <div class="exp-desc">Almuerzo en Mayorca con el equipo. Las conexiones que haces aquí valen más que el ticket.</div>
       </div>
-      <div class="agenda-item">
-        <div class="agenda-time">12:00 PM</div>
-        <div class="agenda-content">
-          <div class="agenda-name">Charla Hotmart</div>
-          <div class="agenda-detail">30 min · Estrategias y herramientas para escalar tus ventas</div>
-        </div>
+      <div class="exp-card">
+        <div class="exp-icon">🏆</div>
+        <div class="exp-title">Entrega de premios</div>
+        <div class="exp-desc">Reconocemos en público a los mejores vendedores del Método Unicornio del lanzamiento.</div>
       </div>
-      <div class="agenda-item">
-        <div class="agenda-time">12:30 PM</div>
-        <div class="agenda-content">
-          <div class="agenda-name">Charla Invitado #1</div>
-          <div class="agenda-detail">30 min · Speaker invitado por @Santiago Leal y @Laura Zabala</div>
-        </div>
+      <div class="exp-card">
+        <div class="exp-icon">🍽️</div>
+        <div class="exp-title">Cena VIP exclusiva</div>
+        <div class="exp-desc">Solo 20 personas. Cena especial junto a Laura, Santiago y todo el equipo el mismo sábado 28.</div>
       </div>
-      <div class="agenda-item">
-        <div class="agenda-time">1:00 PM</div>
-        <div class="agenda-content">
-          <div class="agenda-name">🍽️ Almuerzo</div>
-          <div class="agenda-detail">40 min · Centro Comercial Mayorca · Espacio libre para networking</div>
-        </div>
+      <div class="exp-card">
+        <div class="exp-icon">🎁</div>
+        <div class="exp-title">Merch exclusivo</div>
+        <div class="exp-desc">Para los VIP: merch del Método Unicornio que no se consigue en ningún otro lado.</div>
       </div>
-      <div class="agenda-item">
-        <div class="agenda-time">1:40 PM</div>
-        <div class="agenda-content">
-          <div class="agenda-name">Charla Invitado #2</div>
-          <div class="agenda-detail">30 min · Speaker invitado por @Santiago Leal y @Laura Zabala</div>
-        </div>
-      </div>
-      <div class="agenda-item">
-        <div class="agenda-time">2:10 PM</div>
-        <div class="agenda-content">
-          <div class="agenda-name">Charla Invitado #3</div>
-          <div class="agenda-detail">30 min · Speaker invitado por @Santiago Leal y @Laura Zabala</div>
-        </div>
-      </div>
-      <div class="agenda-item">
-        <div class="agenda-time">2:40 PM</div>
-        <div class="agenda-content">
-          <div class="agenda-name">🏆 Cierre · Entrega de Premios</div>
-          <div class="agenda-detail">30 min · Reconocimiento a los mejores vendedores del Método Unicornio</div>
-        </div>
+      <div class="exp-card">
+        <div class="exp-icon">🔒</div>
+        <div class="exp-title">Sesión privada VIP</div>
+        <div class="exp-desc">10:00 AM — solo para VIP. 30 minutos antes que todos, con acceso exclusivo al equipo.</div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- LOCATION -->
-  <p class="section-title">Ubicación</p>
-  <div class="location-card">
-    <div class="location-map">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966!2d-75.5798!3d6.1848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMTEnMDUuMyJOIDc1wrAzNCc0Ny4yIlc!5e0!3m2!1ses!2sco!4v1"
-        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
+<!-- SPEAKERS -->
+<section class="section" id="speakers" style="background:var(--surface);padding-top:80px;padding-bottom:80px;">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Speakers</div>
+      <h2 class="section-title">Quiénes están en el escenario</h2>
+      <p class="section-sub">Los anfitriones y speakers confirmados. Más nombres próximamente.</p>
     </div>
-    <div class="location-info">
-      <div class="location-name">Iglesia AVIVA</div>
-      <div class="location-addr">Cra 43A #49 B sur 45, Local 102<br/>Envigado, Antioquia · Colombia</div>
+    <div class="speakers-grid">
+
+      <!-- FEATURED: Laura -->
+      <div class="speaker-card featured">
+        <div class="speaker-photo" style="background:linear-gradient(135deg,rgba(168,85,247,0.35) 0%,rgba(16,16,30,0.9) 100%)">
+          <div class="speaker-photo-initials">L</div>
+          <div class="speaker-photo-hint">Foto Laura</div>
+        </div>
+        <div class="speaker-info">
+          <div class="speaker-role">Anfitriona · El Siguiente Nivel</div>
+          <div class="speaker-name">Laura Zabala</div>
+          <div class="speaker-bio">Co-fundadora de El Siguiente Nivel y líder del Método Unicornio. Ha ayudado a miles de personas a vender en digital sin mostrar su rostro y sin experiencia previa.</div>
+          <span class="speaker-tag">Anfitriona</span>
+        </div>
+      </div>
+
+      <!-- FEATURED: Santiago -->
+      <div class="speaker-card featured">
+        <div class="speaker-photo" style="background:linear-gradient(135deg,rgba(99,102,241,0.35) 0%,rgba(16,16,30,0.9) 100%)">
+          <div class="speaker-photo-initials">S</div>
+          <div class="speaker-photo-hint">Foto Santiago</div>
+        </div>
+        <div class="speaker-info">
+          <div class="speaker-role">Anfitrión · El Siguiente Nivel</div>
+          <div class="speaker-name">Santiago Leal</div>
+          <div class="speaker-bio">Co-fundador de El Siguiente Nivel. Construyó uno de los equipos de ventas de infoproductos más grandes de LATAM usando el Método Unicornio.</div>
+          <span class="speaker-tag">Anfitrión</span>
+        </div>
+      </div>
+
+      <!-- Speaker invitado 1 -->
+      <div class="speaker-card">
+        <div class="speaker-photo">
+          <div class="speaker-photo-initials" style="font-size:18px;width:50px;height:50px;">🎤</div>
+          <div class="speaker-photo-hint">Foto speaker</div>
+        </div>
+        <div class="speaker-info">
+          <div class="speaker-role">Hotmart</div>
+          <div class="speaker-name">Speaker Hotmart</div>
+          <span class="speaker-tag">Confirmado</span>
+        </div>
+      </div>
+
+      <!-- Speaker invitado 2 -->
+      <div class="speaker-card">
+        <div class="speaker-photo">
+          <div class="speaker-photo-initials" style="font-size:18px;width:50px;height:50px;">🎤</div>
+          <div class="speaker-photo-hint">Foto speaker</div>
+        </div>
+        <div class="speaker-info">
+          <div class="speaker-role">Invitado especial</div>
+          <div class="speaker-name">Por revelar</div>
+          <span class="speaker-tag">Próximamente</span>
+        </div>
+      </div>
+
+      <!-- Coming soon x2 -->
+      <div class="speaker-coming">
+        <div class="speaker-coming-icon">🔒</div>
+        <div class="speaker-coming-text">Próximamente</div>
+      </div>
+      <div class="speaker-coming">
+        <div class="speaker-coming-icon">🔒</div>
+        <div class="speaker-coming-text">Próximamente</div>
+      </div>
+
     </div>
   </div>
+</section>
 
-  <!-- URGENCY -->
-  <div class="urgency-block">
-    <strong>Los cupos VIP son solo 20.</strong> Una vez que se llenen, no hay más disponibilidad. El evento es el <strong>28 de junio</strong> — las entradas no se transfieren ni reembolsan.
+<!-- TICKETS -->
+<section class="section tickets-section" id="tickets">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-eyebrow">Entradas</div>
+      <h2 class="section-title">Elige cómo quieres vivirlo</h2>
+      <p class="section-sub">Plazas limitadas. El VIP tiene solo 20 cupos.</p>
+    </div>
+    <div class="tickets-grid">
+
+      <!-- ALUMNI -->
+      <div class="ticket">
+        <div class="ticket-glow"></div>
+        <div class="ticket-tag">Alumnos</div>
+        <div class="ticket-name">Entrada Alumni</div>
+        <div class="ticket-price-row">
+          <span class="ticket-price">$20</span>
+          <span class="ticket-currency">USD</span>
+        </div>
+        <hr class="ticket-divider"/>
+        <ul class="ticket-perks">
+          <li><span class="perk-check">✓</span>Acceso completo al evento (11:30 AM)</li>
+          <li><span class="perk-check">✓</span>4 charlas con speakers de alto nivel</li>
+          <li><span class="perk-check">✓</span>Espacio de almuerzo en C.C. Mayorca</li>
+          <li><span class="perk-check">✓</span>Ceremonia de entrega de premios</li>
+          <li><span class="perk-check">✓</span>Exclusivo para alumnos activos del Método Unicornio</li>
+        </ul>
+        <a href="https://wa.link/mf0uw5" target="_blank" class="btn-buy"
+           onclick="try{fbq('track','InitiateCheckout',{content_name:'Alumni',value:20,currency:'USD'})}catch(e){}">
+          Reservar Alumni →
+        </a>
+      </div>
+
+      <!-- NORMAL -->
+      <div class="ticket popular">
+        <div class="ticket-glow"></div>
+        <div class="ticket-tag">Entrada General</div>
+        <div class="ticket-name">Entrada Normal</div>
+        <div class="ticket-price-row">
+          <span class="ticket-price">$30</span>
+          <span class="ticket-currency">USD</span>
+        </div>
+        <hr class="ticket-divider"/>
+        <ul class="ticket-perks">
+          <li><span class="perk-check">✓</span>Acceso completo al evento (11:30 AM)</li>
+          <li><span class="perk-check">✓</span>4 charlas con speakers de alto nivel</li>
+          <li><span class="perk-check">✓</span>Espacio de almuerzo en C.C. Mayorca</li>
+          <li><span class="perk-check">✓</span>Ceremonia de entrega de premios</li>
+          <li><span class="perk-check">✓</span>Abierto al público general</li>
+        </ul>
+        <a href="https://wa.link/mf0uw5" target="_blank" class="btn-buy"
+           onclick="try{fbq('track','InitiateCheckout',{content_name:'Normal',value:30,currency:'USD'})}catch(e){}">
+          Reservar entrada →
+        </a>
+      </div>
+
+      <!-- VIP -->
+      <div class="ticket vip">
+        <div class="ticket-glow"></div>
+        <div class="ticket-tag">⭐ VIP Exclusivo</div>
+        <div class="ticket-name">Entrada VIP</div>
+        <div class="ticket-price-row">
+          <span class="ticket-price">$500</span>
+          <span class="ticket-currency">USD</span>
+        </div>
+        <div class="ticket-cupo">🔒 Solo 20 cupos disponibles</div>
+        <ul class="ticket-perks">
+          <li><span class="perk-check">✓</span>Sesión privada exclusiva 10:00 – 10:30 AM</li>
+          <li><span class="perk-check">✓</span>Primera y segunda fila aseguradas</li>
+          <li><span class="perk-check">✓</span>Cena especial noche del sábado con Laura, Santiago y el equipo</li>
+          <li><span class="perk-check">✓</span>Merch exclusivo El Siguiente Nivel</li>
+          <li><span class="perk-check">✓</span>+2 meses extra de Aurapesca incluidos</li>
+          <li><span class="perk-check">✓</span>Todo lo de la entrada general</li>
+        </ul>
+        <a href="https://wa.link/mf0uw5" target="_blank" class="btn-buy"
+           onclick="try{fbq('track','InitiateCheckout',{content_name:'VIP',value:500,currency:'USD'})}catch(e){}">
+          Quiero el VIP →
+        </a>
+      </div>
+
+    </div>
   </div>
+</section>
 
-</div><!-- /wrap -->
+<!-- AGENDA -->
+<section class="section" id="agenda">
+  <div class="container">
+    <div class="agenda-layout">
+      <div class="agenda-sidebar">
+        <div class="section-eyebrow">Agenda</div>
+        <div class="agenda-side-title">Sábado 28 de Junio</div>
+        <div class="agenda-side-sub">Un día completo diseñado para que salgas con claridad, conexiones y energía para vender.</div>
+        <div class="agenda-meta">
+          <div class="agenda-meta-item"><span class="agenda-meta-icon">📍</span>Iglesia AVIVA · Envigado</div>
+          <div class="agenda-meta-item"><span class="agenda-meta-icon">⏰</span>Puertas: 11:30 AM</div>
+          <div class="agenda-meta-item"><span class="agenda-meta-icon">🔒</span>VIP desde 10:00 AM</div>
+          <div class="agenda-meta-item"><span class="agenda-meta-icon">🎤</span>Presentador por confirmar</div>
+        </div>
+      </div>
+
+      <div class="agenda-timeline">
+
+        <div class="agenda-item special">
+          <div class="agenda-time-col">
+            <div class="agenda-time">10:00 AM</div>
+            <div class="agenda-duration">30 min</div>
+          </div>
+          <div class="agenda-dot-line">
+            <div class="agenda-dot"></div>
+            <div class="agenda-line"></div>
+          </div>
+          <div class="agenda-body">
+            <div class="agenda-title">🔒 Evento Privado VIP</div>
+            <div class="agenda-desc">Sesión exclusiva para asistentes VIP antes de abrir puertas al público general.</div>
+            <span class="agenda-badge badge-vip">Solo VIP</span>
+          </div>
+        </div>
+
+        <div class="agenda-item">
+          <div class="agenda-time-col">
+            <div class="agenda-time">11:30 AM</div>
+            <div class="agenda-duration">30 min</div>
+          </div>
+          <div class="agenda-dot-line">
+            <div class="agenda-dot"></div>
+            <div class="agenda-line"></div>
+          </div>
+          <div class="agenda-body">
+            <div class="agenda-title">Bienvenida e Introducción</div>
+            <div class="agenda-desc">Laura Zabala & Santiago Leal abren el evento y ponen el tono del día.</div>
+            <span class="agenda-badge badge-talk">Apertura</span>
+          </div>
+        </div>
+
+        <div class="agenda-item">
+          <div class="agenda-time-col">
+            <div class="agenda-time">12:00 PM</div>
+            <div class="agenda-duration">30 min</div>
+          </div>
+          <div class="agenda-dot-line">
+            <div class="agenda-dot"></div>
+            <div class="agenda-line"></div>
+          </div>
+          <div class="agenda-body">
+            <div class="agenda-title">Charla Hotmart</div>
+            <div class="agenda-desc">Estrategias y herramientas actualizadas para escalar ventas de infoproductos en LATAM.</div>
+            <span class="agenda-badge badge-talk">Charla</span>
+          </div>
+        </div>
+
+        <div class="agenda-item">
+          <div class="agenda-time-col">
+            <div class="agenda-time">12:30 PM</div>
+            <div class="agenda-duration">30 min</div>
+          </div>
+          <div class="agenda-dot-line">
+            <div class="agenda-dot"></div>
+            <div class="agenda-line"></div>
+          </div>
+          <div class="agenda-body">
+            <div class="agenda-title">Charla Invitado #1</div>
+            <div class="agenda-desc">Speaker curado por @Santiago Leal y @Laura Zabala. Tema por revelar.</div>
+            <span class="agenda-badge badge-talk">Charla</span>
+          </div>
+        </div>
+
+        <div class="agenda-item break">
+          <div class="agenda-time-col">
+            <div class="agenda-time">1:00 PM</div>
+            <div class="agenda-duration">40 min</div>
+          </div>
+          <div class="agenda-dot-line">
+            <div class="agenda-dot"></div>
+            <div class="agenda-line"></div>
+          </div>
+          <div class="agenda-body">
+            <div class="agenda-title">🍽️ Almuerzo · Networking</div>
+            <div class="agenda-desc">Espacio libre en C.C. Mayorca. El mejor momento para conectar con el equipo.</div>
+            <span class="agenda-badge badge-break">Networking</span>
+          </div>
+        </div>
+
+        <div class="agenda-item">
+          <div class="agenda-time-col">
+            <div class="agenda-time">1:40 PM</div>
+            <div class="agenda-duration">30 min</div>
+          </div>
+          <div class="agenda-dot-line">
+            <div class="agenda-dot"></div>
+            <div class="agenda-line"></div>
+          </div>
+          <div class="agenda-body">
+            <div class="agenda-title">Charla Invitado #2</div>
+            <div class="agenda-desc">Speaker curado por @Santiago Leal y @Laura Zabala. Tema por revelar.</div>
+            <span class="agenda-badge badge-talk">Charla</span>
+          </div>
+        </div>
+
+        <div class="agenda-item">
+          <div class="agenda-time-col">
+            <div class="agenda-time">2:10 PM</div>
+            <div class="agenda-duration">30 min</div>
+          </div>
+          <div class="agenda-dot-line">
+            <div class="agenda-dot"></div>
+            <div class="agenda-line"></div>
+          </div>
+          <div class="agenda-body">
+            <div class="agenda-title">Charla Invitado #3</div>
+            <div class="agenda-desc">Speaker curado por @Santiago Leal y @Laura Zabala. Tema por revelar.</div>
+            <span class="agenda-badge badge-talk">Charla</span>
+          </div>
+        </div>
+
+        <div class="agenda-item special">
+          <div class="agenda-time-col">
+            <div class="agenda-time">2:40 PM</div>
+            <div class="agenda-duration">30 min</div>
+          </div>
+          <div class="agenda-dot-line">
+            <div class="agenda-dot"></div>
+            <div class="agenda-line"></div>
+          </div>
+          <div class="agenda-body">
+            <div class="agenda-title">🏆 Cierre · Entrega de Premios</div>
+            <div class="agenda-desc">Reconocimiento público a los mejores vendedores del Método Unicornio. El gran final del lanzamiento.</div>
+            <span class="agenda-badge badge-vip">Clausura</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VENUE -->
+<section class="section" id="lugar" style="background:var(--surface);">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Lugar del evento</div>
+      <h2 class="section-title">Iglesia AVIVA · Envigado</h2>
+      <p class="section-sub">Un espacio pensado para conectar, aprender y celebrar juntos.</p>
+    </div>
+    <div class="venue-layout">
+      <div>
+        <div class="venue-photo" style="margin-bottom:16px;">
+          <div class="venue-photo-icon">🏛️</div>
+          <div class="venue-photo-hint">Foto del lugar</div>
+        </div>
+        <div class="venue-photo" style="height:160px;aspect-ratio:unset;">
+          <div class="venue-photo-icon" style="font-size:28px;">📸</div>
+          <div class="venue-photo-hint">Foto adicional</div>
+        </div>
+      </div>
+      <div class="venue-details">
+        <div>
+          <div class="venue-name">Iglesia AVIVA</div>
+          <div class="venue-address">Cra 43A #49 B sur 45, Local 102<br/>Envigado, Antioquia · Colombia</div>
+          <div class="venue-chips" style="margin-bottom:24px;">
+            <span class="venue-chip">📅 Sábado 28 Jun</span>
+            <span class="venue-chip">⏰ Desde 11:30 AM</span>
+            <span class="venue-chip">🔒 VIP desde 10:00 AM</span>
+          </div>
+        </div>
+        <div class="venue-map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.1!2d-75.57980!3d6.18480!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4428e4d6e60ecf%3A0xa72a8d9b7e4ea0b7!2sCra.%2043a%20%2349b%20Sur%2045%2C%20Envigado%2C%20Antioquia!5e0!3m2!1ses!2sco!4v1718000000000"
+            allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="section proof-section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-eyebrow">Lo que dicen</div>
+      <h2 class="section-title">Alumnos del Método Unicornio</h2>
+    </div>
+    <div class="proof-grid">
+      <div class="proof-card">
+        <div class="proof-stars">★★★★★</div>
+        <div class="proof-quote">"Empecé sin experiencia en ventas y en el primer lanzamiento cerré 8 ventas. El Método Unicornio es real."</div>
+        <div class="proof-author">
+          <div class="proof-avatar">Y</div>
+          <div><div class="proof-name">Yudy</div><div class="proof-role">Alumni · 20 ventas en lanzamiento</div></div>
+        </div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-stars">★★★★★</div>
+        <div class="proof-quote">"Nunca pensé que podía vender desde mi celular sin mostrar mi rostro. Hoy es mi principal fuente de ingresos."</div>
+        <div class="proof-author">
+          <div class="proof-avatar">M</div>
+          <div><div class="proof-name">Mario</div><div class="proof-role">Alumni · 19 ventas en lanzamiento</div></div>
+        </div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-stars">★★★★★</div>
+        <div class="proof-quote">"El evento del año para quienes vendemos en digital. No me lo pierdo por nada del mundo."</div>
+        <div class="proof-author">
+          <div class="proof-avatar">F</div>
+          <div><div class="proof-name">Fredy</div><div class="proof-role">Alumni · 9 ventas en lanzamiento</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" style="background:var(--surface);">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-eyebrow">FAQ</div>
+      <h2 class="section-title">Preguntas frecuentes</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Qué incluye la entrada Alumni vs Normal?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">La entrada Alumni está disponible solo para alumnos activos del Método Unicornio y tiene un precio especial de $20 USD. La entrada Normal ($30 USD) está abierta al público general. Ambas incluyen acceso completo al evento, las charlas, almuerzo y ceremonia de premios.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Qué tiene de especial la entrada VIP?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">El VIP incluye: sesión privada de 30 min antes del evento (10 AM), asientos en primera o segunda fila, merch exclusivo, cena especial la noche del sábado 28 con Laura, Santiago y el equipo, y 2 meses adicionales de Aurapesca. Solo hay 20 cupos disponibles.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Cómo llego a Iglesia AVIVA?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Estamos en Cra 43A #49 B sur 45, Local 102, Envigado, Antioquia. Puedes llegar en Metro (estación Industriales + bus) o en Uber/InDrive directamente. Hay parqueadero disponible en el sector.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Se puede pagar en pesos colombianos?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Sí. El pago se procesa en USD pero puedes pagar con tarjeta colombiana o en efectivo coordinando directamente por WhatsApp. La tasa de cambio se aplica al momento del pago.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Hay reembolso si no puedo asistir?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Las entradas no son reembolsables, pero sí transferibles. Si no puedes asistir, puedes ceder tu entrada a otra persona notificándonos por WhatsApp con al menos 48 horas de anticipación.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Tengo que ser alumno del Método Unicornio para asistir?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">No. La entrada Normal ($30 USD) está abierta al público general. Solo la entrada Alumni requiere ser alumno activo. El VIP también está abierto a todos.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="final-cta">
+  <div class="section-eyebrow" style="display:block;text-align:center;margin-bottom:16px;">28 de Junio · Medellín</div>
+  <h2>¿Tu lugar está reservado?</h2>
+  <p>Los cupos VIP se agotan primero. No hay lista de espera.</p>
+  <div class="final-cta-btns">
+    <a href="#tickets" class="btn-primary">Ver entradas →</a>
+    <a href="https://wa.link/mf0uw5" target="_blank" class="btn-secondary"
+       onclick="try{fbq('track','Contact')}catch(e){}">
+      💬 Escribir por WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-copy">© 2026 El Siguiente Nivel · Medellín, Colombia</div>
+    <div class="footer-links">
+      <a href="https://wa.link/mf0uw5" target="_blank">WhatsApp</a>
+    </div>
+  </div>
+</footer>
 
 <!-- FLOATING WA -->
-<a href="https://wa.link/mf0uw5" target="_blank" class="btn-wa-float"
+<a href="https://wa.link/mf0uw5" target="_blank" class="wa-float"
    onclick="try{fbq('track','Contact')}catch(e){}">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.558 4.122 1.532 5.855L.057 23.882a.5.5 0 0 0 .611.611l6.058-1.47A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.217-1.443l-.374-.224-3.876.94.97-3.814-.247-.393A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
-  </svg>
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.558 4.122 1.532 5.855L.057 23.882a.5.5 0 0 0 .611.611l6.058-1.47A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.217-1.443l-.374-.224-3.876.94.97-3.814-.247-.393A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
 </a>
 
 <script>
-  // Countdown to June 28, 2026 at 11:30 AM Colombia (UTC-5 = 16:30 UTC)
+  // Countdown to Jun 28 2026 11:30 AM Colombia (UTC-5 = 16:30 UTC)
   const TARGET = new Date('2026-06-28T16:30:00Z');
-
-  function pad(n) { return String(n).padStart(2, '0'); }
-
+  const pad = n => String(n).padStart(2,'0');
   function tick() {
-    const diff = TARGET - new Date();
-    if (diff <= 0) {
-      document.getElementById('cd-d').textContent = '00';
-      document.getElementById('cd-h').textContent = '00';
-      document.getElementById('cd-m').textContent = '00';
-      document.getElementById('cd-s').textContent = '00';
-      return;
-    }
-    const d = Math.floor(diff / 86400000);
-    const h = Math.floor((diff % 86400000) / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-    document.getElementById('cd-d').textContent = pad(d);
-    document.getElementById('cd-h').textContent = pad(h);
-    document.getElementById('cd-m').textContent = pad(m);
-    document.getElementById('cd-s').textContent = pad(s);
+    const diff = TARGET - Date.now();
+    if (diff <= 0) { ['cd-d','cd-h','cd-m','cd-s'].forEach(id => document.getElementById(id).textContent = '00'); return; }
+    document.getElementById('cd-d').textContent = pad(Math.floor(diff/86400000));
+    document.getElementById('cd-h').textContent = pad(Math.floor(diff%86400000/3600000));
+    document.getElementById('cd-m').textContent = pad(Math.floor(diff%3600000/60000));
+    document.getElementById('cd-s').textContent = pad(Math.floor(diff%60000/1000));
   }
+  tick(); setInterval(tick, 1000);
 
-  tick();
-  setInterval(tick, 1000);
+  // FAQ accordion
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
 </script>
 </body>
 </html>
