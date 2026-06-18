@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evento Presencial — El Siguiente Nivel · Medellín 28 Jun</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1985622431943479');
+    fbq('track','PageView');
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #06060F;
+      --card:    #0E0E1C;
+      --border:  rgba(255,255,255,0.08);
+      --red:     #EF4444;
+      --purple:  #A855F7;
+      --gold:    #F59E0B;
+      --text:    #FFFFFF;
+      --muted:   rgba(255,255,255,0.55);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    .wrap { max-width: 480px; margin: 0 auto; padding: 0 16px 100px; }
+
+    /* ── HERO ─────────────────────────────── */
+    .hero {
+      text-align: center;
+      padding: 48px 0 32px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(168,85,247,0.15);
+      border: 1px solid rgba(168,85,247,0.35);
+      border-radius: 100px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #C084FC;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero-badge span { width: 6px; height: 6px; background: #A855F7; border-radius: 50%; display: inline-block; animation: pulse 1.4s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+
+    .hero h1 {
+      font-size: clamp(32px, 9vw, 46px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+      margin-bottom: 12px;
+    }
+    .hero h1 em { font-style: normal; color: var(--red); }
+    .hero-sub {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
+
+    /* ── COUNTDOWN ────────────────────────── */
+    .cd-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px 20px;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+    .cd-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+    .cd-nums { display: flex; justify-content: center; align-items: flex-end; gap: 8px; }
+    .cd-unit { display: flex; flex-direction: column; align-items: center; }
+    .cd-num {
+      font-size: 38px; font-weight: 900; letter-spacing: -2px; line-height: 1;
+      background: linear-gradient(135deg, #fff 0%, #C084FC 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .cd-tag { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-top: 4px; }
+    .cd-sep { font-size: 28px; font-weight: 900; color: var(--muted); padding-bottom: 10px; }
+
+    /* ── INFO BAR ─────────────────────────── */
+    .info-bar {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 16px;
+    }
+    .info-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+    .info-text { display: flex; flex-direction: column; }
+    .info-title { font-size: 13px; font-weight: 700; color: #fff; }
+    .info-desc { font-size: 12px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+
+    /* ── SECTION TITLE ────────────────────── */
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    /* ── TICKETS ──────────────────────────── */
+    .tickets { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+
+    .ticket-card {
+      border-radius: 20px;
+      padding: 22px 20px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      position: relative;
+      overflow: hidden;
+    }
+    .ticket-card.alumni  { border-color: rgba(99,102,241,0.4); }
+    .ticket-card.normal  { border-color: rgba(239,68,68,0.35); }
+    .ticket-card.vip     { border-color: rgba(245,158,11,0.5); background: linear-gradient(135deg, #0E0E1C 0%, #1A1200 100%); }
+
+    .ticket-card.vip::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at top right, rgba(245,158,11,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .ticket-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-radius: 100px;
+      padding: 3px 10px;
+      margin-bottom: 10px;
+    }
+    .alumni  .ticket-badge { background: rgba(99,102,241,0.2); color: #818CF8; border: 1px solid rgba(99,102,241,0.3); }
+    .normal  .ticket-badge { background: rgba(239,68,68,0.15); color: #F87171; border: 1px solid rgba(239,68,68,0.25); }
+    .vip     .ticket-badge { background: rgba(245,158,11,0.2); color: #FCD34D; border: 1px solid rgba(245,158,11,0.35); }
+
+    .ticket-name { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+    .ticket-price {
+      font-size: 36px; font-weight: 900; letter-spacing: -1.5px; line-height: 1;
+      margin-bottom: 12px;
+    }
+    .alumni  .ticket-price { color: #818CF8; }
+    .normal  .ticket-price { color: var(--red); }
+    .vip     .ticket-price { color: var(--gold); }
+
+    .ticket-perks { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
+    .ticket-perks li { font-size: 13px; color: var(--muted); display: flex; align-items: flex-start; gap: 8px; line-height: 1.4; }
+    .ticket-perks li::before { content: '✓'; font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+    .alumni  .ticket-perks li::before { color: #818CF8; }
+    .normal  .ticket-perks li::before { color: var(--red); }
+    .vip     .ticket-perks li::before { color: var(--gold); }
+
+    .vip-cupo {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.25);
+      border-radius: 8px; padding: 6px 12px;
+      font-size: 12px; font-weight: 700; color: #FCD34D;
+      margin-bottom: 16px;
+    }
+
+    .btn-ticket {
+      display: block; width: 100%;
+      text-decoration: none; text-align: center;
+      font-size: 15px; font-weight: 800;
+      border-radius: 14px; padding: 14px;
+      border: none; cursor: pointer;
+      transition: opacity .15s, transform .1s;
+    }
+    .btn-ticket:active { transform: scale(.98); opacity: .9; }
+
+    .alumni  .btn-ticket { background: linear-gradient(135deg,#6366F1,#4F46E5); color: #fff; }
+    .normal  .btn-ticket { background: linear-gradient(135deg,#EF4444,#DC2626); color: #fff; }
+    .vip     .btn-ticket { background: linear-gradient(135deg,#F59E0B,#D97706); color: #000; }
+
+    /* ── AGENDA ───────────────────────────── */
+    .agenda { margin-bottom: 36px; }
+    .agenda-list { display: flex; flex-direction: column; gap: 0; }
+    .agenda-item {
+      display: flex; gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .agenda-item:last-child { border-bottom: none; }
+    .agenda-time {
+      font-size: 12px; font-weight: 700; color: var(--muted);
+      min-width: 64px; padding-top: 2px; flex-shrink: 0;
+    }
+    .agenda-content { flex: 1; }
+    .agenda-name { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+    .agenda-detail { font-size: 12px; color: var(--muted); line-height: 1.4; }
+    .agenda-dot {
+      position: absolute; left: 80px; top: 50%; transform: translateY(-50%);
+      width: 8px; height: 8px; border-radius: 50%; background: var(--purple);
+      box-shadow: 0 0 8px var(--purple);
+      display: none;
+    }
+
+    /* ── SPEAKERS ─────────────────────────── */
+    .speakers { display: flex; gap: 12px; margin-bottom: 36px; }
+    .speaker-card {
+      flex: 1; background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 18px 14px; text-align: center;
+    }
+    .speaker-avatar {
+      width: 60px; height: 60px; border-radius: 50%;
+      background: linear-gradient(135deg,#7C3AED,#A855F7);
+      margin: 0 auto 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 900; color: #fff;
+    }
+    .speaker-name { font-size: 14px; font-weight: 800; margin-bottom: 2px; }
+    .speaker-role { font-size: 11px; color: var(--muted); }
+
+    /* ── LOCATION ─────────────────────────── */
+    .location-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 20px; overflow: hidden; margin-bottom: 36px;
+    }
+    .location-map {
+      width: 100%; height: 160px; background: #0D0D1F;
+      display: flex; align-items: center; justify-content: center;
+      border-bottom: 1px solid var(--border); font-size: 13px; color: var(--muted);
+      position: relative; overflow: hidden;
+    }
+    .location-map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .location-info { padding: 16px 18px; }
+    .location-name { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
+    .location-addr { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+    /* ── URGENCY ──────────────────────────── */
+    .urgency-block {
+      background: rgba(239,68,68,0.08);
+      border: 1px solid rgba(239,68,68,0.25);
+      border-radius: 16px; padding: 18px;
+      text-align: center; margin-bottom: 28px;
+      font-size: 14px; color: var(--muted); line-height: 1.5;
+    }
+    .urgency-block strong { color: var(--red); }
+
+    /* ── FLOATING WA ──────────────────────── */
+    .btn-wa-float {
+      position: fixed; bottom: 20px; right: 20px;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg,#25D366,#1AAB54);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; z-index: 999;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    }
+    .btn-wa-float svg { width: 28px; height: 28px; fill: #fff; }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge"><span></span> Evento Presencial · Medellín</div>
+    <h1>El Siguiente Nivel<br/><em>en vivo</em></h1>
+    <p class="hero-sub">Un día completo junto a Laura, Santiago y los mejores vendedores del Método Unicornio. Solo una vez. Solo en Medellín.</p>
+  </div>
+
+  <!-- COUNTDOWN -->
+  <div class="cd-block">
+    <div class="cd-label">Faltan para el evento</div>
+    <div class="cd-nums">
+      <div class="cd-unit"><span class="cd-num" id="cd-d">00</span><span class="cd-tag">Días</span></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><span class="cd-num" id="cd-h">00</span><span class="cd-tag">Horas</span></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><span class="cd-num" id="cd-m">00</span><span class="cd-tag">Min</span></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><span class="cd-num" id="cd-s">00</span><span class="cd-tag">Seg</span></div>
+    </div>
+  </div>
+
+  <!-- INFO -->
+  <div class="info-bar">
+    <div class="info-item">
+      <div class="info-icon">📅</div>
+      <div class="info-text">
+        <span class="info-title">Sábado 28 de Junio, 2026</span>
+        <span class="info-desc">Evento público: 11:30 AM — 5:00 PM<br/>Evento privado presencial: 10:00 AM — 10:30 AM</span>
+      </div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">📍</div>
+      <div class="info-text">
+        <span class="info-title">Iglesia AVIVA · Envigado</span>
+        <span class="info-desc">Cra 43A #49 B sur 45, Local 102 · Envigado, Antioquia</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPEAKERS -->
+  <p class="section-title">Anfitriones</p>
+  <div class="speakers">
+    <div class="speaker-card">
+      <div class="speaker-avatar">L</div>
+      <div class="speaker-name">Laura Zabala</div>
+      <div class="speaker-role">El Siguiente Nivel</div>
+    </div>
+    <div class="speaker-card">
+      <div class="speaker-avatar">S</div>
+      <div class="speaker-name">Santiago Leal</div>
+      <div class="speaker-role">El Siguiente Nivel</div>
+    </div>
+  </div>
+
+  <!-- TICKETS -->
+  <p class="section-title">Elige tu entrada</p>
+  <div class="tickets">
+
+    <!-- ALUMNI -->
+    <div class="ticket-card alumni">
+      <span class="ticket-badge">Alumnos</span>
+      <div class="ticket-name">Entrada Alumni</div>
+      <div class="ticket-price">$20 USD</div>
+      <ul class="ticket-perks">
+        <li>Acceso completo al evento (11:30 AM – 5 PM)</li>
+        <li>4 charlas con speakers invitados</li>
+        <li>Espacio de almuerzo en Mayorca</li>
+        <li>Entrega de premios de ventas</li>
+        <li>Solo para alumnos activos del Método Unicornio</li>
+      </ul>
+      <a href="https://wa.link/mf0uw5" target="_blank" class="btn-ticket"
+         onclick="try{fbq('track','InitiateCheckout',{content_name:'Alumni',value:20,currency:'USD'})}catch(e){}">
+        Reservar mi lugar →
+      </a>
+    </div>
+
+    <!-- NORMAL -->
+    <div class="ticket-card normal">
+      <span class="ticket-badge">Entrada General</span>
+      <div class="ticket-name">Entrada Normal</div>
+      <div class="ticket-price">$30 USD</div>
+      <ul class="ticket-perks">
+        <li>Acceso completo al evento (11:30 AM – 5 PM)</li>
+        <li>4 charlas con speakers invitados</li>
+        <li>Espacio de almuerzo en Mayorca</li>
+        <li>Entrega de premios de ventas</li>
+      </ul>
+      <a href="https://wa.link/mf0uw5" target="_blank" class="btn-ticket"
+         onclick="try{fbq('track','InitiateCheckout',{content_name:'Normal',value:30,currency:'USD'})}catch(e){}">
+        Reservar mi lugar →
+      </a>
+    </div>
+
+    <!-- VIP -->
+    <div class="ticket-card vip">
+      <span class="ticket-badge">⭐ VIP Exclusivo</span>
+      <div class="ticket-name">Entrada VIP</div>
+      <div class="ticket-price">$500 USD</div>
+      <div class="vip-cupo">🔒 Solo 20 cupos disponibles</div>
+      <ul class="ticket-perks">
+        <li>Asientos primera y segunda fila (vista privilegiada)</li>
+        <li>Cena especial noche del sábado 28 con todo el equipo, Laura y Santiago</li>
+        <li>Merch exclusivo El Siguiente Nivel</li>
+        <li>Evento privado presencial 10 AM – 10:30 AM (solo VIP)</li>
+        <li>+2 meses extra de Aurapesca incluidos</li>
+        <li>Todo lo incluido en entrada general</li>
+      </ul>
+      <a href="https://wa.link/mf0uw5" target="_blank" class="btn-ticket"
+         onclick="try{fbq('track','InitiateCheckout',{content_name:'VIP',value:500,currency:'USD'})}catch(e){}">
+        Quiero el VIP →
+      </a>
+    </div>
+
+  </div>
+
+  <!-- AGENDA -->
+  <p class="section-title">Agenda del día</p>
+  <div class="agenda">
+    <div class="agenda-list">
+      <div class="agenda-item">
+        <div class="agenda-time">10:00 AM</div>
+        <div class="agenda-content">
+          <div class="agenda-name">🔒 Evento Privado VIP</div>
+          <div class="agenda-detail">Solo asistentes VIP · Acceso exclusivo 10:00 – 10:30 AM</div>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">11:30 AM</div>
+        <div class="agenda-content">
+          <div class="agenda-name">Bienvenida e Introducción</div>
+          <div class="agenda-detail">Laura Zabala & Santiago Leal dan la bienvenida al equipo</div>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">12:00 PM</div>
+        <div class="agenda-content">
+          <div class="agenda-name">Charla Hotmart</div>
+          <div class="agenda-detail">30 min · Estrategias y herramientas para escalar tus ventas</div>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">12:30 PM</div>
+        <div class="agenda-content">
+          <div class="agenda-name">Charla Invitado #1</div>
+          <div class="agenda-detail">30 min · Speaker invitado por @Santiago Leal y @Laura Zabala</div>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">1:00 PM</div>
+        <div class="agenda-content">
+          <div class="agenda-name">🍽️ Almuerzo</div>
+          <div class="agenda-detail">40 min · Centro Comercial Mayorca · Espacio libre para networking</div>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">1:40 PM</div>
+        <div class="agenda-content">
+          <div class="agenda-name">Charla Invitado #2</div>
+          <div class="agenda-detail">30 min · Speaker invitado por @Santiago Leal y @Laura Zabala</div>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">2:10 PM</div>
+        <div class="agenda-content">
+          <div class="agenda-name">Charla Invitado #3</div>
+          <div class="agenda-detail">30 min · Speaker invitado por @Santiago Leal y @Laura Zabala</div>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">2:40 PM</div>
+        <div class="agenda-content">
+          <div class="agenda-name">🏆 Cierre · Entrega de Premios</div>
+          <div class="agenda-detail">30 min · Reconocimiento a los mejores vendedores del Método Unicornio</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOCATION -->
+  <p class="section-title">Ubicación</p>
+  <div class="location-card">
+    <div class="location-map">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966!2d-75.5798!3d6.1848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMTEnMDUuMyJOIDc1wrAzNCc0Ny4yIlc!5e0!3m2!1ses!2sco!4v1"
+        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <div class="location-info">
+      <div class="location-name">Iglesia AVIVA</div>
+      <div class="location-addr">Cra 43A #49 B sur 45, Local 102<br/>Envigado, Antioquia · Colombia</div>
+    </div>
+  </div>
+
+  <!-- URGENCY -->
+  <div class="urgency-block">
+    <strong>Los cupos VIP son solo 20.</strong> Una vez que se llenen, no hay más disponibilidad. El evento es el <strong>28 de junio</strong> — las entradas no se transfieren ni reembolsan.
+  </div>
+
+</div><!-- /wrap -->
+
+<!-- FLOATING WA -->
+<a href="https://wa.link/mf0uw5" target="_blank" class="btn-wa-float"
+   onclick="try{fbq('track','Contact')}catch(e){}">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.558 4.122 1.532 5.855L.057 23.882a.5.5 0 0 0 .611.611l6.058-1.47A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.217-1.443l-.374-.224-3.876.94.97-3.814-.247-.393A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+  </svg>
+</a>
+
+<script>
+  // Countdown to June 28, 2026 at 11:30 AM Colombia (UTC-5 = 16:30 UTC)
+  const TARGET = new Date('2026-06-28T16:30:00Z');
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function tick() {
+    const diff = TARGET - new Date();
+    if (diff <= 0) {
+      document.getElementById('cd-d').textContent = '00';
+      document.getElementById('cd-h').textContent = '00';
+      document.getElementById('cd-m').textContent = '00';
+      document.getElementById('cd-s').textContent = '00';
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-d').textContent = pad(d);
+    document.getElementById('cd-h').textContent = pad(h);
+    document.getElementById('cd-m').textContent = pad(m);
+    document.getElementById('cd-s').textContent = pad(s);
+  }
+
+  tick();
+  setInterval(tick, 1000);
+</script>
+</body>
+</html>
